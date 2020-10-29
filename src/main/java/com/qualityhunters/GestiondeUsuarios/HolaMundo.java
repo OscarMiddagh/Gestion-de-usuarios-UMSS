@@ -1,12 +1,13 @@
 package com.qualityhunters.GestiondeUsuarios;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 public class HolaMundo {
     @RequestMapping("/")
-    public String hola(){
-        return "Hola mundo soy io";
+    public String index(Model model){
+        return "index"; 
     }
 }
