@@ -10,4 +10,5 @@ public class HolaMundo {
     public String index(Model model){
         return "index"; 
     }
+    
 }
