@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 public class HolaMundo {
     @RequestMapping("/")
     public String index(Model model){
-        return "index"; 
+        return "solicitudCambioRol"; 
     }
     
 }
