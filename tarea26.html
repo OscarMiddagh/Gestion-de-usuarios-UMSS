@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <script type="text/javascript">
+        function charcounts(startfrom, charend) {
+            var len = document.getElementById(startfrom).value.length;
+            document.getElementById(charend).innerHTML = len;
+        }
+    </Script>
+
+    <body>
+        <center>
+            <h1>Restriccion de caracteres</h1>
+        </center>
+        <textarea placeholder="Ingresar motivo" id="value" rows="8" cols="20" maxlength="90" style="font-size: 30px;" onkeyup="charcounts('value','countchar');" onkeydown="charcounts('value','countchar');" onmouseout="charcounts('value','countchar');"></textarea></br>
+        <h2>Has ingresado <span id="countchar" style="color:red;">0</span> caracteres
+        </h2>
+    </body>
+</head>
+
+</html>
