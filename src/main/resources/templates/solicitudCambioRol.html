@@ -12,16 +12,38 @@
     <p>
         Derrote al admin y ahora yo soy el jefe xdd
     </p>
-    <h5>Roles disponibles</h5>
-    <label for="cars">Choose a car:</label>
-    <form action="" method="post">
-        <select id="cars" name="cars">
-            <option value="admin">Admin</option>
-            <option value="delivery">Delivery</option>
-            <option value="vendedor">Vendedor</option>
-            <option value="comprador">Comprador</option>
-        </select>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
+    <div>
+        <input type="radio" value="1" name="habilitarDeshabilitar" onchange="habilitar(this);" checked> Aceptar
+        <input type="radio" value="2" name="habilitarDeshabilitar" onchange="habilitar(this);"> Rechazar
+        <br>
+        <br>
+        <form action="" method="post" >
+            <select id="cars" name="cars" required>
+                <option value="">Elige un rol</option>
+                <option value="admin">Admin</option>
+                <option value="delivery">Delivery</option>
+                <option value="vendedor">Vendedor</option>
+                <option value="comprador">Comprador</option>
+            </select>
+            <br>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+      </div>
+    
+    
+<script>
+    var input = document.getElementById('cars');
+
+function habilitar(elemento) {
+  d = elemento.value;
+  
+  if(d == "2"){
+    input.hidden = true;
+  }else{
+    input.hidden = false;
+  }
+}
+    </script>
 </body>
 </html>
