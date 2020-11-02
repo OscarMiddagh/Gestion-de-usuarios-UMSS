@@ -1,0 +1,24 @@
+package com.qualityhunters.Controller;
+
+import com.qualityhunters.Model.Usuario;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class PrincipalController {
+    @GetMapping("/logIn")
+    public String logIn(Model model){     
+        model.addAttribute("usuario", new Usuario());
+        return "LogIn"; 
+    }
+    @PostMapping("/logIn")
+    public String logInSubmit(@ModelAttribute Usuario usuario,Model model){
+        return "InicioSesionExitoso";
+    }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+    <title>Index</title>
+</head>
+<body>
+    <div class="container-md">
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-sm-center">
+            
+            <form action="http://www.gestionUsuarios/crearUsuarios" th:action="@{/logIn}" th:object="${usuario}" method="post">
+                <div class="form-group">
+                <label for="email" th:field="*{correo}">Direcci&oacuten email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su email" onkeypress="return caracterespermitidoscorreo(event);" required>
+                </div>
+                <div class="form-group">
+                <label for="Contraseña" th:field="*{contraseña}">Contraseña</label>
+                <input type="password" class="form-control" id="Contraseña" placeholder="Contraseña" onkeypress="return caracterespermitidospasswd(event);" required minlength="8">
+                </div>
+                <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check" required>
+                <label class="form-check-label" for="check">Recu&eacuterdame</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function caracterespermitidoscorreo(e){
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@0123456789.";
+
+        especiales = [8,13];
+        tecla_especial = false
+        for(var i in especiales){
+            if(key == especiales){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla) == -1 && !tecla_especial){
+            alert("No se aceptan espacios ni caracteres especiales");
+            return false;
+        }
+    }
+</script>
+<script>
+    function caracterespermitidospasswd(e){
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        especiales = [8,13];
+        tecla_especial = false
+        for(var i in especiales){
+            if(key == especiales){
+                tecla_especial = true;
+                break;
+            }
+        }
+        if(letras.indexOf(tecla) == -1 && !tecla_especial){
+            alert("Solo se aceptan caracteres alfanumericos");
+            return false;
+        }
+    }
+</script>
+</html>

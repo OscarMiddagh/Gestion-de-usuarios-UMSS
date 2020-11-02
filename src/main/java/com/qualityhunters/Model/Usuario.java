@@ -28,7 +28,7 @@ public class Usuario {
   private String contraseña;
 
 
-  protected Usuario() {}
+  public Usuario() {}
 
   public Usuario(String nombres, String apellidos, String correo, String documentoDeIdentidad,
                  String direccion, String ciudad, String pais, String contraseña) {
