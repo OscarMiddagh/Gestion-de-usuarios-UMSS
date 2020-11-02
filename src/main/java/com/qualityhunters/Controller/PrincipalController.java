@@ -14,12 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PrincipalController {
     @RequestMapping("/")
     public String index(Model model){
-        return "index"; 
+        return "EnDesarrollo"; 
     }
     
     @GetMapping("/generar_respuesta")
     public String generar(Model model){
         return "GenerarRespuesta"; 
+    }
+    @GetMapping("/sol_cambio_rol")
+    public String solicitudCambioRol(Model model){
+        return "SolicitudCambioRol"; 
+    }
+    @PostMapping("/sol_cambio_rol")
+    public String solicitudCambioRolSubmit(Model model){
+        return "EnDesarrollo"; 
     }
     @GetMapping("/logIn")
     public String logIn(Model model){     
@@ -30,4 +38,9 @@ public class PrincipalController {
     public String logInSubmit(@ModelAttribute Usuario usuario,Model model){
         return "InicioSesionExitoso";
     }
+    @GetMapping("/registrarse")
+    public String registrarse(Model model){
+        return "EnDesarrollo"; 
+    }
+    
 }

@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>Solicitud Cambio de Rol</title>
 </head>
 <body>
     <h1>SOLICITUD DE CAMBIO DE ROL</h1>
-    <h5>Motivo de solicitud</h5>
-    <p>
-        Derrote al admin y ahora yo soy el jefe xdd
-    </p>
-    <div>
-        <input type="radio" value="1" name="habilitarDeshabilitar" onchange="habilitar(this);" checked> Aceptar
-        <input type="radio" value="2" name="habilitarDeshabilitar" onchange="habilitar(this);"> Rechazar
-        <br>
-        <br>
-        <form action="" method="post" >
-            <select id="cars" name="cars" required>
-                <option value="">Elige un rol</option>
-                <option value="admin">Admin</option>
-                <option value="delivery">Delivery</option>
-                <option value="vendedor">Vendedor</option>
-                <option value="comprador">Comprador</option>
-            </select>
-            <br>
-            <br>
-            <input type="submit" value="Enviar">
-        </form>
+    <div class="container-md">
+      <br>
+      <br>
+      <br>
+      <div class="row justify-content-sm-center">
+          
+          <form  th:action="@{/sol_cambio_rol}" th:object="${usuario}" method="post">
+            <h5>Motivo de solicitud</h5>
+            <textarea name="" id="" cols="30" rows="10" required minlength="20" maxlength="250"></textarea >
+              <br>
+              <select id="cars" name="cars" required>
+                  <option value="">Elige un rol</option>
+                  <option value="admin">Admin</option>
+                  <option value="delivery">Delivery</option>
+                  <option value="vendedor">Vendedor</option>
+                  <option value="comprador">Comprador</option>
+              </select>
+              <br>
+              <br>
+              <input type="submit" value="Enviar">
+          </form>
       </div>
-    
-    
+  </div>
 <script>
     var input = document.getElementById('cars');
 
