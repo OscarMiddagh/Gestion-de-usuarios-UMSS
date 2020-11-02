@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Permiso {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id; 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Rol rol;
