@@ -11,4 +11,8 @@ public class HolaMundo {
         return "index"; 
     }
     
+    @RequestMapping("/generar_respuesta")
+    public String generar(Model model){
+        return "GenerarRespuesta"; 
+    }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Generar Respuesta</title>
+    </head>
+    <body>
+        <head>
+            <h1>Respuesta solicitud</h1>
+        </head>
+        <div>
+            <div id="datos">
+            </div>
+            <div>
+                <button id="aprobar">Aprobar</button><button id="rechazar">Rechazar</button>
+                <br><br>
+            </div>
+            <div>
+                <label>Roles disponibles</label><br>
+                <select>
+                    <option value="admin">Admin</option>
+                    <option value="delivery">Delivery</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="comprador">Comprador</option>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div class="secC">
+                <label >Comentario</label><br>
+                <textarea class="textA" id="com" rows="5" cols="50">
+                </textarea>
+                <br>
+            </div>
+            <div id="botones-bot">
+                <button name="cambiar">Cambiar</button><button name="enviar">Enviar</button>
+            </div>
+        </div>
+        <script src="js/solic.js"></script>
+    </body>
+</html>
