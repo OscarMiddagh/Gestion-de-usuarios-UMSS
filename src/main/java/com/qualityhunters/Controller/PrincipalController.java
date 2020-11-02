@@ -10,8 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+// @RequestMapping("/")
 public class PrincipalController {
+    @RequestMapping("/")
+    public String index(Model model){
+        return "index"; 
+    }
+    
+    @GetMapping("/generar_respuesta")
+    public String generar(Model model){
+        return "GenerarRespuesta"; 
+    }
     @GetMapping("/logIn")
     public String logIn(Model model){     
         model.addAttribute("usuario", new Usuario());

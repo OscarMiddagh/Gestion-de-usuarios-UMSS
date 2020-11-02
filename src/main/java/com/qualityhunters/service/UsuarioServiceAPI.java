@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import com.qualityhunters.Repository.UsuarioRepository;
 import com.qualityhunters.Model.Usuario;
@@ -27,6 +28,9 @@ public class UsuarioServiceAPI {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         return usuario;
     }
+    // public Optional<Usuario> findByCorreo(String correo){
+
+    // }
     public Usuario save(Usuario usuario){
         return usuarioRepository.save(usuario);
     }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
-    <title>Index</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Log In</title>
 </head>
 <body>
     <div class="container-md">
@@ -15,15 +15,15 @@
             
             <form action="http://www.gestionUsuarios/crearUsuarios" th:action="@{/logIn}" th:object="${usuario}" method="post">
                 <div class="form-group">
-                <label for="email" th:field="*{correo}">Direcci&oacuten email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su email" onkeypress="return caracterespermitidoscorreo(event);" required>
+                <label for="email" >Direcci&oacuten email</label>
+                <input type="email" th:field="*{correo}" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su email" onkeypress="return caracterespermitidoscorreo(event);" required>
                 </div>
                 <div class="form-group">
-                <label for="Contraseña" th:field="*{contraseña}">Contraseña</label>
-                <input type="password" class="form-control" id="Contraseña" placeholder="Contraseña" onkeypress="return caracterespermitidospasswd(event);" required minlength="8">
+                <label for="Contraseña" >Contraseña</label>
+                <input type="password" th:field="*{contraseña}" class="form-control" id="Contraseña" placeholder="Contraseña" onkeypress="return caracterespermitidospasswd(event);" required minlength="8">
                 </div>
                 <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="check" required>
+                <input type="checkbox" class="form-check-input" id="check">
                 <label class="form-check-label" for="check">Recu&eacuterdame</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
