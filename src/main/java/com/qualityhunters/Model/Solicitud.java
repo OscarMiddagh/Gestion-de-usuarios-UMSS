@@ -21,12 +21,15 @@ public class Solicitud {
     private Sistema sistema;
     @OneToOne(cascade = CascadeType.ALL)
     private Rol rolDestino;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Rol rolOrigen;
 
-    public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rol){
+    public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rol,Rol rolo){
         this.sistema = sistema;
         this.usuario = usuario;
         this.motivo = motivo;
         this.rolDestino = rol;
+        this.rolOrigen = rolo;
     }
     public void setSistema(Sistema sistema){
         this.sistema = sistema;
@@ -45,6 +48,9 @@ public class Solicitud {
     }
     public Rol getRolDestino(){
         return rolDestino;
+    }
+    public Rol getRolOrigen(){
+        return rolOrigen;
     }
     public Long getId(){
         return id;
