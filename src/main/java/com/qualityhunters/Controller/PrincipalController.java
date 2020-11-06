@@ -1,7 +1,9 @@
 package com.qualityhunters.Controller;
 
 import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.Repository.SolicitudRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 // @RequestMapping("/")
 public class PrincipalController {
+
+    @Autowired
+    private SolicitudRepository solicitudRepo;
+
     @RequestMapping("/")
     public String index(Model model){
         return "EnDesarrollo"; 
@@ -23,6 +29,7 @@ public class PrincipalController {
     }
     @GetMapping("/sol_cambio_rol")
     public String solicitudCambioRol(Model model){
+
         return "SolicitudCambioRol"; 
     }
     @PostMapping("/sol_cambio_rol")

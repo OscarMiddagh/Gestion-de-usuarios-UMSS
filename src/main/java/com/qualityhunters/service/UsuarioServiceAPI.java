@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import com.qualityhunters.Repository.UsuarioRepository;
 import com.qualityhunters.Model.Usuario;
