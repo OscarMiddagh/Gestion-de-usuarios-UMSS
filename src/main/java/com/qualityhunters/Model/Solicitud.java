@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Solicitud { 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String motivo;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -23,6 +23,10 @@ public class Solicitud {
     private Rol rolDestino;
     @OneToOne(cascade = CascadeType.ALL)
     private Rol rolOrigen;
+
+    public Solicitud(){
+
+    }
 
     public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rol,Rol rolo){
         this.sistema = sistema;

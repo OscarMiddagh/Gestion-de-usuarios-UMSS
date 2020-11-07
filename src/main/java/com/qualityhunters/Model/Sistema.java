@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Sistema {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nombreSistema;
     public String getNombreSistema(){

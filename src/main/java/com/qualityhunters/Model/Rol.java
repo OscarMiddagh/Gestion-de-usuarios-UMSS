@@ -4,12 +4,12 @@ import javax.persistence.*;
 @Entity
 public class Rol {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Sistema sistema;
     private String nombreRol;
-
+    public Rol(){}
     public Rol(Sistema sistema, String nombreRol){
         this.sistema = sistema;
         this.nombreRol = nombreRol;
