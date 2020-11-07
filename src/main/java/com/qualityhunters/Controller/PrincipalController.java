@@ -56,8 +56,8 @@ public class PrincipalController {
         model.addAttribute("motivo", sol.get().getMotivo());
         return "GenerarRespuesta"; 
     }
-    @GetMapping("/{subsistema}/sol_cambio_rol")
-    public String solicitudCambioRol(@PathVariable long subsistema,Model model){
+    @GetMapping("/{subsistema}/{idUsuario}/sol_cambio_rol")
+    public String solicitudCambioRol(@PathVariable long subsistema,@PathVariable long idUsuario,Model model){
         Sistema subsis = new Sistema();
         subsis.setId(subsistema);
         List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
@@ -65,10 +65,10 @@ public class PrincipalController {
         model.addAttribute("roles",roles);
         return "SolicitudCambioRol"; 
     }
-    @PostMapping("/{subsistema}/sol_cambio_rol")
-    public String solicitudCambioRolSubmit(@PathVariable long subsistema, @ModelAttribute Solicitud solicitud, Model model){
-        long idUsuarioMock = 9000001;
-        Optional<Usuario> user = usuarioRepo.findById(idUsuarioMock);
+    @PostMapping("/{subsistema}/{idUsuario}/sol_cambio_rol")
+    public String solicitudCambioRolSubmit(@PathVariable long subsistema,@PathVariable long idUsuario, @ModelAttribute Solicitud solicitud, Model model){
+        // long idUsuarioMock = 9000001;
+        Optional<Usuario> user = usuarioRepo.findById(idUsuario);
         Sistema sis = user.get().getSistema();
         Rol rolO = user.get().getRol();
         solicitud.setRolOrigen(rolO);
