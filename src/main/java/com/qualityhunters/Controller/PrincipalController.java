@@ -40,8 +40,20 @@ public class PrincipalController {
         return "EnDesarrollo"; 
     }
     
-    @GetMapping("/{subsistema}/generar_respuesta")
-    public String generar(Model model){
+    @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
+    public String generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
+        Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
+        Sistema subsis = new Sistema();
+        subsis.setId(subsistema);
+        List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
+        // model.addAttribute("solicitud", new Solicitud());
+        Usuario user = usuarioRepo.findById(sol.get().getUsuario().getId()).get();
+        String nombreSolicitante = user.getNombres()+" " + user.getApellidos();
+        Rol rolD = sol.get().getRolDestino();
+        model.addAttribute("roles",roles);
+        model.addAttribute("nombreSolicitante", nombreSolicitante);
+        model.addAttribute("rolDestino", rolD.getNombreRol());
+        model.addAttribute("motivo", sol.get().getMotivo());
         return "GenerarRespuesta"; 
     }
     @GetMapping("/{subsistema}/sol_cambio_rol")
