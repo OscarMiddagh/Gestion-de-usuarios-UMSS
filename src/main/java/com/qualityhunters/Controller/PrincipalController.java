@@ -1,12 +1,17 @@
 package com.qualityhunters.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.qualityhunters.Model.Rol;
+import com.qualityhunters.Model.Sistema;
 // import com.qualityhunters.Model.Sistema;
 import com.qualityhunters.Model.Solicitud;
 import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.Repository.RolRepository;
+import com.qualityhunters.Repository.SolicitudRepository;
 // import com.qualityhunters.Repository.SistemaRepository;
 // import com.qualityhunters.Repository.SolicitudRepository;
 import com.qualityhunters.Repository.UsuarioRepository;
@@ -25,6 +30,10 @@ public class PrincipalController {
 
     @Autowired
     private UsuarioRepository usuarioRepo;
+    @Autowired
+    private SolicitudRepository solicitudRepo;
+    @Autowired
+    private RolRepository rolRepo;
     @RequestMapping("/")
     public String index(Model model){
         return "EnDesarrollo"; 
@@ -36,18 +45,21 @@ public class PrincipalController {
     }
     @GetMapping("/sol_cambio_rol")
     public String solicitudCambioRol(Model model){
+        List<Rol> roles = rolRepo.rolesPorSubsistema(1000002);
         model.addAttribute("solicitudCambioRol", new Solicitud());
+        model.addAttribute("roles",roles);
         return "SolicitudCambioRol"; 
     }
     @PostMapping("/sol_cambio_rol")
-    public String solicitudCambioRolSubmit(@Valid Solicitud solicitud, Model model){
-        // Sistema sis;
-        // Usuario user;
-
-        // new Solicitud(sistema, usuario, motivo, rol, rolo);
-        // solicitud.setSistema();
-        // solicitud.setUsuario(usuario);
-        // solicitudRepo.save(solicitud);
+    public String solicitudCambioRolSubmit(@ModelAttribute Solicitud solicitud, Model model){
+        long idUsuarioMock = 1;
+        Optional<Usuario> user = usuarioRepo.findById(idUsuarioMock);
+        Sistema sis = user.get().getSistema();
+        Rol rolO = user.get().getRol();
+        solicitud.setRolOrigen(rolO);
+        solicitud.setSistema(sis);
+        solicitud.setUsuario(user.get());
+        solicitudRepo.save(solicitud);
         return "SolicitudEnviada"; 
     }
     @GetMapping("/logIn")

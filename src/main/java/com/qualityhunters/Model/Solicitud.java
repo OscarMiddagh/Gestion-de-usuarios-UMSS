@@ -28,18 +28,24 @@ public class Solicitud {
 
     }
 
-    public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rol,Rol rolo){
+    public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rolO,Rol rolD){
         this.sistema = sistema;
         this.usuario = usuario;
         this.motivo = motivo;
-        this.rolDestino = rol;
-        this.rolOrigen = rolo;
+        this.rolDestino = rolD;
+        this.rolOrigen = rolO;
     }
     public void setSistema(Sistema sistema){
         this.sistema = sistema;
     }
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
+    }
+    public void setRolOrigen(Rol rolO){
+        rolOrigen = rolO;
+    }
+    public void setRolDestino(Rol rolD){
+        rolDestino = rolD;
     }
     public Sistema getSistema(){
         return sistema;

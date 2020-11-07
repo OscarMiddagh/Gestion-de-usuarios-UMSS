@@ -8,4 +8,5 @@ import com.qualityhunters.Model.Solicitud;
 @Repository
 public interface SolicitudRepository extends JpaRepository < Solicitud, Long > {
 
+    
 }

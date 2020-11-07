@@ -27,7 +27,7 @@
                 <input type="checkbox" class="form-check-input" id="check">
                 <label class="form-check-label" for="check">Recu&eacuterdame</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary" onclick="mensajeAlerta()">Enviar</button>
             </form>
         </div>
     </div>
@@ -52,8 +52,6 @@
             return false;
         }
     }
-</script>
-<script>
     function caracterespermitidospasswd(e){
         key = e.keyCode || e.which;
         tecla = String.fromCharCode(key).toString();
