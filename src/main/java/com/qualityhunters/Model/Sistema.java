@@ -14,6 +14,9 @@ public class Sistema {
     public void setNombreSistema(String nombreSistema){
         this.nombreSistema = nombreSistema;
     }
+    public void setId(Long id){
+        this.id = id;
+    }
     public Long getId() {
         return id;
       }

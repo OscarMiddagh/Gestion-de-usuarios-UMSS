@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,20 +40,22 @@ public class PrincipalController {
         return "EnDesarrollo"; 
     }
     
-    @GetMapping("/generar_respuesta")
+    @GetMapping("/{subsistema}/generar_respuesta")
     public String generar(Model model){
         return "GenerarRespuesta"; 
     }
-    @GetMapping("/sol_cambio_rol")
-    public String solicitudCambioRol(Model model){
-        List<Rol> roles = rolRepo.rolesPorSubsistema(1000002);
-        model.addAttribute("solicitudCambioRol", new Solicitud());
+    @GetMapping("/{subsistema}/sol_cambio_rol")
+    public String solicitudCambioRol(@PathVariable long subsistema,Model model){
+        Sistema subsis = new Sistema();
+        subsis.setId(subsistema);
+        List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
+        model.addAttribute("solicitud", new Solicitud());
         model.addAttribute("roles",roles);
         return "SolicitudCambioRol"; 
     }
-    @PostMapping("/sol_cambio_rol")
-    public String solicitudCambioRolSubmit(@ModelAttribute Solicitud solicitud, Model model){
-        long idUsuarioMock = 1;
+    @PostMapping("/{subsistema}/sol_cambio_rol")
+    public String solicitudCambioRolSubmit(@PathVariable long subsistema, @ModelAttribute Solicitud solicitud, Model model){
+        long idUsuarioMock = 9000001;
         Optional<Usuario> user = usuarioRepo.findById(idUsuarioMock);
         Sistema sis = user.get().getSistema();
         Rol rolO = user.get().getRol();

@@ -47,6 +47,9 @@ public class Solicitud {
     public void setRolDestino(Rol rolD){
         rolDestino = rolD;
     }
+    public void setMotivo(String motivo){
+        this.motivo = motivo;
+    }
     public Sistema getSistema(){
         return sistema;
     }
