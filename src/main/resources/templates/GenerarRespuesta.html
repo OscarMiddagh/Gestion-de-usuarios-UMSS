@@ -3,40 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <title>Generar Respuesta</title>
     </head>
-    <body>
-        <head>
-            <h1>Respuesta solicitud</h1>
-        </head>
-        <div>
-            <div id="datos">
-            </div>
+    <body >
+        <h1 class="row justify-content-sm-center">Respuesta solicitud</h1>
+        <div class="row justify-content-sm-center">
             <div>
-                <button id="aprobar">Aprobar</button><button id="rechazar">Rechazar</button>
-                <br><br>
-            </div>
-            <div>
-                <label>Roles disponibles</label><br>
-                <select>
-                    <option value="admin">Admin</option>
-                    <option value="delivery">Delivery</option>
-                    <option value="vendedor">Vendedor</option>
-                    <option value="comprador">Comprador</option>
-                </select>
-                <br>
-                <br>
-            </div>
-            <div class="secC">
-                <label >Comentario</label><br>
-                <textarea class="textA" id="com" rows="5" cols="50">
-                </textarea>
-                <br>
-            </div>
-            <div id="botones-bot">
-                <button name="cambiar">Cambiar</button><button name="enviar">Enviar</button>
+                <form action="" method="post">
+                    <div id="datos">
+                        <h5>Nombre solicitante:</h5>
+                        <p th:text="${nombreSolicitante}"></p>
+                        <h5>Rol al que quiere ser asignado:</h5>
+                        <p th:text="${rolDestino}"></p>
+                        <h5>Motivo:</h5>
+                        <p th:text="${motivo}"></p>
+                    </div>  
+                    <div>
+                        <button id="aprobar">Aprobar</button><button id="rechazar">Rechazar</button>
+                        <br><br>
+                    </div>
+                    <div>
+                        <label>Roles disponibles</label><br>
+                        <select  id="rol"   required>
+                            <option th:each="rol: ${roles}" th:value="${rol.id}" th:text="${rol.nombreRol}"></option>
+                        </select>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="secC">
+                        <label >Comentario</label><br>
+                        <textarea class="textA" id="com" rows="5" cols="50"></textarea>
+                        <br>
+                    </div>
+                    <div id="botones-bot">
+                        <button name="cambiar">Cambiar</button><button name="enviar">Enviar</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-        <script src="js/solic.js"></script>
+        <script src="/js/solic.js"></script>
     </body>
 </html>

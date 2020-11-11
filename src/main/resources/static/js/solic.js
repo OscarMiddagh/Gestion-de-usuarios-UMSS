@@ -32,7 +32,14 @@ function showMessage(){
         document.querySelector('.alert').remove();
     },3000);
 }
-const sol1=new solicitud("Oscar","admin","Me siento listo para ser admin y lo necesito para tener mejores permisos");
+function añadirSolicitud(nombre,rolDestino,motivo){
+    sol1=new solicitud(nombre,rolDestino,motivo); 
+    innerSolicitud();
+}
+
+ 
+
+function innerSolicitud(){  
     const datos = document.getElementById('datos');
     const element = document.createElement("div");
     const cont=`<div>
@@ -42,8 +49,10 @@ const sol1=new solicitud("Oscar","admin","Me siento listo para ser admin y lo ne
     <p>Por el siguiente motivo: ${sol1.motivo}<p>
     </div>
     `;
-element.innerHTML=cont;
-datos.appendChild(element);
+    element.innerHTML=cont;
+    datos.appendChild(element);
+
+}
 
 document.getElementById("botones-bot").addEventListener('click',function(e){
     if(e.target.name==='enviar'){
