@@ -1,12 +1,7 @@
 //Campo para la historia Inicio de Sesion
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+import {Link
 } from "react-router-dom";
 import React from 'react'
-import Registro from "../Registro/Registro";
 
 
 const InicioSesion = () => {
@@ -15,7 +10,7 @@ const InicioSesion = () => {
       <label>
         Correo
       </label>
-      <textarea>
+      <textarea >
         introduzca su correo
       </textarea>
       <div className="container mt-5">
@@ -31,16 +26,9 @@ const InicioSesion = () => {
         Iniciar Sesion
       </button>
       </div>
-      <Router>
-        <Link to="/Registro">
+        <Link type="submit" to="/Registro">
           Registro
         </Link>
-        <Switch>
-          <Route path="/Registro">
-            <Registro />
-          </Route>
-        </Switch>
-      </Router>
     </div>
   )
 }
