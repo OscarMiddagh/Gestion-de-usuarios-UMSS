@@ -3,7 +3,6 @@ package com.qualityhunters.Controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
 
 import com.qualityhunters.Model.Rol;
 import com.qualityhunters.Model.Sistema;
@@ -17,15 +16,17 @@ import com.qualityhunters.Repository.SolicitudRepository;
 import com.qualityhunters.Repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+// import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 // @RequestMapping("/")
 public class PrincipalController {
 
@@ -35,13 +36,18 @@ public class PrincipalController {
     private SolicitudRepository solicitudRepo;
     @Autowired
     private RolRepository rolRepo;
-    @RequestMapping("/")
+    @RequestMapping("/api")
     public String index(Model model){
-        return "EnDesarrollo"; 
+        return ""; 
     }
-    
+    @GetMapping("/solicitud/{idSolicitud}")
+    public ResponseEntity<Solicitud> setSolicitud(@PathVariable long idSolicitud){
+        Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
+        // Solicitud respuesta = new Solicitud();
+        return ResponseEntity.ok(sol.get());
+    }
     @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
-    public String generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
+    public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
         Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
         Sistema subsis = new Sistema();
         subsis.setId(subsistema);
@@ -54,7 +60,7 @@ public class PrincipalController {
         model.addAttribute("nombreSolicitante", nombreSolicitante);
         model.addAttribute("rolDestino", rolD.getNombreRol());
         model.addAttribute("motivo", sol.get().getMotivo());
-        return "GenerarRespuesta"; 
+        return model; 
     }
     @GetMapping("/{subsistema}/{idUsuario}/sol_cambio_rol")
     public String solicitudCambioRol(@PathVariable long subsistema,@PathVariable long idUsuario,Model model){
@@ -69,10 +75,7 @@ public class PrincipalController {
     public String solicitudCambioRolSubmit(@PathVariable long subsistema,@PathVariable long idUsuario, @ModelAttribute Solicitud solicitud, Model model){
         // long idUsuarioMock = 9000001;
         Optional<Usuario> user = usuarioRepo.findById(idUsuario);
-        Sistema sis = user.get().getSistema();
-        Rol rolO = user.get().getRol();
-        solicitud.setRolOrigen(rolO);
-        solicitud.setSistema(sis);
+        // Sistema sis = user.get().getSistema();
         solicitud.setUsuario(user.get());
         solicitudRepo.save(solicitud);
         return "SolicitudEnviada"; 

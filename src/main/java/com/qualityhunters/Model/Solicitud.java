@@ -17,41 +17,26 @@ public class Solicitud {
     private String motivo;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Usuario usuario;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Sistema sistema;
     @OneToOne(cascade = CascadeType.ALL)
     private Rol rolDestino;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Rol rolOrigen;
 
     public Solicitud(){
 
     }
 
-    public Solicitud(Sistema sistema, Usuario usuario, String motivo,Rol rolO,Rol rolD){
-        this.sistema = sistema;
+    public Solicitud( Usuario usuario, String motivo,Rol rolD){
         this.usuario = usuario;
         this.motivo = motivo;
         this.rolDestino = rolD;
-        this.rolOrigen = rolO;
-    }
-    public void setSistema(Sistema sistema){
-        this.sistema = sistema;
     }
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
-    }
-    public void setRolOrigen(Rol rolO){
-        rolOrigen = rolO;
     }
     public void setRolDestino(Rol rolD){
         rolDestino = rolD;
     }
     public void setMotivo(String motivo){
         this.motivo = motivo;
-    }
-    public Sistema getSistema(){
-        return sistema;
     }
     public Usuario getUsuario(){
         return usuario;
@@ -61,9 +46,6 @@ public class Solicitud {
     }
     public Rol getRolDestino(){
         return rolDestino;
-    }
-    public Rol getRolOrigen(){
-        return rolOrigen;
     }
     public Long getId(){
         return id;
