@@ -17,12 +17,14 @@ public class Solicitud {
     private String motivo;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Usuario usuario;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Rol rolDestino;
-
+  
     public Solicitud(){
 
     }
+
 
     public Solicitud( Usuario usuario, String motivo,Rol rolD){
         this.usuario = usuario;

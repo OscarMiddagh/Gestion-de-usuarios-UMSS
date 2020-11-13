@@ -22,8 +22,8 @@ public class Usuario {
   private String pais;
   @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Rol rol;
+
 //   @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//   private Sistema sistema;
 //   private Sistema sistema;
   private String contraseña;
 
@@ -69,9 +69,11 @@ public class Usuario {
   public String getPais(){
       return pais;
   }
+
 //   public Sistema getSistema(){
 //       return sistema;
 //   }
+
   public Rol getRol(){
       return rol;
   }
@@ -103,7 +105,9 @@ public class Usuario {
   public void setRol(Rol rol){
       this.rol = rol;
   }
+
 //   public void setSistema(Sistema sistema){
 //       this.sistema = sistema;
 //   }
+
 }
