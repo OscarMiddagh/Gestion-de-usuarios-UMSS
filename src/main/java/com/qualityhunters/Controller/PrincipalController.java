@@ -41,7 +41,7 @@ public class PrincipalController {
         return ""; 
     }
     @GetMapping("/solicitud/{idSolicitud}")
-    public ResponseEntity<Solicitud> setSolicitud(@PathVariable long idSolicitud){
+    public ResponseEntity<Solicitud> getSolicitud(@PathVariable long idSolicitud){
         Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
         // Solicitud respuesta = new Solicitud();
         return ResponseEntity.ok(sol.get());
