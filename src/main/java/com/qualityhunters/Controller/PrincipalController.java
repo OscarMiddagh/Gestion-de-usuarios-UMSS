@@ -49,6 +49,18 @@ public class PrincipalController {
         // Solicitud respuesta = new Solicitud();
         return ResponseEntity.ok(sol.get());
     }
+    @GetMapping("/rolNot/{idRol}")
+    public ResponseEntity<List<Rol> > getRolNot(@PathVariable long idRol){
+        List<Rol>  rols= rolRepo.rolesDisponibles(idRol);
+        return ResponseEntity.ok(rols);
+    }
+    @GetMapping("/enviado/{idUsuario}")
+    public ResponseEntity<Boolean> getEnviado(@PathVariable long idUsuario){
+        List<Solicitud> envSol = solicitudRepo.hayEnviado(idUsuario);
+        Boolean ans= false;
+        if(envSol.size()>0) ans=true;
+        return ResponseEntity.ok(ans);
+    }
     @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
     public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
         Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
