@@ -35,14 +35,13 @@ public class PrincipalController {
     @Autowired
     private UsuarioRepository usuarioRepo;
     @Autowired
-    private SolicitudRepository solicitudRepo;
-    @Autowired
     private RolRepository rolRepo;
 
     @RequestMapping("/api")
-    public String index(Model model){
+    public String index(Model model){ 
         return ""; 
     }
+
     @GetMapping("/solicitud/{idSolicitud}")
     public ResponseEntity<Solicitud> getSolicitud(@PathVariable long idSolicitud){
         Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
@@ -95,6 +94,7 @@ public class PrincipalController {
         solicitudRepo.save(solicitud);
         return "SolicitudEnviada"; 
     }
+
     @GetMapping("/logIn")
     public String logIn(Model model){     
         model.addAttribute("usuario", new Usuario());
