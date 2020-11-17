@@ -3,8 +3,6 @@ package com.qualityhunters.Controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import com.qualityhunters.Model.Rol;
 import com.qualityhunters.Model.Sistema;
 // import com.qualityhunters.Model.Sistema;
