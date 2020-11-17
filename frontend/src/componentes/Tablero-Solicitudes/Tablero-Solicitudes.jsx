@@ -58,22 +58,7 @@ class App extends React.Component {
   rechazar = (dato) =>{
 
   };
-
-  eliminar = (dato) => {
-    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento "+dato.id);
-    if (opcion == true) {
-      var contador = 0;
-      var arreglo = this.state.data;
-      arreglo.map((registro) => {
-        if (dato.id == registro.id) {
-          arreglo.splice(contador, 1);
-        }
-        contador++;
-      });
-      this.setState({ data: arreglo, modalActualizar: false });
-    }
-  };
-
+  
   handleChange = (e) => {
     this.setState({
       form: {
@@ -111,8 +96,7 @@ class App extends React.Component {
                       onClick={() => this.mostrarModalActualizar(dato)}
                     >
                       Responder
-                    </Button>{" "}
-                    <Button color="danger" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
+                    </Button>
                   </td>
                 </tr>
               ))}
