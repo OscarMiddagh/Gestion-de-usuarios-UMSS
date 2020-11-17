@@ -53,11 +53,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>		
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>	
+		</dependency>
  	</dependencies>		
 	<build>
 		<plugins>
