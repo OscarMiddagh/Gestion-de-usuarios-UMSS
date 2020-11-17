@@ -16,7 +16,7 @@
 	<description>Es un subsistema que servira para la gestion de usuarios</description>
 
 	<properties>
-		<java.version>11.0.6</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
