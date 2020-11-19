@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Gestion-de-usuarios-UMSS/static/css/main.73efbf52.chunk.css",
+    "main.js": "/Gestion-de-usuarios-UMSS/static/js/main.8cfb5893.chunk.js",
+    "main.js.map": "/Gestion-de-usuarios-UMSS/static/js/main.8cfb5893.chunk.js.map",
+    "runtime-main.js": "/Gestion-de-usuarios-UMSS/static/js/runtime-main.9bbbc119.js",
+    "runtime-main.js.map": "/Gestion-de-usuarios-UMSS/static/js/runtime-main.9bbbc119.js.map",
+    "static/js/2.39fcc2d2.chunk.js": "/Gestion-de-usuarios-UMSS/static/js/2.39fcc2d2.chunk.js",
+    "static/js/2.39fcc2d2.chunk.js.map": "/Gestion-de-usuarios-UMSS/static/js/2.39fcc2d2.chunk.js.map",
+    "static/js/3.2670c2da.chunk.js": "/Gestion-de-usuarios-UMSS/static/js/3.2670c2da.chunk.js",
+    "static/js/3.2670c2da.chunk.js.map": "/Gestion-de-usuarios-UMSS/static/js/3.2670c2da.chunk.js.map",
+    "index.html": "/Gestion-de-usuarios-UMSS/index.html",
+    "static/css/main.73efbf52.chunk.css.map": "/Gestion-de-usuarios-UMSS/static/css/main.73efbf52.chunk.css.map",
+    "static/js/2.39fcc2d2.chunk.js.LICENSE.txt": "/Gestion-de-usuarios-UMSS/static/js/2.39fcc2d2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9bbbc119.js",
+    "static/js/2.39fcc2d2.chunk.js",
+    "static/css/main.73efbf52.chunk.css",
+    "static/js/main.8cfb5893.chunk.js"
+  ]
+}
