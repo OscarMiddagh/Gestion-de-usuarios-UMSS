@@ -14,7 +14,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const url = "";
+const url = "http://localhost:8080/solicitudes";
 
 class App extends React.Component {
   state = {
@@ -33,19 +33,26 @@ class App extends React.Component {
 
   peticionGet=()=>{
     axios.get(url).then(response=>{
+      console.log(response.data);
       this.setState({data:response.data});
     })
   }
 
   mostrarModalResponder=()=>{          //cambia el estado de false a true
+    console.log(this.state.data[0]);
     this.setState({modalResponder: true});
   }
 
   ocultarModalResponder=()=>{
     this.setState({modalResponder: false});
   }
-  componentDiMount(){       //ciclo de vida
-    this.peticionGet();
+  componentDidMount(){       //ciclo de vida
+    axios.get('http://localhost:8080/solicitudes')
+    .then(response=>{
+      console.log(response.data);
+      this.setState({data:response.data});
+    })
+    .catch(console.log);
   }
 
   handleChange= e=>{        //cuando se escriba en inputs se cambien en el estado form
@@ -80,8 +87,8 @@ class App extends React.Component {
             <tbody>
               {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
-                  <td>{dato.id}</td>
-                  <td>{dato.nombre}</td>
+                  <td>{dato.idSolicitud} </td>
+                  <td>{dato.nombreUsuario}</td>
                   <td>{dato.fecha}</td>
                   <td>
                     <Button
@@ -105,27 +112,30 @@ class App extends React.Component {
           <tbody>
           {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 
                 <tr>                 
-                  <td>{dato.id}</td>
-                  <td>{dato.nombre}</td>
+                  <td>{dato.idSolicitud}</td>
+                  <td>{dato.nombreUsuario}</td>
                   <td>{dato.rolA}</td>
                   <td>{dato.rolS}</td>
                   <td>{dato.fecha}</td>
                   <td>{dato.mensajeS}</td>
                   <td>{dato.comentario}</td>
                   </tr>
+
+                  
                   ))}
           </tbody>
 
           <ModalBody>
+            
             <FormGroup>
               <label>
-               Id:
+               Id: 
               </label>
               <input
                 className="form-control"
                 readOnly
                 type="text"
-                value={this.state.form.id}
+                value={this.state.data.idSolicitud}
               />
             </FormGroup>
             
@@ -138,7 +148,7 @@ class App extends React.Component {
                 name="nombre"
                 type="text"
                 readOnly
-                value={this.state.form.nombre}
+                value={this.state.data.nombreUsuario}
               />
             </FormGroup>
             
@@ -175,7 +185,7 @@ class App extends React.Component {
                 name="fecha"
                 type="text"
                 readOnly
-                value={this.state.form.fecha}
+                value={this.state.data.fecha}
               />
             </FormGroup>
             <FormGroup>
