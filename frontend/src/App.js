@@ -11,6 +11,7 @@ import InicioSesion from './componentes/Inicio-Sesion/Inicio-Sesion';
 import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Solicitud';
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
+import Registro from './componentes/Registro/Registro';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/TableroSolicitudes">
             <TableroSolicitudes />
+          </Route>
+          <Route path="/Registro">
+            <Registro />
           </Route>
         </Switch>
         </div>
