@@ -1,7 +1,8 @@
 //Campo para la historia Tablero de Solicitudes
 import React from "react";
 //import "./App.css";
-//import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
   Button,
@@ -13,60 +14,52 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const data = [
-  { id: 1, nombre: "Ramon", fecha: "11/12/20",rolA: "",rolS: "", mensajeS:"", comentario: "" },
-  { id: 2, nombre: "Pepe", fecha: "13/09/20", rolA: "",rolS: "", mensajeS:"", comentario:"" },
-  { id: 3, nombre: "Julio", fecha: "15/08/20", rolA: "",rolS:"", mensajeS:"",comentario:"" },
-];
+const url = "";
 
 class App extends React.Component {
   state = {
-    data: data,
-    modalActualizar: false,
-    modalInsertar: false,
+    data: [],
+    modalResponder: false,
     form: {
       id: "",
       Nombre: "",
       fecha: "",
-    },
+      rolA:"",
+      rolS:"",
+      mensajeS:"",
+      comentario:"",
+    }
   };
 
-  mostrarModalActualizar = (dato) => {
-    this.setState({
-      form: dato,
-      modalActualizar: true,
-    });
-  };
+  peticionGet=()=>{
+    axios.get(url).then(response=>{
+      this.setState({data:response.data});
+    })
+  }
 
-  cerrarModalActualizar = () => {
-    this.setState({ modalActualizar: false });
-  };
+  mostrarModalResponder=()=>{          //cambia el estado de false a true
+    this.setState({modalResponder: true});
+  }
 
-  mostrarModalInsertar = () => {
-    this.setState({
-      modalInsertar: true,
-    });
-  };
+  ocultarModalResponder=()=>{
+    this.setState({modalResponder: false});
+  }
+  componentDiMount(){       //ciclo de vida
+    this.peticionGet();
+  }
 
-  cerrarModalInsertar = () => {
-    this.setState({ modalInsertar: false });
-  };
-
-  aprobar = (dato) => {
-    
-  };
-  rechazar = (dato) =>{
-
-  };
-  
-  handleChange = (e) => {
-    this.setState({
-      form: {
+  handleChange= e=>{        //cuando se escriba en inputs se cambien en el estado form
+      this.setState({
+      form:{
         ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
+      [e.target.name]: e.target.value,
+      }
+    })
+  }
+
+  aprobar(){
+      //colocar lo que hara el boton aprobar
+  }
 
   render() {
     
@@ -76,7 +69,7 @@ class App extends React.Component {
        
           <Table>
             <thead>
-              <tr>
+              <tr>   
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Fecha</th>
@@ -85,36 +78,49 @@ class App extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.data.map((dato) => (
-                <tr key={dato.id}>
+              {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
+                <tr>                 
                   <td>{dato.id}</td>
                   <td>{dato.nombre}</td>
                   <td>{dato.fecha}</td>
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.mostrarModalActualizar(dato)}
-                    >
-                      Responder
+                      onClick={() => this.mostrarModalResponder()}
+                      >Responder
                     </Button>
                   </td>
                 </tr>
+                
               ))}
             </tbody>
           </Table>
         </Container>
 
-        <Modal isOpen={this.state.modalActualizar}>
+        <Modal isOpen={this.state.modalResponder}>
           <ModalHeader>
            <div><h3>Responder</h3></div>
           </ModalHeader>
+
+          <tbody>
+          {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 
+                <tr>                 
+                  <td>{dato.id}</td>
+                  <td>{dato.nombre}</td>
+                  <td>{dato.rolA}</td>
+                  <td>{dato.rolS}</td>
+                  <td>{dato.fecha}</td>
+                  <td>{dato.mensajeS}</td>
+                  <td>{dato.comentario}</td>
+                  </tr>
+                  ))}
+          </tbody>
 
           <ModalBody>
             <FormGroup>
               <label>
                Id:
               </label>
-            
               <input
                 className="form-control"
                 readOnly
@@ -201,15 +207,11 @@ class App extends React.Component {
           <ModalFooter>
             <Button
               color="primary"
-              onClick={() => this.responder(this.state.form)}
-            >
-              Aprobar
+              onClick={() => this.aprobar(this.state.form)}> Aprobar
             </Button>
             <Button
               color="danger"
-              onClick={() => this.cerrarModalActualizar()}
-            >
-              Rechazar
+              onClick={() => this.cerrarModalResponder()}>Rechazar
             </Button>
           </ModalFooter>
         </Modal>
