@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+    <title>Index</title>
+</head>
+<body>
+    <div class="container-md">
+        <br>
+        <br>
+        <br>
+        <td>
+            <span th:if="${existe}">
+                <h1>Te loggeaste con exito: <p th:text="  ${nombre}"></p></h1>                
+            </span>
+            <span th:unless="${existe}">
+                <h1>Usuario no registrado</h1>
+            </span>
+        </td>
+        <!-- <h1>Te loggeaste con exito: <p th:text="${usuario.correo}"></p></h1> -->
+</body>
+</html>
