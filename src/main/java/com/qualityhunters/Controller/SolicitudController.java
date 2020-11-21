@@ -44,8 +44,9 @@ public class SolicitudController {
         
     @GetMapping("/{idUsuario}/sol_cambio_rol")
     public ResponseEntity<Model> solicitudCambioRol(@PathVariable long idUsuario,Model model){
-        model.addAttribute("roles", rolAPI.findAll());
-        model.addAttribute("solicitud", new Solicitud());
+        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+        model.addAttribute("roles", rolAPI.findAllExcept(user.get().getRol().getId()));
+        //model.addAttribute("solicitud", new Solicitud());
         return ResponseEntity.ok(model);
     }
     @GetMapping("/enviado/{idUsuario}")
