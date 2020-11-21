@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import com.qualityhunters.Model.Solicitud;
 import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.Model.Rol;
+
 import com.qualityhunters.service.RolServiceAPI;
 import com.qualityhunters.service.SolicitudServiceAPI;
 import com.qualityhunters.service.UsuarioServiceAPI;
@@ -100,4 +102,14 @@ public class SolicitudController {
 
     //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
     // }
+    @PostMapping("/changeRol/{idUsuario}")
+    public ResponseEntity<Usuario> changeRol(@RequestBody Rol rol,@PathVariable long idUsuario){
+        //usuarioAPI.cambiarRol(rol,idUsuario);
+        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+        Usuario aux = user.get();
+        aux.setRol(rol);
+        usuarioAPI.update(aux);
+        solicitudAPI.borrarSolicitud(idUsuario);
+        return ResponseEntity.ok(usuarioAPI.findById(idUsuario).get());
+    }
 }
