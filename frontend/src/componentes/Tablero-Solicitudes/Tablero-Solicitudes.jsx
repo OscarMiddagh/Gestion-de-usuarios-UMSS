@@ -37,8 +37,8 @@ class App extends React.Component {
     })
   }
 
-  mostrarModalResponder=()=>{          //cambia el estado de false a true
-    this.setState({modalResponder: true});
+  mostrarModalResponder=(registro)=>{          //cambia el estado de false a true
+    this.setState({modalResponder: true, form: registro });
   }
 
   ocultarModalResponder=()=>{
@@ -86,7 +86,7 @@ class App extends React.Component {
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.mostrarModalResponder()}
+                      onClick={() => this.mostrarModalResponder(elemento)}
                       >Responder
                     </Button>
                   </td>
@@ -102,19 +102,6 @@ class App extends React.Component {
            <div><h3>Responder</h3></div>
           </ModalHeader>
 
-          <tbody>
-          {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 
-                <tr>                 
-                  <td>{dato.id}</td>
-                  <td>{dato.nombre}</td>
-                  <td>{dato.rolA}</td>
-                  <td>{dato.rolS}</td>
-                  <td>{dato.fecha}</td>
-                  <td>{dato.mensajeS}</td>
-                  <td>{dato.comentario}</td>
-                  </tr>
-                  ))}
-          </tbody>
 
           <ModalBody>
             <FormGroup>
