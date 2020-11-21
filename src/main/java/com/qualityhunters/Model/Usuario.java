@@ -20,13 +20,16 @@ public class Usuario {
   private String direccion;
   private String ciudad;
   private String pais;
-  @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   private Rol rol;
   private String contraseña;
 
 
   public Usuario() {}
-
+  
+  public Usuario(Long id){
+    this.id =id;
+  }
   public Usuario(String nombres, String apellidos, String correo, String documentoDeIdentidad,
                  String direccion, String ciudad, String pais, String contraseña) {
     this.nombres = nombres;

@@ -1,5 +1,6 @@
 package com.qualityhunters.Controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -43,10 +44,8 @@ public class SolicitudController {
         
     @GetMapping("/{idUsuario}/sol_cambio_rol")
     public ResponseEntity<Model> solicitudCambioRol(@PathVariable long idUsuario,Model model){
-        model.addAttribute("motivo"); 
-        model.addAttribute("idRolDestino"); 
-        model.addAttribute("solicitud"); 
         model.addAttribute("roles", rolAPI.findAll());
+        model.addAttribute("solicitud", new Solicitud());
         return ResponseEntity.ok(model);
     }
     @GetMapping("/enviado/{idUsuario}")
@@ -72,15 +71,19 @@ public class SolicitudController {
     //     // model.addAttribute("motivo", sol.get().getMotivo());
     //     return model; 
     // }
-    // @PostMapping("/{idUsuario}/sol_cambio_rol")
-    // public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@PathVariable long idUsuario, @RequestBody Model model){
-    //     long idUsuarioMock = 9000001;
-    //     Optional<Usuario> user = usuarioAPI.findById(idUsuario);
-    //     Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
-    //     Solicitud solicitud =  new Solicitud();
-    //     // Sistema sis = user.get().getSistema();
-    //     Aumentar el estado y la fecha
-    //     solicitud.setUsuario(user.get());
-    //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
-    // }
+    @PostMapping("/{idUsuario}/sol_cambio_rol")
+    public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@RequestBody Solicitud solicitud,@PathVariable long idUsuario){
+        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+        // Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
+        // Solicitud solicitud =  new Solicitud();
+        // Sistema sis = user.get().getSistema();
+        // Aumentar el estado y la fecha
+        // Solicitud solicitud = new Solicitud();
+        solicitud.setEstado("[S/R]");
+        solicitud.setFecha(new Date());
+        solicitud.setUsuario(user.get());
+        solicitud.setRolOrigen(user.get().getRol());
+
+        return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
+    }
 }

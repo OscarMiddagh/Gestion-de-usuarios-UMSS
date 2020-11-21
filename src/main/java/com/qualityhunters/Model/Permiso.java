@@ -13,7 +13,7 @@ public class Permiso {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id; 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Rol rol;
     private String nombrePermiso;
     private String ruta;

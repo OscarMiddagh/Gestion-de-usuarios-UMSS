@@ -19,11 +19,11 @@ public class Solicitud {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String motivo;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private Usuario usuario;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Rol rolDestino;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Rol rolOrigen;
     private String estado;
     @Temporal(TemporalType.DATE)
