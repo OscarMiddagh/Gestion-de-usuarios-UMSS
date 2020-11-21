@@ -41,21 +41,20 @@ public class UsuarioController {
         // return model;
         List<Usuario> u = usuarioRepo.existeUsuario(usuario.getCorreo());
         Map<String,Object> respuesta = new HashMap<>();
-        boolean logeo = false;
         Usuario user; 
         if(u.size()>0){
             user = u.get(0);
             if(!usuario.getContraseña().equals(user.getContraseña())){
                 respuesta.put("msg", "Contraseña invalida");
-                respuesta.put("logeo", logeo = true);
+                respuesta.put("logeo", false);
                 return respuesta;
             }
             respuesta.put("msg", "Te logeaste con exito");
             respuesta.put("rol", user.getRol());
-            respuesta.put("logeo", logeo);
+            respuesta.put("logeo", true);
         }else{
             respuesta.put("msg", "El usuario no existe");
-            respuesta.put("logeo", logeo);
+            respuesta.put("logeo", false);
             return respuesta;
         }
         return respuesta;
