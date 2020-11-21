@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.qualityhunters.Model.Rol;
 import com.qualityhunters.Model.Solicitud;
 import com.qualityhunters.Model.Usuario;
 import com.qualityhunters.service.RolServiceAPI;
@@ -32,7 +31,6 @@ public class SolicitudController {
     @Autowired 
     private RolServiceAPI rolAPI;
     
-    //devuelve un Model
     @GetMapping("/solicitud/{idSolicitud}")
     public ResponseEntity<Model> getSolicitud(@PathVariable long idSolicitud,Model model){
         Model  sol= solicitudAPI.findById(idSolicitud,model);
@@ -74,17 +72,15 @@ public class SolicitudController {
     //     // model.addAttribute("motivo", sol.get().getMotivo());
     //     return model; 
     // }
-    @PostMapping("/{idUsuario}/sol_cambio_rol")
-    public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@PathVariable long idUsuario, Model model){
-        // long idUsuarioMock = 9000001;
-        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
-        Optional<Rol> rolDestino = rolAPI.findById(Long.parseLong((String) model.getAttribute("idRolDestino")));
-        Solicitud solicitud =  new Solicitud();
-        // // Sistema sis = user.get().getSistema();
-        //Aumentar el estado y la fecha
-        solicitud.setUsuario(user.get());
-        solicitud.setRolDestino(rolDestino.get());
-        solicitud.setMotivo(model.getAttribute("motivo").toString());
-        return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
-    }
+    // @PostMapping("/{idUsuario}/sol_cambio_rol")
+    // public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@PathVariable long idUsuario, @RequestBody Model model){
+    //     long idUsuarioMock = 9000001;
+    //     Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+    //     Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
+    //     Solicitud solicitud =  new Solicitud();
+    //     // Sistema sis = user.get().getSistema();
+    //     Aumentar el estado y la fecha
+    //     solicitud.setUsuario(user.get());
+    //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
+    // }
 }
