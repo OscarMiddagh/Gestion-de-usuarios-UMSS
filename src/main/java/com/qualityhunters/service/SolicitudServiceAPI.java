@@ -28,6 +28,7 @@ public class SolicitudServiceAPI {
         List<Solicitud> solicitudes = solicitudRepository.findAll();
         List<Map<String,Object>> res = new ArrayList<>();
         Map<String,Object> r;
+        //Verificar que los datos no sena nulos en frontend
         for (Solicitud solicitud : solicitudes) {
             r = new HashMap<>();
             r.put("idSolicitud",solicitud.getId());
@@ -59,6 +60,7 @@ public class SolicitudServiceAPI {
         return res;
     }
     public Solicitud save(Solicitud solicitud){
+        logger.info(solicitud.getMotivo());
         return solicitudRepository.save(solicitud);
     }
     public Solicitud update(Solicitud solicitud){
