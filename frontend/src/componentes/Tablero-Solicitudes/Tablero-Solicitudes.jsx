@@ -101,6 +101,16 @@ class App extends React.Component {
           <ModalHeader>
            <div><h3>Responder</h3></div>
           </ModalHeader>
+{/* =======
+const TableroSolicitudes = () => {
+  return (
+    <div id="id"> 
+     <br></br>
+     <div>
+      <h6>SOLICITUDES DE CAMBIO DE ROL</h6>
+    </div>
+    
+>>>>>>> 70c97681bf82a308169aa692948baa9af54fc560 */}
 
           <tbody>
           {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 

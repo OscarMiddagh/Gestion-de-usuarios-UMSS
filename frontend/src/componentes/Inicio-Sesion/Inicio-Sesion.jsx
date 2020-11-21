@@ -9,7 +9,12 @@ import React from 'react'
 import Registro from "../Registro/Registro";
 
 
-const InicioSesion = () => {
+
+function displayButton (event){ 
+ alert("¡SU INICIO DE SESION HA SIDO EXITOSO!")
+}
+
+ const InicioSesion = () => {
   return (
     <div className="container mt-5">
       <label>
@@ -27,7 +32,7 @@ const InicioSesion = () => {
       </textarea>
       </div>
       <div className="container mt-5">
-      <button>
+      <button onclick={displayButton} >
         Iniciar Sesion
       </button>
       </div>
