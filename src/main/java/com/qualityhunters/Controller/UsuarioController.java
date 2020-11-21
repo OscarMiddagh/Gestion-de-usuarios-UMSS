@@ -30,18 +30,28 @@ public class UsuarioController {
         return "LogIn"; 
     }
     @PostMapping("/logIn")
-    public String logInSubmit(@ModelAttribute Usuario usuario,Model model){
-        
-        boolean existe = false;
-        List<Usuario> u = usuarioRepo.existeUsuario(usuario.getCorreo(), usuario.getContraseña());
-        String nombre = "";
-        if(u.size()>0){
-            existe =true;
-            nombre = u.get(0).getNombres()+" "+ u.get(0).getApellidos();
+    public Model logInSubmit(@ModelAttribute Usuario usuario,Model model){
+        Usuario user = usuarioRepo.findByCorreo(usuario.getCorreo()).get();
+        // boolean existe = false;
+        if(user!=null){
+            model.addAttribute("error", "El usuario no existe");
+            return model;
+        }else{
+            model.addAttribute("rol", user.getRol());
+            if(!usuario.getContraseña().equals(user.getContraseña())){
+                model.addAttribute("error", "La contraseña es incorrecta");
+            }
         }
-        model.addAttribute("existe", existe);
-        model.addAttribute("nombre", nombre);
-        return "InicioSesionExitoso";
+        return model;
+        // List<Usuario> u = usuarioRepo.existeUsuario(usuario.getCorreo(), usuario.getContraseña());
+        // String nombre = "";
+        // if(u.size()>0){
+        //     existe =true;
+        //     nombre = u.get(0).getNombres()+" "+ u.get(0).getApellidos();
+        // }
+        // model.addAttribute("existe", existe);
+        // model.addAttribute("nombre", nombre);
+        // return "InicioSesionExitoso";
     }
     @GetMapping("/verif mail={correo} pass={password}")
     public ResponseEntity<Model> verif(@PathVariable String correo,@PathVariable String password,Model model){

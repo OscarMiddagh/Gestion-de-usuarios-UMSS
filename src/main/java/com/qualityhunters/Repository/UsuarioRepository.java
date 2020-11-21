@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.qualityhunters.Model.Usuario;
 
@@ -13,4 +14,6 @@ import com.qualityhunters.Model.Usuario;
 public interface UsuarioRepository extends JpaRepository < Usuario, Long > {
     @Query("select u from Usuario u where u.correo = :correo AND u.contraseña = :contraseña")
     List<Usuario> existeUsuario(@Param("correo") String correo, @Param("contraseña") String contraseña);
+
+    Optional<Usuario> findByCorreo(String correo);
 }
