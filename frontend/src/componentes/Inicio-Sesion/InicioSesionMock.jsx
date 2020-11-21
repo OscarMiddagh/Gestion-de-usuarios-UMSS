@@ -15,11 +15,14 @@ import {
 } from "reactstrap";
 
 const url = "https://gestiondeusuariosumss.herokuapp.com";
+// const url = "http://localhost:8080"
 class LogIn extends React.Component {
     state = {
       form: {
-        "correo": "",
-        "contraseña":""
+        "usuario":{
+          "correo": "",
+          "contraseña":""
+        }
       }
     };
       mostrarModalResponder=()=>{          //cambia el estado de false a true

@@ -39,7 +39,7 @@ public class UsuarioServiceAPI {
     public void delete(Usuario usuario){
         usuarioRepository.delete(usuario);
     }
-    public Boolean confirmarDatos(String mail, String password){
-        return usuarioRepository.existeUsuario(mail, password).size()>0;
+    public Boolean confirmarDatos(String mail){
+        return usuarioRepository.existeUsuario(mail).size()>0;
     }
 }

@@ -21,12 +21,12 @@ class App extends React.Component {
     data: [],
     modalResponder: false,
     form: {
-      id: "",
-      Nombre: "",
+      idSolicitud: "",
+      nombreUsuario: "",
       fecha: "",
-      rolA:"",
-      rolS:"",
-      mensajeS:"",
+      rolOrigen:"",
+      rolDestino:"",
+      motivo:"",
       comentario:"",
     }
   };
@@ -92,7 +92,7 @@ class App extends React.Component {
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.mostrarModalResponder(elemento)}
+                      onClick={() => this.mostrarModalResponder(dato)}
                       >Responder
                     </Button>
                   </td>
@@ -117,7 +117,7 @@ class App extends React.Component {
                 className="form-control"
                 readOnly
                 type="text"
-                value={this.state.form.id}
+                value={this.state.form.idSolicitud}
               />
             </FormGroup>
             
@@ -130,7 +130,7 @@ class App extends React.Component {
                 name="nombre"
                 type="text"
                 readOnly
-                value={this.state.form.nombre}
+                value={this.state.form.nombreUsuario}
               />
             </FormGroup>
             
@@ -143,7 +143,7 @@ class App extends React.Component {
                 name="rolA"
                 type="text"
                 readOnly
-                value={this.state.form.rolA}
+                value={this.state.form.rolOrigen}
               />
             </FormGroup>
             <FormGroup>
@@ -155,7 +155,7 @@ class App extends React.Component {
                 name="rolS"
                 type="text"
                 readOnly
-                value={this.state.form.rolS}
+                value={this.state.form.rolDestino}
               />
             </FormGroup>
             <FormGroup>
@@ -179,7 +179,7 @@ class App extends React.Component {
                 name="mensajeS"
                 type="text"
                 readOnly
-                value={this.state.form.mensajeS}
+                value={this.state.form.motivo}
               />
             </FormGroup>
             <FormGroup>
