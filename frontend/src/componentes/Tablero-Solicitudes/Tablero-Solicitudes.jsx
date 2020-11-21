@@ -39,7 +39,6 @@ class App extends React.Component {
   }
 
   mostrarModalResponder=()=>{          //cambia el estado de false a true
-    console.log(this.state.data[0]);
     this.setState({modalResponder: true});
   }
 
@@ -120,22 +119,19 @@ class App extends React.Component {
                   <td>{dato.mensajeS}</td>
                   <td>{dato.comentario}</td>
                   </tr>
-
-                  
                   ))}
           </tbody>
 
           <ModalBody>
-            
             <FormGroup>
               <label>
-               Id: 
+               Id:
               </label>
               <input
                 className="form-control"
                 readOnly
                 type="text"
-                value={this.state.data.idSolicitud}
+                value={this.state.form.id}
               />
             </FormGroup>
             
@@ -148,7 +144,7 @@ class App extends React.Component {
                 name="nombre"
                 type="text"
                 readOnly
-                value={this.state.data.nombreUsuario}
+                value={this.state.form.nombre}
               />
             </FormGroup>
             
@@ -185,7 +181,7 @@ class App extends React.Component {
                 name="fecha"
                 type="text"
                 readOnly
-                value={this.state.data.fecha}
+                value={this.state.form.fecha}
               />
             </FormGroup>
             <FormGroup>

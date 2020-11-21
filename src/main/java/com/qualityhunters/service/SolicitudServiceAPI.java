@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.qualityhunters.Model.Rol;
 import com.qualityhunters.Model.Solicitud;
 import com.qualityhunters.Repository.SolicitudRepository;
 
@@ -33,7 +32,13 @@ public class SolicitudServiceAPI {
             r = new HashMap<>();
             r.put("idSolicitud",solicitud.getId());
             r.put("nombreUsuario", solicitud.getUsuario().getNombres()+solicitud.getUsuario().getApellidos());
+            r.put("idUsuario", solicitud.getUsuario().getId());
+            r.put("idRolOrigen", solicitud.getRolOrigen().getId());
+            r.put("rolOrigen", solicitud.getRolOrigen().getNombreRol());
+            r.put("idRolDestino", solicitud.getRolDestino().getId());
+            r.put("rolDestino", solicitud.getRolDestino().getNombreRol());
             r.put("fecha", solicitud.getFecha());
+            r.put("motivo", solicitud.getMotivo());
             res.add(r);
         }
         return res;
@@ -50,7 +55,7 @@ public class SolicitudServiceAPI {
         res.addAttribute("idRolDestino", solicitud.get().getRolDestino().getId());
         res.addAttribute("rolDestino", solicitud.get().getRolDestino().getNombreRol());
         res.addAttribute("fecha", solicitud.get().getFecha());
-        res.addAttribute("fecha", solicitud.get().getMotivo());
+        res.addAttribute("motivo", solicitud.get().getMotivo());
         return res;
     }
     public Solicitud save(Solicitud solicitud){
