@@ -79,11 +79,26 @@ public class SolicitudController {
         // Sistema sis = user.get().getSistema();
         // Aumentar el estado y la fecha
         // Solicitud solicitud = new Solicitud();
-        solicitud.setEstado("[S/R]");
+        solicitud.setEstado("S/R");
         solicitud.setFecha(new Date());
         solicitud.setUsuario(user.get());
         solicitud.setRolOrigen(user.get().getRol());
 
         return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
     }
+    // @PostMapping("/sol_cambio_rol")
+    // public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@RequestBody Solicitud solicitud){
+    //     Optional<Usuario> user = usuarioAPI.findById(solicitud.getUsuario().getId());
+    //     // Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
+    //     // Solicitud solicitud =  new Solicitud();
+    //     // Sistema sis = user.get().getSistema();
+    //     // Aumentar el estado y la fecha
+    //     // Solicitud solicitud = new Solicitud();
+    //     solicitud.setEstado("S/R");
+    //     solicitud.setFecha(new Date());
+    //     solicitud.setRolOrigen(user.get().getRol());
+    //     solicitud.setUsuario(user.get());
+
+    //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
+    // }
 }
