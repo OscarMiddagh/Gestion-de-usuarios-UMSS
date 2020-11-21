@@ -2,9 +2,13 @@ package com.qualityhunters.Controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.qualityhunters.Model.Rol;
 import com.qualityhunters.service.RolServiceAPI;
+import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.service.UsuarioServiceAPI;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,24 +17,28 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 @RestController
 public class RolController {
         
     @Autowired
     private RolServiceAPI rolAPI;
+    @Autowired
+    private UsuarioServiceAPI usuarioAPI;
 
     @GetMapping("/roles")
     public ResponseEntity<List<Map<String,Object>>> getRoles(Model model){
         return ResponseEntity.ok(rolAPI.findAll());
     }
     
-    @GetMapping("/rolNot/{idRol}")
-    public ResponseEntity<List<Rol> > getRolNot(@PathVariable long idRol){
-        List<Rol>  rols= rolAPI.findAllExcept(idRol);
+    @GetMapping("/rolNot/{idUsuario}")
+    public ResponseEntity<List<Rol> > getRolNot(@PathVariable long idUsuario){
+        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+        List<Rol>  rols= rolAPI.findAllExcept(user.get().getRol().getId());
         return ResponseEntity.ok(rols);
     }
-
     // @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
     // public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
     //     Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);

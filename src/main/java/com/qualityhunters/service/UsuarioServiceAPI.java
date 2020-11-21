@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import com.qualityhunters.Repository.UsuarioRepository;
 import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.Model.Rol;
 
 @Service
 public class UsuarioServiceAPI {
@@ -42,4 +43,7 @@ public class UsuarioServiceAPI {
     public Boolean confirmarDatos(String mail){
         return usuarioRepository.existeUsuario(mail).size()>0;
     }
+    /*public void cambiarRol(Rol rol,long id){
+        usuarioRepository.cambiarRol(rol, id);
+    }*/
 }
