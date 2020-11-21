@@ -7,7 +7,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import InicioSesion from './componentes/Inicio-Sesion/Inicio-Sesion';
+import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
 import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Solicitud';
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
