@@ -1,75 +1,102 @@
 package com.qualityhunters.Controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-import com.qualityhunters.Model.Rol;
-import com.qualityhunters.Model.Sistema;
 import com.qualityhunters.Model.Solicitud;
 import com.qualityhunters.Model.Usuario;
-import com.qualityhunters.Repository.RolRepository;
-import com.qualityhunters.Repository.SolicitudRepository;
+import com.qualityhunters.service.RolServiceAPI;
+import com.qualityhunters.service.SolicitudServiceAPI;
+import com.qualityhunters.service.UsuarioServiceAPI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class SolicitudController {
     
     @Autowired
-    private SolicitudRepository solicitudRepo;
-    
+    private SolicitudServiceAPI solicitudAPI;
     @Autowired
-    private RolRepository rolRepo;
+    private UsuarioServiceAPI usuarioAPI;
+    @Autowired 
+    private RolServiceAPI rolAPI;
     
     @GetMapping("/solicitud/{idSolicitud}")
-    public ResponseEntity<Solicitud> getSolicitud(@PathVariable long idSolicitud){
-        Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
-        // Solicitud respuesta = new Solicitud();
-        return ResponseEntity.ok(sol.get());
+    public ResponseEntity<Model> getSolicitud(@PathVariable long idSolicitud,Model model){
+        Model  sol= solicitudAPI.findById(idSolicitud,model);
+        return ResponseEntity.ok(sol);
     }
     @GetMapping("/solicitudes")
-    public List<Solicitud> getSolicitudes(){
-        return solicitudRepo.findAll();
+    public List<Map<String,Object>> getSolicitudes(Model model){        
+        return solicitudAPI.findAll();
     }
         
-    @GetMapping("/{subsistema}/{idUsuario}/sol_cambio_rol")
-    public String solicitudCambioRol(@PathVariable long subsistema,@PathVariable long idUsuario,Model model){
-        Sistema subsis = new Sistema();
-        subsis.setId(subsistema);
-        List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
+    @GetMapping("/{idUsuario}/sol_cambio_rol")
+    public ResponseEntity<Model> solicitudCambioRol(@PathVariable long idUsuario,Model model){
+        model.addAttribute("roles", rolAPI.findAll());
         model.addAttribute("solicitud", new Solicitud());
-        model.addAttribute("roles",roles);
-        return "SolicitudCambioRol"; 
+        return ResponseEntity.ok(model);
     }
-    @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
-    public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
-        Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
-        Sistema subsis = new Sistema();
-        subsis.setId(subsistema);
-        // List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
-        // model.addAttribute("solicitud", new Solicitud());
-        // Usuario user = usuarioRepo.findById(sol.get().getUsuario().getId()).get();
-        // String nombreSolicitante = user.getNombres()+" " + user.getApellidos();
-        // Rol rolD = sol.get().getRolDestino();
-        // model.addAttribute("roles",roles);
-        // model.addAttribute("nombreSolicitante", nombreSolicitante);
-        // model.addAttribute("rolDestino", rolD.getNombreRol());
-        // model.addAttribute("motivo", sol.get().getMotivo());
-        return model; 
+    @GetMapping("/enviado/{idUsuario}")
+    public ResponseEntity<Model> getEnviado(@PathVariable long idUsuario,Model model){
+        model.addAttribute("respuesta",solicitudAPI.hayEnviado(idUsuario));
+        return ResponseEntity.ok(model);
     }
-    @PostMapping("/{subsistema}/{idUsuario}/sol_cambio_rol")
-    public String solicitudCambioRolSubmit(@PathVariable long subsistema,@PathVariable long idUsuario, @ModelAttribute Solicitud solicitud, Model model){
-        // long idUsuarioMock = 9000001;
-        // Optional<Usuario> user = usuarioRepo.findById(idUsuario);
-        // // Sistema sis = user.get().getSistema();
-        // solicitud.setUsuario(user.get());
-        solicitudRepo.save(solicitud);
-        return "SolicitudEnviada"; 
+    // @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
+    // public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
+    //     Optional<Solicitud>  sol= solicitudRepo.findById(idSolicitud);
+    //     Sistema subsis = new Sistema();
+    //     subsis.setId(subsistema);
+    //     // List<Rol> roles = rolRepo.rolesPorSubsistema(subsis);
+    //     // model.addAttribute("solicitud", new Solicitud());
+    //     // Usuario user = usuarioRepo.findById(sol.get().getUsuario().getId()).get();
+    //     // String nombreSolicitante = user.getNombres()+" " + user.getApellidos();
+    //     // Rol rolD = sol.get().getRolDestino();
+    //     // model.addAttribute("roles",roles);
+    //     // model.addAttribute("nombreSolicitante", nombreSolicitante);
+    //     // model.addAttribute("rolDestino", rolD.getNombreRol());
+    //     // model.addAttribute("motivo", sol.get().getMotivo());
+    //     return model; 
+    // }
+    @PostMapping("/{idUsuario}/sol_cambio_rol")
+    public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@RequestBody Solicitud solicitud,@PathVariable long idUsuario){
+        Optional<Usuario> user = usuarioAPI.findById(idUsuario);
+        // Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
+        // Solicitud solicitud =  new Solicitud();
+        // Sistema sis = user.get().getSistema();
+        // Aumentar el estado y la fecha
+        // Solicitud solicitud = new Solicitud();
+        solicitud.setEstado("S/R");
+        solicitud.setFecha(new Date());
+        solicitud.setUsuario(user.get());
+        solicitud.setRolOrigen(user.get().getRol());
+
+        return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
     }
+    // @PostMapping("/sol_cambio_rol")
+    // public ResponseEntity<Solicitud> solicitudCambioRolSubmit(@RequestBody Solicitud solicitud){
+    //     Optional<Usuario> user = usuarioAPI.findById(solicitud.getUsuario().getId());
+    //     // Optional<Rol> rol = rolAPI.findById(Long.parsemodel.getAttribute("a"));
+    //     // Solicitud solicitud =  new Solicitud();
+    //     // Sistema sis = user.get().getSistema();
+    //     // Aumentar el estado y la fecha
+    //     // Solicitud solicitud = new Solicitud();
+    //     solicitud.setEstado("S/R");
+    //     solicitud.setFecha(new Date());
+    //     solicitud.setRolOrigen(user.get().getRol());
+    //     solicitud.setUsuario(user.get());
+
+    //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
+    // }
 }

@@ -13,13 +13,15 @@ public class Permiso {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id; 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Rol rol;
     private String nombrePermiso;
+    private String ruta;
     protected Permiso(){}
-    public Permiso(Rol rol, String nombrePermiso){
+    public Permiso(Rol rol, String nombrePermiso,String ruta){
         this.rol = rol;
         this.nombrePermiso = nombrePermiso;
+        this.ruta = ruta;
     }
     public Long getId() {
         return id;
@@ -30,11 +32,17 @@ public class Permiso {
     public Rol getRol(){
         return rol;
     }
+    public String getRuta(){
+        return ruta;
+    }
     public void setNombrePermiso(String nombre){
         nombrePermiso = nombre;
     }
     public void setRol(Rol rol){
         this.rol = rol;
+    }
+    public void setRuta(String ruta){
+        this.ruta = ruta;
     }
 
 }

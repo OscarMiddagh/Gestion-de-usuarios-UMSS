@@ -1,7 +1,13 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
 
+
+function displayButton (event){
+  alert("¡SU SOLICITUD HA SIDO ENVIADA CON EXITO!")
+}
+
 const SolicitudCambioRol = () => {
+  
   return (
     <div class="contenido">
     <body>
@@ -24,7 +30,7 @@ const SolicitudCambioRol = () => {
         </br>
         <br>
         </br>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary" onclick={displayButton}>Enviar</button>
     </form>
 </body>
 </div>

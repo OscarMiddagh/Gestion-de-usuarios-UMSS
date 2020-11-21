@@ -1,5 +1,7 @@
 package com.qualityhunters.Model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Solicitud { 
@@ -15,20 +19,18 @@ public class Solicitud {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String motivo;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private Usuario usuario;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Rol rolDestino;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Rol rolOrigen;
     private String estado;
-    private String fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     public Solicitud(){
 
     }
-
-
     public Solicitud( Usuario usuario, String motivo,Rol rolD){
         this.usuario = usuario;
         this.motivo = motivo;
@@ -49,7 +51,7 @@ public class Solicitud {
     public void setEstado(String estado){
         this.estado=estado;
     }
-    public void setFecha(String fecha){
+    public void setFecha(Date fecha){
         this.fecha=fecha;
     }
     public Usuario getUsuario(){
@@ -67,7 +69,7 @@ public class Solicitud {
     public Long getId(){
         return id;
     }
-    public String getFecha(){
+    public Date getFecha(){
         return fecha;
     }
     public String getEstado(){
