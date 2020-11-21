@@ -7,10 +7,12 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
+// import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
+import InicioSesion from './componentes/Inicio-Sesion/Inicio-Sesion';
 import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Solicitud';
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
+import Registro from './componentes/Registro/Registro';
 
 function App() {
   return (
@@ -18,13 +20,13 @@ function App() {
         <div className="container mt-5">
         <div className="btn-group">
           <Link to="/InicioSesion" className="btn btn-dark">
-            InicioSesion
+            Inicio de Sesion
           </Link>
           <Link to="/SolicitudCambioRol" className="btn btn-dark">
-            SolicitudCambioRol
+            Solicitud de Cambio de Rol
           </Link>
           <NavLink to="/TableroSolicitudes" className="btn btn-dark" activeClassName="active">
-            TableroSolicitudes
+            Tablero de Solicitudes
           </NavLink>
           <hr />
         </div>
@@ -40,6 +42,9 @@ function App() {
           </Route>
           <Route path="/TableroSolicitudes">
             <TableroSolicitudes />
+          </Route>
+          <Route path="/Registro">
+            <Registro />
           </Route>
         </Switch>
         </div>
