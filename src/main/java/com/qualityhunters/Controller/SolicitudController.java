@@ -112,4 +112,9 @@ public class SolicitudController {
         solicitudAPI.borrarSolicitud(idUsuario);
         return ResponseEntity.ok(usuarioAPI.findById(idUsuario).get());
     }
+    @PostMapping("/sol_rechazada/{idUsuario}")
+    public ResponseEntity<Usuario> changeRol(@PathVariable long idUsuario){
+        solicitudAPI.borrarSolicitud(idUsuario);
+        return ResponseEntity.ok(usuarioAPI.findById(idUsuario).get());
+    }
 }
