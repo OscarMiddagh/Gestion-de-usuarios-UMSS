@@ -49,7 +49,7 @@ public class RolServiceAPI {
     public void delete(Rol rol){
         rolRepository.delete(rol);
     }
-	public List<Rol> rolesDisponibles(long idRol) {
-		return rolRepository.rolesDisponibles(idRol);
+	public List<Rol> findAllExcept(long idRol) {
+		return rolRepository.findAllExcept(idRol);
 	}
 }
