@@ -14,7 +14,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const url = "http://localhost:8080/solicitudes";
+const url = "https://gestiondeusuariosumss.herokuapp.com/solicitudes";
 
 class App extends React.Component {
   state = {
