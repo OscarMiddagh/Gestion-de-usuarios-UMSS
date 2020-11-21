@@ -12,5 +12,5 @@ import com.qualityhunters.Model.Rol;
 @Repository
 public interface RolRepository extends JpaRepository < Rol, Long > {
     @Query("select r from Rol r where r.id <> :id")
-    List<Rol> rolesDisponibles(@Param("id") Long id);
+    List<Rol> findAllExcept(@Param("id") Long id);
 }

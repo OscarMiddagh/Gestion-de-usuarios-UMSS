@@ -26,7 +26,7 @@ public class RolController {
     
     @GetMapping("/rolNot/{idRol}")
     public ResponseEntity<List<Rol> > getRolNot(@PathVariable long idRol){
-        List<Rol>  rols= rolAPI.rolesDisponibles(idRol);
+        List<Rol>  rols= rolAPI.findAllExcept(idRol);
         return ResponseEntity.ok(rols);
     }
 

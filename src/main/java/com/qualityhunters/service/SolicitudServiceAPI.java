@@ -68,7 +68,7 @@ public class SolicitudServiceAPI {
         solicitudRepository.delete(solicitud);
     }
 
-	public List<Solicitud> hayEnviado(long idUsuario) {
-		return solicitudRepository.hayEnviado(idUsuario);
+	public Boolean hayEnviado(long idUsuario) {
+		return solicitudRepository.hayEnviado(idUsuario).size()>0;
 	}
 }

@@ -50,11 +50,9 @@ public class SolicitudController {
         return ResponseEntity.ok(model);
     }
     @GetMapping("/enviado/{idUsuario}")
-    public ResponseEntity<Boolean> getEnviado(@PathVariable long idUsuario){
-        List<Solicitud> envSol = solicitudAPI.hayEnviado(idUsuario);
-        Boolean ans= false;
-        if(envSol.size()>0) ans=true;
-        return ResponseEntity.ok(ans);
+    public ResponseEntity<Model> getEnviado(@PathVariable long idUsuario,Model model){
+        model.addAttribute("respuesta",solicitudAPI.hayEnviado(idUsuario));
+        return ResponseEntity.ok(model);
     }
     // @GetMapping("/{subsistema}/generar_respuesta/{idSolicitud}")
     // public Model generar(@PathVariable long subsistema,@PathVariable long idSolicitud,Model model){ 
