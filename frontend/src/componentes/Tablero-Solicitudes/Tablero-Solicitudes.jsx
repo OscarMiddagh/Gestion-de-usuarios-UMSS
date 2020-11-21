@@ -107,34 +107,7 @@ class App extends React.Component {
           <ModalHeader>
            <div><h3>Responder</h3></div>
           </ModalHeader>
-{/* =======
-const TableroSolicitudes = () => {
-  return (
-    <div id="id"> 
-     <br></br>
-     <div>
-      <h6>SOLICITUDES DE CAMBIO DE ROL</h6>
-    </div>
-    
->>>>>>> 70c97681bf82a308169aa692948baa9af54fc560 */}
-
-<<<<<<< HEAD
-=======
-          <tbody>
-          {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 
-                <tr>                 
-                  <td>{dato.idSolicitud}</td>
-                  <td>{dato.nombreUsuario}</td>
-                  <td>{dato.rolA}</td>
-                  <td>{dato.rolS}</td>
-                  <td>{dato.fecha}</td>
-                  <td>{dato.mensajeS}</td>
-                  <td>{dato.comentario}</td>
-                  </tr>
-                  ))}
-          </tbody>
->>>>>>> e00d9b844ca96e103bb1ae37a684156b93903d9e
-
+          
           <ModalBody>
             <FormGroup>
               <label>
