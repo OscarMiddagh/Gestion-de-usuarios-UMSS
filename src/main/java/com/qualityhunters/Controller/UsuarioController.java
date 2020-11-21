@@ -12,7 +12,6 @@ import com.qualityhunters.service.RolServiceAPI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,13 +52,14 @@ public class UsuarioController {
         model.addAttribute("respuesta",usuarioAPI.confirmarDatos(correo,password));
         return ResponseEntity.ok(model);
     }
-    @PostMapping("/changeRol/{idUsuario}")
+    /*@PostMapping("/changeRol/{idUsuario}")
     public ResponseEntity<Usuario> changeRol(@RequestBody Rol rol,@PathVariable long idUsuario){
+        //usuarioAPI.cambiarRol(rol,idUsuario);
         Optional<Usuario> user = usuarioAPI.findById(idUsuario);
         Usuario aux = user.get();
         aux.setRol(rol);
         usuarioAPI.update(aux);
         return ResponseEntity.ok(usuarioAPI.findById(idUsuario).get());
-    }
+    }*/
 
 }
