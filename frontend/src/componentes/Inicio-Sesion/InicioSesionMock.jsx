@@ -25,7 +25,34 @@ class LogIn extends React.Component {
         }
       }
     };
-      mostrarModalResponder=()=>{          //cambia el estado de false a true
+    limitarcorreo = async  (e) => {
+      
+      if (e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$") != null) {
+        await this.setState({
+          form:{
+            ...this.state.form,
+          [e.target.name]: e.target.value,
+          }
+         });
+      }
+      else {
+        alert("No se aceptan espacios ni caracteres especiales");
+      }
+    }
+    limitarpasswd =async (e) => {
+      if (e.target.value.match("^[Ñña-zA-Z0-9]*$") != null) {
+        await this.setState({
+          form:{
+            ...this.state.form,
+          [e.target.name]: e.target.value,
+          }
+         });
+      }
+      else {
+        alert("No se aceptan espacios ni caracteres especiales");
+      }
+    }
+    mostrarModalResponder=()=>{          //cambia el estado de false a true
       this.setState({modalResponder: true});
     }
   
@@ -66,7 +93,6 @@ class LogIn extends React.Component {
     render() {
       
       return (
-            <React.Fragment>
                 <div class="wrapper fadeInDown">
                     <div id="formContent">
                         <div className="fadeIn first">
@@ -77,8 +103,8 @@ class LogIn extends React.Component {
                           <br/>
                           <br/>
                           <br/>
-                        <input type="text" className="fadeIn second" name="correo" placeholder="Correo" onChange={this.handleChange} required/>
-                        <input type="password" className="fadeIn third" name="contraseña" placeholder="Contraseña" onChange={this.handleChange} required/>
+                        <input type="text" className="fadeIn second" name="correo" placeholder="Correo" onChange={this.limitarcorreo} required/>
+                        <input type="password" className="fadeIn third" name="contraseña" placeholder="Contraseña" onChange={this.limitarpasswd} required/>
                         <input type="submit" className="fadeIn fourth" value="Log In" onClick={this.logearse}/>
                         </form>
 
@@ -88,7 +114,6 @@ class LogIn extends React.Component {
 
                     </div>
                     </div>
-            </React.Fragment>
       );
     }
   }

@@ -6,8 +6,6 @@ import {
 import React from 'react'
 import './Inicio-Sesion.css';
 
-
-const url = "https://gestiondeusuariosumss.herokuapp.com";
 const InicioSesion = () => {
   const [datos, setDatos] = useState({
     correo: '',
