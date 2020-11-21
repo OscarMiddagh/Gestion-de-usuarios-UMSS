@@ -14,7 +14,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const url = "";
+const url = "http://localhost:8080/solicitudes";
 
 class App extends React.Component {
   state = {
@@ -33,6 +33,7 @@ class App extends React.Component {
 
   peticionGet=()=>{
     axios.get(url).then(response=>{
+      console.log(response.data);
       this.setState({data:response.data});
     })
   }
@@ -44,8 +45,13 @@ class App extends React.Component {
   ocultarModalResponder=()=>{
     this.setState({modalResponder: false});
   }
-  componentDiMount(){       //ciclo de vida
-    this.peticionGet();
+  componentDidMount(){       //ciclo de vida
+    axios.get(url)
+    .then(response=>{
+      console.log(response.data);
+      this.setState({data:response.data});
+    })
+    .catch(console.log);
   }
 
   handleChange= e=>{        //cuando se escriba en inputs se cambien en el estado form
@@ -80,8 +86,8 @@ class App extends React.Component {
             <tbody>
               {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
-                  <td>{dato.id}</td>
-                  <td>{dato.nombre}</td>
+                  <td>{dato.idSolicitud} </td>
+                  <td>{dato.nombreUsuario}</td>
                   <td>{dato.fecha}</td>
                   <td>
                     <Button
@@ -115,8 +121,8 @@ const TableroSolicitudes = () => {
           <tbody>
           {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente 
                 <tr>                 
-                  <td>{dato.id}</td>
-                  <td>{dato.nombre}</td>
+                  <td>{dato.idSolicitud}</td>
+                  <td>{dato.nombreUsuario}</td>
                   <td>{dato.rolA}</td>
                   <td>{dato.rolS}</td>
                   <td>{dato.fecha}</td>
