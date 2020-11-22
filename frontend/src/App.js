@@ -32,7 +32,7 @@ function App() {
           <Route path="/:usuarioId/SolicitudCambioRol"> 
             <SolicitudCambioRol />
           </Route>
-          <Route path="/InicioSesion" >
+          <Route path="/InicioSesion" exact>
             <InicioSesion />
           </Route>
           <Route path="/TableroSolicitudes">

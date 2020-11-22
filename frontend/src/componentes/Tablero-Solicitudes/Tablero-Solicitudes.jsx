@@ -31,13 +31,6 @@ class App extends React.Component {
     }
   };
 
-  peticionGet=()=>{
-    axios.get(url).then(response=>{
-      console.log(response.data);
-      this.setState({data:response.data});
-    })
-  }
-
   mostrarModalResponder=(registro)=>{          //cambia el estado de false a true
     this.setState({modalResponder: true, form: registro });
   }
@@ -63,10 +56,24 @@ class App extends React.Component {
     })
   }
 
-  aprobar(){
-      //colocar lo que hara el boton aprobar
-  }
+  aprobar=()=>{
 
+  }
+  rechazar = () => {
+    axios.post(url + "/sol_aceptada/{idUsuario}", this.state.form)
+      .then(response => {
+        let comprobante = response.data.rol.nombreRol;
+        if (comprobante === "admin") {
+          alert("Bienvenido de vuelta admin ");
+          window.location.href ="/TableroSolicitudes";
+        }
+        else {
+          alert("Bienvenido de vuelta usuario");
+          window.location.href = "/"+response.data.idUsuario + "/SolicitudCambioRol";
+        }
+      })
+      .catch(console.log);
+  }
   render() {
     
     return (

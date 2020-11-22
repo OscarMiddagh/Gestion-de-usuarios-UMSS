@@ -35,9 +35,9 @@ public class UsuarioController {
             if(!usuario.getContraseña().equals(user.getContraseña())){
                 respuesta.put("msg", "Contraseña invalida");
                 respuesta.put("logeo", false);
-                respuesta.put("idUsuario",usuario.getId());
                 return respuesta;
             }
+            respuesta.put("idUsuario",user.getId());
             respuesta.put("msg", "Te logeaste con exito");
             respuesta.put("rol", user.getRol());
             respuesta.put("logeo", true);
