@@ -34,10 +34,8 @@ public class SolicitudServiceAPI {
             r.put("idSolicitud",solicitud.getId());
             r.put("nombreUsuario", solicitud.getUsuario().getNombres()+solicitud.getUsuario().getApellidos());
             r.put("idUsuario", solicitud.getUsuario().getId());
-            r.put("idRolOrigen", solicitud.getRolOrigen().getId());
-            r.put("rolOrigen", solicitud.getRolOrigen().getNombreRol());
-            r.put("idRolDestino", solicitud.getRolDestino().getId());
-            r.put("rolDestino", solicitud.getRolDestino().getNombreRol());
+            r.put("rolOrigen", solicitud.getRolOrigen());
+            r.put("rolDestino", solicitud.getRolDestino());
             r.put("fecha", solicitud.getFecha());
             r.put("motivo", solicitud.getMotivo());
             res.add(r);

@@ -14,13 +14,14 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const url = "https://gestiondeusuariosumss.herokuapp.com/solicitudes";
+const url = "https://gestiondeusuariosumss.herokuapp.com";
 
 class App extends React.Component {
   state = {
     data: [],
     modalResponder: false,
     form: {
+      idUsuario:"",
       idSolicitud: "",
       nombreUsuario: "",
       fecha: "",
@@ -39,7 +40,7 @@ class App extends React.Component {
     this.setState({modalResponder: false});
   }
   componentDidMount(){       //ciclo de vida
-    axios.get(url)
+    axios.get(url+"/solicitudes")
     .then(response=>{
       console.log(response.data);
       this.setState({data:response.data});
@@ -56,23 +57,17 @@ class App extends React.Component {
     })
   }
 
-  aprobar=()=>{
-
+  aprobar=(idUsuario)=>{
+    axios.post(url + "/sol_aprobada/"+idUsuario,this.state.form.rolDestino)
+    .then(console.log)
+    .catch(console.log);
+    this.ocultarModalResponder();
   }
-  rechazar = () => {
-    axios.post(url + "/sol_aceptada/{idUsuario}", this.state.form)
-      .then(response => {
-        let comprobante = response.data.rol.nombreRol;
-        if (comprobante === "admin") {
-          alert("Bienvenido de vuelta admin ");
-          window.location.href ="/TableroSolicitudes";
-        }
-        else {
-          alert("Bienvenido de vuelta usuario");
-          window.location.href = "/"+response.data.idUsuario + "/SolicitudCambioRol";
-        }
-      })
+  rechazar = (idUsuario) => {
+    axios.post(url + "/sol_rechazada/"+idUsuario)
+      .then(console.log)
       .catch(console.log);
+      this.ocultarModalResponder();
   }
   render() {
     
@@ -191,6 +186,18 @@ class App extends React.Component {
             </FormGroup>
             <FormGroup>
               <label>
+                Mensaje de solicitud: 
+              </label>
+              <input
+                className="form-control"
+                name="mensajeS"
+                type="hidden"
+                readOnly
+                value={this.state.form.idUsuario}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>
                 Comentario: 
               </label>
               <input
@@ -206,11 +213,11 @@ class App extends React.Component {
           <ModalFooter>
             <Button
               color="primary"
-              onClick={() => this.aprobar(this.state.form)}> Aprobar
+              onClick={() => this.aprobar(this.state.form.idUsuario)}> Aprobar
             </Button>
             <Button
               color="danger"
-              onClick={() => this.cerrarModalResponder()}>Rechazar
+              onClick={()=>this.rechazar(this.state.form.idUsuario)}>Rechazar
             </Button>
           </ModalFooter>
         </Modal>

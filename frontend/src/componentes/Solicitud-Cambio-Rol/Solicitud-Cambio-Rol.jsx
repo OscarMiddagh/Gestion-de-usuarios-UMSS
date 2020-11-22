@@ -47,4 +47,4 @@ function displayButton (event){
   alert("¡SU SOLICITUD HA SIDO ENVIADA CON EXITO!")
 }
 
-export default SolicitudCambioRol
+export default SolicitudCambioRol 

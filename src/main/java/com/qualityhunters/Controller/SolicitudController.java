@@ -40,7 +40,7 @@ public class SolicitudController {
         return ResponseEntity.ok(sol);
     }
     @GetMapping("/solicitudes")
-    public List<Map<String,Object>> getSolicitudes(Model model){        
+    public List<Map<String,Object>> getSolicitudes(){        
         return solicitudAPI.findAll();
     }
         
