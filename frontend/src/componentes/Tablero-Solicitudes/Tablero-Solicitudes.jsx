@@ -145,7 +145,7 @@ class App extends React.Component {
                 name="rolA"
                 type="text"
                 readOnly
-                value={this.state.form.rolOrigen}
+                value={this.state.form.rolOrigen.nombreRol}
               />
             </FormGroup>
             <FormGroup>
@@ -157,7 +157,7 @@ class App extends React.Component {
                 name="rolS"
                 type="text"
                 readOnly
-                value={this.state.form.rolDestino}
+                value={this.state.form.rolDestino.nombreRol}
               />
             </FormGroup>
             <FormGroup>

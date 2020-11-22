@@ -102,6 +102,7 @@ public class SolicitudController {
 
     //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
     // }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/sol_aceptada/{idUsuario}")
     public ResponseEntity<Usuario> changeRol(@RequestBody Rol rol,@PathVariable long idUsuario){
         //usuarioAPI.cambiarRol(rol,idUsuario);
