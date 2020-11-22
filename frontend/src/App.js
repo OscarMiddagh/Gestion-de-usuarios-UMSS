@@ -22,12 +22,7 @@ function App() {
           <Link to="/InicioSesion" className="btn btn-dark">
             Inicio de Sesion
           </Link>
-          <Link to="/SolicitudCambioRol" className="btn btn-dark">
-            Solicitud de Cambio de Rol
-          </Link>
-          <NavLink to="/TableroSolicitudes" className="btn btn-dark" activeClassName="active">
-            Tablero de Solicitudes
-          </NavLink>
+          
           <hr />
         </div>
         <Switch>
