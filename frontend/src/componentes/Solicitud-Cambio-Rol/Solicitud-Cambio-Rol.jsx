@@ -6,8 +6,8 @@ function displayButton (event){
   alert("¡SU SOLICITUD HA SIDO ENVIADA CON EXITO!")
 }
 
-const SolicitudCambioRol = () => {
-  
+const SolicitudCambioRol = (idUsario) => {
+  console.log(idUsario);
   return (
     <div class="contenido">
     <body>

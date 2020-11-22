@@ -3,33 +3,21 @@ package com.qualityhunters.Controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.qualityhunters.Model.Usuario;
 import com.qualityhunters.Repository.UsuarioRepository;
-import com.qualityhunters.service.UsuarioServiceAPI;
-import com.qualityhunters.Model.Rol;
-import com.qualityhunters.Repository.RolRepository;
-import com.qualityhunters.service.RolServiceAPI;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UsuarioController {
     // @GetMapping() 
     @Autowired
     private UsuarioRepository usuarioRepo;
-    @Autowired
-    private UsuarioServiceAPI usuarioAPI;
 
     // @GetMapping("/logIn")
     // public String logIn(Model model){     
@@ -47,6 +35,7 @@ public class UsuarioController {
             if(!usuario.getContraseña().equals(user.getContraseña())){
                 respuesta.put("msg", "Contraseña invalida");
                 respuesta.put("logeo", false);
+                respuesta.put("idUsuario",usuario.getId());
                 return respuesta;
             }
             respuesta.put("msg", "Te logeaste con exito");

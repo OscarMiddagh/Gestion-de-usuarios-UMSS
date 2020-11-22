@@ -1,6 +1,7 @@
 package com.qualityhunters.Controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,11 +45,11 @@ public class SolicitudController {
     }
         
     @GetMapping("/{idUsuario}/sol_cambio_rol")
-    public ResponseEntity<Model> solicitudCambioRol(@PathVariable long idUsuario,Model model){
+    public ResponseEntity<Map<String,Object> > solicitudCambioRol(@PathVariable long idUsuario){
         Optional<Usuario> user = usuarioAPI.findById(idUsuario);
-        model.addAttribute("roles", rolAPI.findAllExcept(user.get().getRol().getId()));
-        //model.addAttribute("solicitud", new Solicitud());
-        return ResponseEntity.ok(model);
+        Map<String,Object> res = new HashMap<>();
+        res.put("roles", rolAPI.findAllExcept(user.get().getRol().getId()));
+        return ResponseEntity.ok(res);
     }
     @GetMapping("/enviado/{idUsuario}")
     public ResponseEntity<Model> getEnviado(@PathVariable long idUsuario,Model model){
@@ -102,7 +102,7 @@ public class SolicitudController {
 
     //     return ResponseEntity.ok(solicitudAPI.save(solicitud)); 
     // }
-    @PostMapping("/changeRol/{idUsuario}")
+    @PostMapping("/sol_aceptada/{idUsuario}")
     public ResponseEntity<Usuario> changeRol(@RequestBody Rol rol,@PathVariable long idUsuario){
         //usuarioAPI.cambiarRol(rol,idUsuario);
         Optional<Usuario> user = usuarioAPI.findById(idUsuario);

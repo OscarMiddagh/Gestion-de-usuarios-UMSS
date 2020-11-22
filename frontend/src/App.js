@@ -29,10 +29,10 @@ function App() {
         <Route path="/RespuestaSolicitud">
             <RespuestaSolicitud />
           </Route>
-          <Route path="/SolicitudCambioRol">
+          <Route path="/:usuarioId/SolicitudCambioRol"> 
             <SolicitudCambioRol />
           </Route>
-          <Route path="/InicioSesion" exact>
+          <Route path="/InicioSesion" >
             <InicioSesion />
           </Route>
           <Route path="/TableroSolicitudes">
