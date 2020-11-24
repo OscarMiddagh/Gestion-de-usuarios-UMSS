@@ -58,7 +58,7 @@ class App extends React.Component {
   }
 
   aprobar=(idUsuario)=>{
-    axios.post(url + "/sol_aprobada/"+idUsuario,this.state.form.rolDestino)
+    axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
     .then(console.log)
     .catch(console.log);
     this.ocultarModalResponder();
