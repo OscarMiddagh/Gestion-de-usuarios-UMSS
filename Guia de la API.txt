@@ -1,0 +1,240 @@
+Guia de la API
+
+Usuarios disponibles:
+(id,        apellidos,  ciudad,     contraseña, correo,                   direccion,        documento_de_identidad,   nombres,      pais,   rol_id) 
+(9000001,   Ramirez,    Cochabamba, cbfirospfp, innefohy1704@gmail.com,   Avenida america,          1616435,          Concepcio,    Bolivia,2000001),
+(9000002,   Morcillo,   Oruro,      bcdpjgtsus, ogivohe3357@hotmail.com,  16 de julio,              1234567,          Abril,        Bolivia,2000001),
+(9000003,   Mateos,     La Paz,     gwtpghquhe, tallicutyzo9@yopmail.com, calle jordan,             2334761,          Stefan,       Bolivia,2000001),
+(9000004,   Gomez,      Cochabamba, vnpcsrcmki, cacilujadd@gmail.com,     avenida circunvalacion,   13134545,         Eugenia,      Bolivia,2000002),
+(9000005,   Encinas,    Sucre,      pstmzcskmr, cabileffi@gmail.com,      calle Esteban Arce,       3001345,          Albert,       Bolivia,2000002),
+(9000006,   Machado,    La Paz,     atlfsbxlic, assyquvov2760@hotmail.com,avenida Ayacucho,         12124567,         Alfredo,      Bolivia,2000003),
+(9000007,   Lopez,      Potosi,     jvnfemvnfs, gezepiga44@gmail.com,     calle Bolivar,            1023455,          Juan,         Bolivia,2000003),
+(9000008,   Rincon,     Potosi,     nwxwgyjedd, marrin5@hotmail.com,      calle Mostajo,            6123456,          Maria,        Bolivia,2000004),
+(9000009,   Machado,    Cochabamba, nmtrslvzho, alfremachado11@gmail.com, calle Sucre,              3467651,          Alfredo,      Bolivia,2000004),
+(9000010,   Calderon,   La Paz,     fzqrxrelum, jos3calderon6@gmail.com,  avenida America,          10034967,         Jose,         Bolivia,2000004),
+(9000011,   Suarez,     Sucre,      xwgyjedduu, benjasrez00@hotmail.com,  calle Prada,              3321244,          Benjamin,     Bolivia,2000004);
+
+(id,                motivo,                                     rol_destino_id,  rol_origen_id,  usuario_id, estado, fecha) 
+(8000001,quiero tener los controles que tiene un admnistrador,  2000001,         2000004,        9000011,    S/R,    2020/10/10),
+(8000002,Solicito un ascenso de mi puesto actual, creo que ser 
+                            administrador seria lo mas adecuado,2000001,         2000002,        9000004,    S/R,    2020/10/10),
+(8000003,Actualmente ya no tengo suficiente con solo comprar, 
+            necesito publicar ciertas cosas que quisiera vender,2000003,         2000004,        9000009,    S/R,    2020/10/10),
+(8000004,No dispongo del tiempo libre para cumplir con las 
+            necesidades que representa ser un administrador, 
+            por ello solicitu un cambio,                        2000002,         2000001,        9000001,    S/R,    2020/10/10);
+
+********************************* METODOS GET ***********************************
+Para acceder a los valores de las variables deben entrar con el nombre, por ejemplo
+si ponen response.data.idRol obtendrian el id del rol
+
+
+GET: https://gestiondeusuariosumss.herokuapp.com/roles - Esto devuelve todos los roles registrados
+[
+    {
+        "idRol":2000001,
+        "nombreRol":"admin"
+    },
+    {
+        "idRol":2000002,
+        "nombreRol":"delivery"
+    },{
+        "idRol":2000003,
+        "nombreRol":"Vendedor"
+    },{
+        "idRol":2000004,
+        "nombreRol":"comprador"
+    }
+]
+GET: https://gestiondeusuariosumss.herokuapp.com/rolNot/{idUsuario} - Esto devuelve todos los roles 
+                                                                disponibles para el usuario para que un usuario no vuelva
+                                                                a pdir su mismo rol.
+Ej:
+https://gestiondeusuariosumss.herokuapp.com/rolNot/9000001 - Este usuario era el admin
+[
+    {
+        "id":2000002,
+        "nombreRol":"delivery"
+    },{
+        "id":2000003,
+        "nombreRol":"Vendedor"
+    },{
+        "id":2000004,
+        "nombreRol":"comprador"
+    }
+]
+GET: https://gestiondeusuariosumss.herokuapp.com/solicitudes - devuelve toda la informacion de las solicitudes
+si ponen response.data.rolOrigen.id obtendrian el id del rol de Origen 
+[
+    {
+        "fecha":"2020-10-10",
+        "rolDestino":{
+            "id":2000001,
+            "nombreRol":"admin"
+        },
+        "motivo":"Solicito un ascenso de mi puesto actual, creo que ser administrador seria lo mas adecuado",
+        "idUsuario":9000004,
+        "rolOrigen":{
+            "id":2000002,
+            "nombreRol":"delivery"
+        },
+        "idSolicitud":8000002,
+        "nombreUsuario":"EugeniaGomez"
+    },{
+        "fecha":"2020-10-10",
+        "rolDestino":{
+            "id":2000003,
+            "nombreRol":"Vendedor"
+        },
+        "motivo":"Actualmente ya no tengo suficiente con solo comprar, necesito publicar ciertas cosas que quisiera vender",
+        "idUsuario":9000009,
+        "rolOrigen":{
+            "id":2000004,"nombreRol":"comprador"
+        },
+        "idSolicitud":8000003,
+        "nombreUsuario":"AlfredoMachado"
+    },{
+        "fecha":"2020-10-10",
+        "rolDestino":{
+            "id":2000002,
+            "nombreRol":"delivery"
+        },
+        "motivo":"No dispongo del tiempo libre para cumplir con las necesidades que representa ser un administrador, por ello solicitu un cambio",
+        "idUsuario":9000001,
+        "rolOrigen":{
+            "id":2000001,
+            "nombreRol":"admin"
+        },
+        "idSolicitud":8000004,
+        "nombreUsuario":"ConcepcioRamirez"
+    }
+]
+GET: https://gestiondeusuariosumss.herokuapp.com/{idUsuario}/sol_cambio_rol - Esto devuelve todos los roles 
+                                                                            disponibles para el usuario para que un usuario no vuelva
+                                                                            a pdir su mismo rol.
+Es igual que rolNot pero con mejor nomenclatura (La ruta), aun que es indiferente, pueden usar cualquiera
+Ej:
+https://gestiondeusuariosumss.herokuapp.com/rolNot/9000001 - Este usuario era el admin
+[
+    {
+        "id":2000002,
+        "nombreRol":"delivery"
+    },{
+        "id":2000003,
+        "nombreRol":"Vendedor"
+    },{
+        "id":2000004,
+        "nombreRol":"comprador"
+    }
+]
+
+
+******************************* METODOS POST ***************************************
+Para hacer alguna accion en la api con POST, PUT o DELETE deben enviar un json con el formato especificado
+ya que la api reconocera el nombre de las variables para efectuar los cambios. Despues de hacer el Post se 
+recibe una respuesta del backend 
+Este es un ejemplo
+  aprobar=()=>{
+    axios.post(url,this.state.form.rolDestino) //this.state.form.rolDestino es el dato que se va a enviar como parametro 
+                                               // y  url es a donde se esta haciendo POST
+    .then(response)                            //response es la respuesta del backend
+    .catch(console.log);
+    this.ocultarModalResponder();
+  }
+POST: https://gestiondeusuariosumss.herokuapp.com/{idUsuario}/sol_cambio_rol - Esto sirve para añadir una solicitud del usuario 
+
+lo que deben enviar es:
+{
+    "motivo": "mi gato quiere dominar el mundo",
+    "rolDestino":{
+        "id": 2000002,
+        "nombreRol":"delivery"
+    }
+}
+y recibiran:
+{
+    "id": 1,
+    "motivo": "mi gato quiere dominar el mundo",
+    "usuario": {
+        "id": 9000005,
+        "nombres": "Albert",
+        "apellidos": "Encinas",
+        "correo": "cabileffi@gmail.com",
+        "documentoDeIdentidad": "3001345",
+        "direccion": "calle Esteban Arce",
+        "ciudad": "Sucre",
+        "pais": "Bolivia",
+        "rol": {
+            "id": 2000002,
+            "nombreRol": "delivery"
+        },
+        "contraseña": "pstmzcskmr"
+    },
+    "rolDestino": {
+        "id": 2000002,
+        "nombreRol": "delivery"
+    },
+    "rolOrigen": {
+        "id": 2000002,
+        "nombreRol": "delivery"
+    },
+    "estado": "S/R",
+    "fecha": "2020-11-24T21:55:36.067+00:00"
+}
+POST: https://gestiondeusuariosumss.herokuapp.com/sol_aceptada/{idUsuario} - Esto realiza el cambio de rol y elimina
+                                                                             de la base de datos la solicitud
+Lo que deben enviar es el Rol de esta forma:
+{
+    "id": 2000002,              //Es el id del rol
+    "nombreRol":"delivery"
+}          
+y recibiran la informacion del usuario:
+{
+    "id": 9000005,
+    "nombres": "Albert",
+    "apellidos": "Encinas",
+    "correo": "cabileffi@gmail.com",
+    "documentoDeIdentidad": "3001345",
+    "direccion": "calle Esteban Arce",
+    "ciudad": "Sucre",
+    "pais": "Bolivia",
+    "rol": {
+        "id": 2000002,
+        "nombreRol": "delivery"
+    },
+    "contraseña": "pstmzcskmr"                  //Esto es algo que arreglaremos en el backend
+}
+POST: https://gestiondeusuariosumss.herokuapp.com/sol_rechazada/{idUsuario} - Busca la solicitud del usuario, la elimina y 
+No es necesario enviar nada, solo hacer POST a la ruta 
+recibiran la informacion del usuario:
+{
+    "id": 9000005,
+    "nombres": "Albert",
+    "apellidos": "Encinas",
+    "correo": "cabileffi@gmail.com",
+    "documentoDeIdentidad": "3001345",
+    "direccion": "calle Esteban Arce",
+    "ciudad": "Sucre",
+    "pais": "Bolivia",
+    "rol": {
+        "id": 2000002,
+        "nombreRol": "delivery"
+    },
+    "contraseña": "pstmzcskmr"                  //Esto es algo que arreglaremos en el backend
+}                                                                      no efectua ninguna cambio
+POST: https://gestiondeusuariosumss.herokuapp.com/logIn -  Para hacer el logIn
+Esto es lo que deben enviar:
+    {
+        "correo": "innefohy1704@gmail.com",
+        "contraseña":"cbfirospfp"
+    }
+Y lo que reciben es:
+{
+    "msg": "Te logeaste con exito",             // Este message es para que puedan mostrarlo en caso de que el logeo sea false
+    "idUsuario": 9000001,                       
+    "logeo": true,
+    "rol": {                                    // Se envia el rol para que puedan distinguirlo entre roles
+        "id": 2000001,                                  
+        "nombreRol": "admin"
+    }
+}
