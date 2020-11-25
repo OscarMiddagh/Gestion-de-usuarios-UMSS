@@ -28,7 +28,7 @@ function App() {
         <Switch>
         <Route path="/RespuestaSolicitud">
             <RespuestaSolicitud />
-          </Route>
+          </Route>   
           <Route path="/:usuarioId/SolicitudCambioRol"> 
             <SolicitudCambioRol />
           </Route>
