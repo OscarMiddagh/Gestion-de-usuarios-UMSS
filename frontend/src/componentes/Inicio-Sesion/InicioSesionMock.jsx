@@ -100,7 +100,10 @@ class LogIn extends React.Component {
   }
   logearse = () => {
     axios.post(url + "/logIn", this.state.form)
-      .then(response => {
+      .then(response => {        
+        document.getElementById("errorEmail").style.visibility = "hidden";        
+        document.getElementById("errorPass").style.visibility = "hidden";
+        console.log(document.getElementById("errorPass").style );
         let res = response.data.res;
         if(res ===0){
           let comprobante = response.data.rol.nombreRol;
@@ -116,13 +119,14 @@ class LogIn extends React.Component {
             
           }
         }else{
-          if(res===1){
+          console.log(res);
+          if(res===2){
             document.getElementById("errorEmail").innerHTML = "El correo no existe";
-          }else if(res===2){
+            document.getElementById("errorEmail").style.visibility = "visible";
+          }else if(res===1){
             document.getElementById("errorPass").innerHTML = "Contraseña invalida";
+            document.getElementById("errorPass").style.visibility = "visible";
           }
-          document.getElementsByClassName("alert")[0].innerHTML = response.data.msg;
-          document.getElementsByClassName("alert")[0].hidden = false;
         }
       })
       .catch(console.log);
@@ -150,9 +154,9 @@ class LogIn extends React.Component {
             <br />
 
             <input type="email" className="fadeIn second" name="correo" aria-describedby="emailHelp"  placeholder="Correo"  onChange={this.limitarcorreo} required />
-            <small id="errorEmail" class="form-text text-danger" style={{visibility:"hidden"}}>We'll never share your email with anyone else.</small>
+            <small id="errorEmail" class="form-text text-danger" style={{visibility:"hidden"}}></small>
             <input type="password" className="fadeIn third" name="contraseña" placeholder="Contraseña" onChange={this.limitarpasswd}  required />
-            <small id="errorPass" class="form-text text-danger" style={{visibility:"hidden"}}>We'll never share your email with anyone else.</small>
+            <small id="errorPass" class="form-text text-danger" style={{visibility:"hidden"}}></small>
             <input type="submit" className="fadeIn fourth" value="Iniciar Sesion" onClick={this.logearse} />
             <input type="button" className="fadeIn fourth" value=" Registrarse " />
           </form>
