@@ -39,4 +39,10 @@ public class UsuarioServiceAPI {
     public void delete(Usuario usuario){
         usuarioRepository.delete(usuario);
     }
+    public Boolean confirmarDatos(String mail){
+        return usuarioRepository.existeUsuario(mail).size()>0;
+    }
+    /*public void cambiarRol(Rol rol,long id){
+        usuarioRepository.cambiarRol(rol, id);
+    }*/
 }

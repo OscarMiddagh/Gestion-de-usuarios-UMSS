@@ -1,4 +1,5 @@
 {
+  "homepage": "https://oscarmiddagh.github.io/Gestion-de-usuarios-UMSS/",
   "name": "prueba1",
   "version": "0.1.0",
   "private": true,
@@ -6,17 +7,25 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "gh-pages": "^3.1.0",
+    "hash-history": "^0.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-router-hash-history": "^0.2.3",
     "react-scripts": "4.0.0",
+    "reactstrap": "^8.7.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

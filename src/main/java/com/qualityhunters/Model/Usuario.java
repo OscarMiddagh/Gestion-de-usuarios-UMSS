@@ -1,6 +1,5 @@
 package com.qualityhunters.Model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,16 +19,16 @@ public class Usuario {
   private String direccion;
   private String ciudad;
   private String pais;
-  @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   private Rol rol;
-  @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private Sistema sistema;
-//   private Sistema sistema;
   private String contraseña;
 
 
   public Usuario() {}
-
+  
+  public Usuario(Long id){
+    this.id =id;
+  }
   public Usuario(String nombres, String apellidos, String correo, String documentoDeIdentidad,
                  String direccion, String ciudad, String pais, String contraseña) {
     this.nombres = nombres;
@@ -69,13 +68,9 @@ public class Usuario {
   public String getPais(){
       return pais;
   }
-  public Sistema getSistema(){
-      return sistema;
-  }
   public Rol getRol(){
       return rol;
   }
-
   public void setCorreo(String correo) {
     this.correo = correo;
   }
@@ -102,8 +97,5 @@ public class Usuario {
   }
   public void setRol(Rol rol){
       this.rol = rol;
-  }
-  public void setSistema(Sistema sistema){
-      this.sistema = sistema;
   }
 }

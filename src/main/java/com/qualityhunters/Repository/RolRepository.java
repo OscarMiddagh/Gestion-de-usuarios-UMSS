@@ -8,10 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import com.qualityhunters.Model.Rol;
-import com.qualityhunters.Model.Sistema;
 
 @Repository
 public interface RolRepository extends JpaRepository < Rol, Long > {
-    @Query("select r from Rol r where r.sistema = :subSistemaId")
-    List<Rol> rolesPorSubsistema(@Param("subSistemaId") Sistema subSistemaId);
+    @Query("select r from Rol r where r.id <> :id")
+    List<Rol> findAllExcept(@Param("id") Long id);
 }
