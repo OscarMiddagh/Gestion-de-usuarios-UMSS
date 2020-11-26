@@ -86,11 +86,11 @@ class LogIn extends React.Component {
         let comprobante = response.data.rol.nombreRol;
         if (comprobante === "admin") {
           alert("Bienvenido de vuelta admin ");
-          window.location.href ="/TableroSolicitudes";
+          window.location.href ="/#/TableroSolicitudes";
         }
         else {
           alert("Bienvenido de vuelta usuario");
-          window.location.href = "/"+response.data.idUsuario + "/SolicitudCambioRol";
+          window.location.href = "/"+response.data.idUsuario + "/#/SolicitudCambioRol";
         }
       })
       .catch(console.log);

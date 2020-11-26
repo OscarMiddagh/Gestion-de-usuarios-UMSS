@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  HashRouter,
   NavLink
 } from "react-router-dom";
 import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
@@ -16,7 +17,7 @@ import Registro from './componentes/Registro/Registro';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
         <div className="container mt-5">
         <div className="btn-group">
           <Link to="/InicioSesion" className="btn btn-dark">
@@ -43,7 +44,7 @@ function App() {
           </Route>
         </Switch>
         </div>
-    </Router>
+    </HashRouter>
   );
 }
 
