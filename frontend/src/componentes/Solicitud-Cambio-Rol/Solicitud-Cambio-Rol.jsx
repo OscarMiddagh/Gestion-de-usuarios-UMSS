@@ -11,9 +11,10 @@ class SolicitudCambioRol extends React.Component {
       console.log(response.data);
       this.setState({data:response.data});
     })
-    .catch(console.log);
+    .catch(console.log(this.props));
   }
   render(){
+    
     return (
       <div class="contenido">
         <body class="hello">

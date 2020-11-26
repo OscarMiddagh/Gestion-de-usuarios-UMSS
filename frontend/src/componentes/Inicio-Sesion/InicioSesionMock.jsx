@@ -13,28 +13,39 @@ import {
   FormGroup,
   ModalFooter,
 } from "reactstrap";
-import { Route, Link } from "react-router-dom";
+import {Router, Route, history, Switch,Redirect,hashChange} from 'react-router-dom'
+let hashHistory = Router.hashHistory;
 
 const url = "https://gestiondeusuariosumss.herokuapp.com";
 // const url = "http://localhost:8080"
 class LogIn extends React.Component {
+  // const [datos, setDatos] = useState({
+  //   correo: '',
+  //   contraseña: ''
+  // })
   state = {
     form: {
-      "usuario": {
         "correo": "",
         "contraseña": ""
       }
-    }
   };
   limitarcorreo = async (e) => {
 
     if (e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$") != null) {
-      await this.setState({
-        form: {
-          ...this.state.form,
-          [e.target.name]: e.target.value,
-        }
-      });
+      
+      if(e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$")[0]===''){
+
+        // alert("No se aceptan espacios ni caracteres especiales");
+      }else{
+        await this.setState({
+          form: {
+            ...this.state.form,
+            [e.target.name]: e.target.value,
+          }
+        });        
+      }
+
+      console.log(e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$")[0])
     }
     else {
       alert("No se aceptan espacios ni caracteres especiales");
@@ -68,8 +79,7 @@ class LogIn extends React.Component {
       })
       .catch(console.log);
   }
-
-  handleChange = async e => {        //cuando se escriba en inputs se cambien en el estado form
+  handleKeyPress= async e => {        //cuando se escriba en inputs se cambien en el estado form
     await this.setState({
       form: {
         ...this.state.form,
@@ -77,20 +87,42 @@ class LogIn extends React.Component {
       }
     });
   }
+  // handleChange = async e => {        //cuando se escriba en inputs se cambien en el estado form
+  //   await this.setState({
+  //     form: {
+  //       ...this.state.form,
+  //       [e.target.name]: e.target.value,
+  //     }
+  //   });
+  // }
   manejadorSubmit(e) {
     e.preventDefault();
   }
   logearse = () => {
     axios.post(url + "/logIn", this.state.form)
       .then(response => {
-        let comprobante = response.data.rol.nombreRol;
-        if (comprobante === "admin") {
-          alert("Bienvenido de vuelta admin ");
-          window.location.href ="/TableroSolicitudes";
-        }
-        else {
-          alert("Bienvenido de vuelta usuario");
-          window.location.href = "/"+response.data.idUsuario + "/SolicitudCambioRol";
+        let res = response.data.res;
+        if(res ===0){
+          let comprobante = response.data.rol.nombreRol;
+          if (comprobante === "admin") {
+            alert("Bienvenido de vuelta admin ");
+            window.location.href ="/TableroSolicitudes";
+          }
+          else {
+            alert("Bienvenido de vuelta usuario");
+            // window.location.href = "/"+response.data.idUsuario + "/SolicitudCambioRol";
+            
+            hashHistory.push("/"+response.data.idUsuario + "/SolicitudCambioRol");  
+            
+          }
+        }else{
+          if(res===1){
+            document.getElementById("errorEmail").innerHTML = "El correo no existe";
+          }else if(res===2){
+            document.getElementById("errorPass").innerHTML = "Contraseña invalida";
+          }
+          document.getElementsByClassName("alert")[0].innerHTML = response.data.msg;
+          document.getElementsByClassName("alert")[0].hidden = false;
         }
       })
       .catch(console.log);
@@ -98,28 +130,35 @@ class LogIn extends React.Component {
   aprobar() {
     //colocar lo que hara el boton aprobar
   }
-
   render() {
 
     return (
-      <div class="wrapper fadeInDown">
+      <div className="wrapper fadeInDown">
         <div id="formContent">
           <div className="fadeIn first">
             <br /><br />
             <img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_reactjs_icon_130205.png" width="50px" />
           </div>
+          
           <form onSubmit={this.manejadorSubmit}>
             <br />
             <br />
+            <div className="container">
+              <div className="alert alert-danger" role="alert" hidden={true}>
+            </div>
+            </div>
             <br />
-            <input type="text" className="fadeIn second" name="correo" placeholder="Correo" onChange={this.limitarcorreo} required />
-            <input type="password" className="fadeIn third" name="contraseña" placeholder="Contraseña" onChange={this.limitarpasswd} required />
-            <input type="submit" className="fadeIn fourth" value="Log In" onClick={this.logearse} />
-          </form>
 
-          <div id="formFooter">
+            <input type="email" className="fadeIn second" name="correo" aria-describedby="emailHelp"  placeholder="Correo"  onChange={this.limitarcorreo} required />
+            <small id="errorEmail" class="form-text text-danger" style={{visibility:"hidden"}}>We'll never share your email with anyone else.</small>
+            <input type="password" className="fadeIn third" name="contraseña" placeholder="Contraseña" onChange={this.limitarpasswd}  required />
+            <small id="errorPass" class="form-text text-danger" style={{visibility:"hidden"}}>We'll never share your email with anyone else.</small>
+            <input type="submit" className="fadeIn fourth" value="Iniciar Sesion" onClick={this.logearse} />
+            <input type="button" className="fadeIn fourth" value=" Registrarse " />
+          </form>
+          {/* <div id="formFooter">
             <a className="underlineHover" href="#">Forgot Password?</a>
-          </div>
+          </div> */}
 
         </div>
       </div>

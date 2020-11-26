@@ -33,16 +33,16 @@ public class UsuarioController {
         if(u.size()>0){
             user = u.get(0);
             if(!usuario.getContraseña().equals(user.getContraseña())){
-                respuesta.put("msg", "Contraseña invalida");
+                respuesta.put("res", 1);//Contraseña invalida
                 respuesta.put("logeo", false);
                 return respuesta;
             }
             respuesta.put("idUsuario",user.getId());
-            respuesta.put("msg", "Te logeaste con exito");
+            respuesta.put("res", 0);//Logeado con exito
             respuesta.put("rol", user.getRol());
             respuesta.put("logeo", true);
         }else{
-            respuesta.put("msg", "El usuario no existe");
+            respuesta.put("res",2);//Correo no existe
             respuesta.put("logeo", false);
             return respuesta;
         }
