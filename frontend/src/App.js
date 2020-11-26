@@ -17,7 +17,7 @@ import Registro from './componentes/Registro/Registro';
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
         <div className="container mt-5">
         <div className="btn-group">
           <Link to="/InicioSesion" className="btn btn-dark">
@@ -44,7 +44,7 @@ function App() {
           </Route>
         </Switch>
         </div>
-    </HashRouter>
+    </Router>
   );
 }
 
