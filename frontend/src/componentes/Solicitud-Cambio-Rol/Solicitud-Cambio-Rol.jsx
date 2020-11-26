@@ -1,6 +1,7 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
-import axios from "axios"; 
+import axios from "axios";
+import "./Solicitud-Cambio-Rol.css"
 const url = "https://gestiondeusuariosumss.herokuapp.com/solicitudes";
 
 class SolicitudCambioRol extends React.Component {
@@ -15,16 +16,21 @@ class SolicitudCambioRol extends React.Component {
   render(){
     return (
       <div class="contenido">
-        <body>
+        <body class="hello">
+        <form action="" method="post" align="center">
         <h3 align="center">SOLICITUD DE CAMBIO DE ROL</h3>
-        <h6>Motivo de solicitud:</h6>
-        <textarea>
-            Necesito tener mas permisos para trabajar
-          </textarea>
+        <br>
+    </br>
+    <br>
+    </br>
+    <h6 align="center">Motivo de solicitud:</h6>
+    <textarea  class="centro" placeholder="Ingrese su mensaje" rows="6" required>
+        
+        </textarea>
           <br>
             </br>
-        <label for="cars">Roles disponibles:</label>
-        <form action="" method="post">
+            <label for="cars" class="centro2">Roles disponibles:</label>
+        
             <select id="cars" name="cars">
                 <option value="admin">Admin</option>
                 <option value="delivery">Delivery</option>
@@ -35,7 +41,11 @@ class SolicitudCambioRol extends React.Component {
             </br>
             <br>
             </br>
+            <div class="row"> 
+    <div class="col text-center">
             <button type="submit" class="btn btn-primary" onclick={displayButton}>Enviar</button>
+            </div>
+            </div>
         </form>
     </body>
     </div>
