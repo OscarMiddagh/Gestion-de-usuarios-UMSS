@@ -17,20 +17,20 @@ import {
 const url = "https://gestiondeusuariosumss.herokuapp.com";
 
 class App extends React.Component {
-  state = {
-    data: [],
-    modalResponder: false,
-    form: {
-      idUsuario:"",
-      idSolicitud: "",
-      nombreUsuario: "",
-      fecha: "",
-      rolOrigen:"",
-      rolDestino:"",
-      motivo:"",
-      comentario:"",
-    }
-  };
+    state = {
+      data: [],
+      modalResponder: false,
+      form: {
+        idUsuario:"",
+        idSolicitud: "",
+        nombreUsuario: "",
+        fecha: "",
+        rolOrigen:"",
+        rolDestino:"",
+        motivo:"",
+        comentario:"",
+      }
+    };
 
   mostrarModalResponder=(registro)=>{          //cambia el estado de false a true
     this.setState({modalResponder: true, form: registro });
@@ -62,12 +62,14 @@ class App extends React.Component {
     .then(console.log)
     .catch(console.log);
     this.ocultarModalResponder();
+    window.location.href = window.location.href;
   }
   rechazar = (idUsuario) => {
     axios.post(url + "/sol_rechazada/"+idUsuario)
       .then(console.log)
       .catch(console.log);
       this.ocultarModalResponder();
+      window.location.href = window.location.href;
   }
   render() {
     

@@ -2,41 +2,105 @@
 import React from 'react'
 import axios from "axios";
 import "./Solicitud-Cambio-Rol.css"
-const url = "https://gestiondeusuariosumss.herokuapp.com/solicitudes";
+import {
+  Input,
+  Button,
+  Container,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  FormGroup,
+  ModalFooter,
+} from "reactstrap";
+const url = "https://gestiondeusuariosumss.herokuapp.com/";
 
 class SolicitudCambioRol extends React.Component {
+  state = {
+    data: [],
+  };
+  form = {
+    motivo:"",
+    rolDestino: {
+      id:"",
+      nombreRol:""
+    }
+  }
+  setMotivo = (e) =>{
+    this.form.motivo = e.target.value;
+    console.log(this.form.motivo );
+  }
+  setRolDestino =(e)=>{
+    this.form.rolDestino.id = e.target.value;
+    this.form.rolDestino.nombreRol = document.getElementById(e.target.value).innerText;
+    console.log(this.form.rolDestino );
+  }
+  limitarmotivo = async (e) => {
+    document.getElementById("errorMotivo").style.visibility = "hidden";
+    if (e.target.value.match("^[Ñña-zA-Z0-9]*$") != null) {
+      await this.setState({
+        form: {
+          ...this.state.form,
+          [e.target.name]: e.target.value,
+        }
+      });
+      console.log(e.target.name);
+    }
+    else {    
+      document.getElementById("errorMotivo").innerHTML = "No se aceptan espacios ni caracteres especiales";
+      document.getElementById("errorMotivo").style.visibility = "visible";
+    }
+  }
   componentDidMount(){       //ciclo de vida
-    axios.get(url)
+    axios.get(url+"/"+this.obtenerID()+"/sol_cambio_rol")
     .then(response=>{
       console.log(response.data);
-      this.setState({data:response.data});
+      this.setState({data:response.data.roles});
     })
     .catch(console.log(this.props));
   }
+  obtenerID(){
+    return window.location.pathname.split('/')[1];
+  }
+  enviar=()=>{
+    console.log(this.form);
+    axios.post(url+"/"+this.obtenerID()+"/sol_cambio_rol",this.form)
+    .then(console.log)
+    .catch(console.log);
+  }
+  aprobar=(idUsuario)=>{
+    axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
+    .then(console.log)
+    .catch(console.log);
+    this.ocultarModalResponder();
+    window.location.href = window.location.href;
+  }
   render(){
-    
+    console.log(window.location.pathname);
     return (
       <div class="contenido">
         <body class="hello">
-        <form action="" method="post" align="center">
+        <form align="center">
         <h3 align="center">SOLICITUD DE CAMBIO DE ROL</h3>
         <br>
     </br>
     <br>
     </br>
+    <div className="container">
+        <div id="Mensaje" className="alert alert-success" role="alert" hidden={true}></div>
+    </div>
     <h6 align="center">Motivo de solicitud:</h6>
-    <textarea  class="centro" placeholder="Ingrese su mensaje" rows="6" required>
-        
-        </textarea>
+    <textarea  class="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required>
+    </textarea><small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}}></small>
           <br>
             </br>
             <label for="cars" class="centro2">Roles disponibles:</label>
-        
-            <select id="cars" name="cars">
-                <option value="admin">Admin</option>
-                <option value="delivery">Delivery</option>
-                <option value="vendedor">Vendedor</option>
-                <option value="comprador">Comprador</option>
+            <select id="roles" name="rol" onChange={this.setRolDestino}>
+            <option disabled selected value>Elija un nuevo rol</option>
+            {this.state.data.map((rol) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
+                
+                <option id={rol.id} value={rol.id}>{rol.nombreRol}</option>                
+            ))}      
+            
             </select>
             <br>
             </br>
@@ -44,7 +108,7 @@ class SolicitudCambioRol extends React.Component {
             </br>
             <div class="row"> 
     <div class="col text-center">
-            <button type="submit" class="btn btn-primary" onclick={displayButton}>Enviar</button>
+            <input type="button" class="btn btn-primary" onClick={this.enviar} value="Enviar"/>
             </div>
             </div>
         </form>
