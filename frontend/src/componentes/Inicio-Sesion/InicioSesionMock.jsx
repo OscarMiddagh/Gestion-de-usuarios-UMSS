@@ -22,7 +22,6 @@ class LogIn extends React.Component {
   };
   limitarcorreo = async (e) => {
     document.getElementById("errorEmail").style.visibility = "hidden";
-    console.log(e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$"));
     if (e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$") != null) {
       await this.setState({
         form: {
@@ -30,7 +29,6 @@ class LogIn extends React.Component {
           [e.target.name]: e.target.value,
         }
       });    
-      console.log(e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$")[0])
     }
     else {
       document.getElementById("errorEmail").innerHTML = "No se aceptan espacios ni caracteres especiales";
@@ -46,7 +44,6 @@ class LogIn extends React.Component {
           [e.target.name]: e.target.value,
         }
       });
-      console.log(e.target.name);
     }
     else {    
       document.getElementById("errorPass").innerHTML = "No se aceptan espacios ni caracteres especiales";
@@ -92,7 +89,6 @@ class LogIn extends React.Component {
       .then(response => {        
         document.getElementById("errorEmail").style.visibility = "hidden";        
         document.getElementById("errorPass").style.visibility = "hidden";
-        console.log(document.getElementById("errorPass").style );
         let res = response.data.res;
         if(res ===0){
           let comprobante = response.data.rol.nombreRol;
@@ -108,7 +104,6 @@ class LogIn extends React.Component {
             
           }
         }else{
-          console.log(res);
           if(res===2){
             document.getElementById("errorEmail").innerHTML = "El correo no existe";
             document.getElementById("errorEmail").style.visibility = "visible";
@@ -118,10 +113,12 @@ class LogIn extends React.Component {
           }
         }
       })
-      .catch(console.log);
   }
   aprobar() {
     //colocar lo que hara el boton aprobar
+  }
+  redireccionarResgistrarse=()=>{    
+    window.location.href ="/Registro";
   }
   render() {
 
@@ -142,7 +139,7 @@ class LogIn extends React.Component {
             <small id="errorPass" className="form-text text-danger" style={{visibility:"hidden"}}></small>
             <label htmlFor="" className="fadeIn fourth"><input type="checkbox"/> Recordar mi contraseña</label>
             <input type="submit" className="fadeIn fourth" value="Iniciar Sesion" onClick={this.logearse} />
-            <input type="button" className="fadeIn fourth" value=" Registrarse " />
+            <input type="button" onClick={this.redireccionarResgistrarse} className="fadeIn fourth" value=" Registrarse " />
           </form>
           {/* <div id="formFooter">
             <a className="underlineHover" href="#">Forgot Password?</a>
