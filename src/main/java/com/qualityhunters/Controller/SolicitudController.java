@@ -49,7 +49,7 @@ public class SolicitudController {
         Optional<Usuario> user = usuarioAPI.findById(idUsuario);
         Map<String,Object> res = new HashMap<>();
         res.put("roles", rolAPI.findAllExcept(user.get().getRol().getId()));
-        res.put("nombreUsario",user.get().getNombres()+" "+user.get().getApellidos());
+        res.put("nombreUsuario",user.get().getNombres()+" "+user.get().getApellidos());
         res.put("rolActual",user.get().getRol().getNombreRol());
         return ResponseEntity.ok(res);
     }
