@@ -67,7 +67,7 @@ class SolicitudCambioRol extends React.Component {
       })
     }
 
-
+ 
   }
   manejadorSubmit(e) {
     e.preventDefault();
