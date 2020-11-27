@@ -87,8 +87,8 @@ class LogIn extends React.Component {
   manejadorSubmit(e) {
     e.preventDefault();
   }
-  logearse = () => {
-    axios.post(url + "/logIn", this.state.form)
+  logearse = async() => {
+    await axios.post(url + "/logIn", this.state.form)
       .then(response => {        
         document.getElementById("errorEmail").style.visibility = "hidden";        
         document.getElementById("errorPass").style.visibility = "hidden";
@@ -135,9 +135,7 @@ class LogIn extends React.Component {
           <form onSubmit={this.manejadorSubmit}>
             <br />
             <br />
-
             <br />
-
             <input type="email" className="fadeIn second"   placeholder="Correo" name="correo" onChange={this.limitarcorreo} value={this.state.form.correo} required />
             <small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}}></small>
             <input type="password" className="fadeIn third" placeholder="Contraseña" name="contraseña"  onChange={this.limitarpasswd} value={this.state.form.contraseña }  required />
