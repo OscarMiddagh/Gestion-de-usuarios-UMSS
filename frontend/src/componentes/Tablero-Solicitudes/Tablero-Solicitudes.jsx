@@ -17,20 +17,20 @@ import {
 const url = "https://gestiondeusuariosumss.herokuapp.com";
 
 class App extends React.Component {
-  state = {
-    data: [],
-    modalResponder: false,
-    form: {
-      idUsuario:"",
-      idSolicitud: "",
-      nombreUsuario: "",
-      fecha: "",
-      rolOrigen:"",
-      rolDestino:"",
-      motivo:"",
-      comentario:"",
-    }
-  };
+    state = {
+      data: [],
+      modalResponder: false,
+      form: {
+        idUsuario:"",
+        idSolicitud: "",
+        nombreUsuario: "",
+        fecha: "",
+        rolOrigen:"",
+        rolDestino:"",
+        motivo:"",
+        comentario:"",
+      }
+    };
 
   mostrarModalResponder=(registro)=>{          //cambia el estado de false a true
     this.setState({modalResponder: true, form: registro });
@@ -57,17 +57,19 @@ class App extends React.Component {
     })
   }
 
-  aprobar=(idUsuario)=>{
-    axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
+  aprobar= async (idUsuario)=>{
+   await axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
     .then(console.log)
     .catch(console.log);
     this.ocultarModalResponder();
+    window.location.href = window.location.href;
   }
-  rechazar = (idUsuario) => {
-    axios.post(url + "/sol_rechazada/"+idUsuario)
+  rechazar = async (idUsuario) => {
+    await axios.post(url + "/sol_rechazada/"+idUsuario)
       .then(console.log)
       .catch(console.log);
       this.ocultarModalResponder();
+      window.location.href = window.location.href;
   }
   render() {
     
@@ -76,19 +78,11 @@ class App extends React.Component {
         <Container>
        
           <Table>
-            <thead>
-              <tr>   
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-
-            <tbody>
+          <div className="container">
+            <h1 style={{textAlign:"center"}}>Solicitudes de Cambio de Rol</h1>           
+            <div className="d-flex justify-content-center">
               {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
-                  <td>{dato.idSolicitud} </td>
                   <td>{dato.nombreUsuario}</td>
                   <td>{dato.fecha}</td>
                   <td>
@@ -101,7 +95,9 @@ class App extends React.Component {
                 </tr>
                 
               ))}
-            </tbody>
+            </div>
+          </div>
+
           </Table>
         </Container>
 
@@ -162,7 +158,7 @@ class App extends React.Component {
             </FormGroup>
             <FormGroup>
               <label>
-                fecha: 
+                Fecha: 
               </label>
               <input
                 className="form-control"
@@ -176,24 +172,11 @@ class App extends React.Component {
               <label>
                 Mensaje de solicitud: 
               </label>
-              <input
+              <textarea
                 className="form-control"
                 name="mensajeS"
-                type="text"
                 readOnly
                 value={this.state.form.motivo}
-              />
-            </FormGroup>
-            <FormGroup>
-              <label>
-                Mensaje de solicitud: 
-              </label>
-              <input
-                className="form-control"
-                name="mensajeS"
-                type="hidden"
-                readOnly
-                value={this.state.form.idUsuario}
               />
             </FormGroup>
             <FormGroup>
