@@ -40,7 +40,7 @@ class SolicitudCambioRol extends React.Component {
     .then(response=>{
       this.setState({data:response.data.roles});
       console.log(response.data)
-      // document.getElementById("nombreUsuario").innerText = response.data.nombreUsuario;
+      document.getElementById("nombreUsuario").innerText = response.data.nombreUsuario;
       document.getElementById("nombreRol").innerText +="  "+ response.data.rolActual;
     })
     .catch(console.log);
