@@ -1,7 +1,6 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
 import axios from "axios";
-import "./Solicitud-Cambio-Rol.css"
 import {
   Input,
   Button,
@@ -40,8 +39,9 @@ class SolicitudCambioRol extends React.Component {
     axios.get(url+this.obtenerID()+"/sol_cambio_rol")
     .then(response=>{
       this.setState({data:response.data.roles});
-      this.usuario.nombreUsuario = response.data.nombreUsuario;
-      this.usuario.rolActual = response.data.rolActual;
+      console.log(response.data)
+      // document.getElementById("nombreUsuario").innerText = response.data.nombreUsuario;
+      document.getElementById("nombreRol").innerText +="  "+ response.data.rolActual;
     })
     .catch(console.log);
   }
@@ -49,11 +49,10 @@ class SolicitudCambioRol extends React.Component {
     return window.location.pathname.split('/')[1];
   }
   enviar=async()=>{
-    if(this.form.motivo !== "" &&this.form.motivo.length>=20 &&this.form.motivo.length<=250 && this.form.id!==undefined){
+    if(this.form.motivo !== "" &&this.form.motivo.length>=20 &&this.form.motivo.length<=250 && this.form.rolDestino.id!==""){
       await axios.get(url+"/enviado/"+this.obtenerID())
       .then(async res => {
-        if(!res.data.respuesta ){
-        
+        if(!res.data.respuesta ){        
             await axios.post(url+this.obtenerID()+"/sol_cambio_rol",this.form)
             .then(res=>{
               document.getElementById("mensajeExito").innerHTML ="Solicitud enviada exitosamente";
@@ -64,10 +63,18 @@ class SolicitudCambioRol extends React.Component {
             document.getElementById("mensajeError").innerHTML ="Usted ya ha enviado una solicitud y esta pendiente a revision";
             document.getElementById("mensajeError").hidden =false;
           }
+          this.vaciarCampos();
       })
+    }else{
+      console.log("No se puede enviar la solicitud \n"+ this.form)
     }
 
  
+  }
+  vaciarCampos=()=>{
+    document.getElementById("motivoText").value ="";
+    this.form.motivo = "";
+    document.getElementById("roles").value="";
   }
   manejadorSubmit(e) {
     e.preventDefault();
@@ -75,8 +82,8 @@ class SolicitudCambioRol extends React.Component {
   render(){
     return (
       <div className="contenido">
-          <h3>Usuario: {this.usuario.nombreUsuario}</h3>
-          <h3>Rol:{this.usuario.rolActual}</h3>
+          <h3 id="nombreUsario">Usuario: {this.usuario.nombreUsuario}</h3>
+          <h3 id="nombreRol">Rol:{this.usuario.rolActual}</h3>
           <h3 align="center">SOLICITUD DE CAMBIO DE ROL</h3>
           <br/>
           <br/>
@@ -84,9 +91,9 @@ class SolicitudCambioRol extends React.Component {
           <div id="mensajeExito" className="alert alert-success" role="alert" hidden={true}/>
           <h6 align="center">Motivo de solicitud:</h6>
           <form align="center" onSubmit={this.manejadorSubmit}>
-            <textarea  className="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required />
+            <textarea id="motivoText" className="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required />
             <small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}} />
-            <label htmlFor="rol" className="centro2">Roles disponibles:</label>
+            <label htmlFor="rol" className="centro2">Roles disponibles:</label> <br/>
             <select id="roles" name="rol" onChange={this.setRolDestino} required>
               <option disabled selected value="">Elija un nuevo rol:</option>
               {this.state.data.map((rol) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
