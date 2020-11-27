@@ -52,7 +52,7 @@ public class SolicitudController {
         res.put("nombreUsuario",user.get().getNombres()+" "+user.get().getApellidos());
         res.put("rolActual",user.get().getRol().getNombreRol());
         return ResponseEntity.ok(res);
-    }
+    } 
     @GetMapping("/enviado/{idUsuario}")
     public ResponseEntity<Model> getEnviado(@PathVariable long idUsuario,Model model){
         model.addAttribute("respuesta",solicitudAPI.hayEnviado(idUsuario));
