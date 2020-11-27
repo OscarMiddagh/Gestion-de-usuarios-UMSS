@@ -77,16 +77,18 @@ class App extends React.Component {
       <>
         <Container>
        
-          <Table>
           <div className="container">
             <h1 style={{textAlign:"center"}}>Solicitudes de Cambio de Rol</h1>           
-            <div className="d-flex justify-content-center">
+            <div className="justify-content-center align-items-center">
+          <Table>
+            <table className="table">
+              <tbody className="table-dark">
               {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
                   <td>{dato.nombreUsuario}</td>
                   <td>{dato.fecha}</td>
                   <td>
-                    <Button
+                    <Button className="float-right"
                       color="primary"
                       onClick={() => this.mostrarModalResponder(dato)}
                       >Responder
@@ -95,10 +97,12 @@ class App extends React.Component {
                 </tr>
                 
               ))}
+              </tbody>
+              </table>
+          </Table>
             </div>
           </div>
 
-          </Table>
         </Container>
 
         <Modal isOpen={this.state.modalResponder}>
@@ -184,6 +188,8 @@ class App extends React.Component {
                 Comentario: 
               </label>
               <input
+                minLength={20}
+                maxLength={250}
                 className="form-control"
                 name="comentario"
                 type="text"
