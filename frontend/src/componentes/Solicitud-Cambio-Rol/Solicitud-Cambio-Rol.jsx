@@ -25,6 +25,10 @@ class SolicitudCambioRol extends React.Component {
       nombreRol:""
     }
   }
+  usuario={
+    nombreUsuario:"",
+    rolActual:""
+  }
   setMotivo = (e) =>{
     this.form.motivo = e.target.value;
   }
@@ -32,26 +36,12 @@ class SolicitudCambioRol extends React.Component {
     this.form.rolDestino.id = e.target.value;
     this.form.rolDestino.nombreRol = document.getElementById(e.target.value).innerText;
   }
-  // limitarmotivo = async (e) => {
-  //   document.getElementById("errorMotivo").style.visibility = "hidden";
-  //   if (e.target.value.match("^[Ñña-zA-Z0-9]*$") != null) {
-  //     await this.setState({
-  //       form: {
-  //         ...this.state.form,
-  //         [e.target.name]: e.target.value,
-  //       }
-  //     });
-  //     console.log(e.target.name);
-  //   }
-  //   else {    
-  //     document.getElementById("errorMotivo").innerHTML = "No se aceptan espacios ni caracteres especiales";
-  //     document.getElementById("errorMotivo").style.visibility = "visible";
-  //   }
-  // }
   componentDidMount(){       //ciclo de vida
     axios.get(url+this.obtenerID()+"/sol_cambio_rol")
     .then(response=>{
       this.setState({data:response.data.roles});
+      this.usuario.nombreUsuario = response.data.nombreUsuario;
+      this.usuario.rolActual = response.data.rolActual;
     })
     .catch(console.log);
   }
@@ -85,6 +75,8 @@ class SolicitudCambioRol extends React.Component {
   render(){
     return (
       <div className="contenido">
+          <h3>Usuario: {this.usuario.nombreUsuario}</h3>
+          <h3>Rol:{this.usuario.rolActual}</h3>
           <h3 align="center">SOLICITUD DE CAMBIO DE ROL</h3>
           <br/>
           <br/>
