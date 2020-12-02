@@ -92,7 +92,7 @@ class App extends React.Component {
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.mostrarModalResponder(elemento)}
+                      onClick={() => this.mostrarModalResponder(dato)}
                       >Responder
                     </Button>
                   </td>
