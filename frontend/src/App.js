@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  HashRouter,
   NavLink
 } from "react-router-dom";
 import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
