@@ -13,6 +13,7 @@ import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Soli
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
 import Registro from './componentes/Registro/Registro';
+import CrearPermiso from './componentes/Crear-Permiso/CrearPermiso';
 
 function App() {
   return (
@@ -22,6 +23,15 @@ function App() {
           <Link to="/InicioSesion" className="btn btn-dark">
             Inicio de Sesion
           </Link>
+          
+          
+          <hr />
+        </div>
+        <div className="btn-group">
+          <Link to="/CrearPermiso" className="btn btn-dark">
+            CrearPermiso
+          </Link>
+          
           
           <hr />
         </div>
@@ -40,6 +50,9 @@ function App() {
           </Route>
           <Route path="/Registro">
             <Registro />
+          </Route>
+          <Route path="/CrearPermiso">
+            <CrearPermiso />
           </Route>
         </Switch>
         </div>
