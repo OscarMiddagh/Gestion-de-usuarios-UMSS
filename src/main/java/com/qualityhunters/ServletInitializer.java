@@ -1,4 +1,4 @@
-package com.qualityhunters.GestiondeUsuarios;
+package com.qualityhunters;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
