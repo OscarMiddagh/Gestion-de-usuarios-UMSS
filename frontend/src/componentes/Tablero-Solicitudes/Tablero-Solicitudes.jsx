@@ -1,6 +1,8 @@
 //Campo para la historia Tablero de Solicitudes
+
 import React from "react";
 //import "./App.css";
+
 import axios from "axios"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -15,6 +17,8 @@ import {
 } from "reactstrap";
 
 const url = "https://gestiondeusuariosumss.herokuapp.com";
+
+
 
 class App extends React.Component {
     state = {
@@ -106,8 +110,14 @@ class App extends React.Component {
         </Container>
 
         <Modal isOpen={this.state.modalResponder}>
+        
+        
           <ModalHeader>
-           <div><h3>Responder</h3></div>
+          
+           <div><h3>Responder</h3>
+           
+           </div>
+         
           </ModalHeader>
           
           <ModalBody>
@@ -197,9 +207,11 @@ class App extends React.Component {
                 
               />
             </FormGroup>
+            
           </ModalBody>
 
           <ModalFooter>
+            <Button color="secondary" onClick={this.ocultarModalResponder}>cerrar</Button>
             <Button
               color="primary"
               onClick={() => this.aprobar(this.state.form.idUsuario)}> Aprobar
