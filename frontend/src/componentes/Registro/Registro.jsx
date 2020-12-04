@@ -1,17 +1,15 @@
 //Campo para la historia Registrar Usuario
 import React from 'react'
 import { useState } from "react";
-import {
-  Link
-} from "react-router-dom";
 import './Registro.css';
 
 const Registro = () => {
   const [datos, setDatos] = useState({
     correo: '',
-    contraseña: ''
+    contraseña: '',
+    direccion: ''
   })
-  const { correo, contraseña } = datos
+  const { correo, contraseña, direccion } = datos
   const limitarcorreo = (e) => {
     if (e.target.value.match("^[Ññíóáéú@.a-zA-Z0-9]*$") != null) {
       setDatos({
@@ -32,6 +30,17 @@ const Registro = () => {
     }
     else {
       alert("No se aceptan espacios ni caracteres especiales");
+    }
+  }
+  const limitaralfabeticos = (e) => {
+    if (e.target.value.match("^[ Ñña-zA-Z]*$") != null) {
+      setDatos({
+        ...datos,
+        [e.target.name]: e.target.value
+      })
+    }
+    else {
+      alert("Solo se aceptan caracteres alfabeticos");
     }
   }
   return (
@@ -65,7 +74,7 @@ const Registro = () => {
             <label for="City">Ciudad</label><br/>
             <input type="text" className="div" name="city" id="infper" placeholder="Ingrese su Ciudad"/><br/>
             <label for="Direccion">Direccion</label><br/>
-            <input type="text" className="div" name="direccion" id="infper" placeholder="Ingrese su dirección"/><br/>
+            <input type="text" className="div" name="direccion" id="infper" placeholder="Ingrese su dirección" value={direccion} onChange={limitaralfabeticos}/><br/>
             <label for="Telefono">Telefono Fijo</label><br/>
             <input type="text" className="div" name="telefono" id="infper" placeholder="Ingrese su numero de teléfono"/><br/>
             <label for="Celular">Telefono Movil</label><br/>
