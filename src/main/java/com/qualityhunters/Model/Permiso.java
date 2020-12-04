@@ -11,16 +11,15 @@ import javax.persistence.ManyToOne;
 public class Permiso {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id; 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Rol rol;
+    private Long id;
     private String nombrePermiso;
-    private String ruta;
+    private String descripcion;
     protected Permiso(){}
-    public Permiso(Rol rol, String nombrePermiso,String ruta){
-        this.rol = rol;
+    public Permiso(Long id){
+        this.id=id;
+    }
+    public Permiso(String nombrePermiso){
         this.nombrePermiso = nombrePermiso;
-        this.ruta = ruta;
     }
     public Long getId() {
         return id;
@@ -28,20 +27,13 @@ public class Permiso {
     public String getNombrePermiso(){
         return nombrePermiso;
     }
-    public Rol getRol(){
-        return rol;
-    }
-    public String getRuta(){
-        return ruta;
+    public String getDescripcion(){
+        return descripcion;
     }
     public void setNombrePermiso(String nombre){
         nombrePermiso = nombre;
     }
-    public void setRol(Rol rol){
-        this.rol = rol;
+    public void setDescripcion(String descrip){
+        descripcion = descrip;
     }
-    public void setRuta(String ruta){
-        this.ruta = ruta;
-    }
-
 }
