@@ -32,7 +32,7 @@ class CrearPermiso extends React.Component{
               <form align="center">
               <div id="div">
               <label for="permisos" id="label">Nuevo Permiso :</label>
-              <input id="permisoText" className="text1" rows="3" name="permiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={this.state.form.permiso} required />
+              <input id="permisoText" className="text1" placeholder=" Nombre de permiso"  rows="3" name="permiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={this.state.form.permiso} required />
               <small id="errorPermiso" className="form-text text-danger" style={{visibility:"hidden"}}></small>
               </div>
               <div id="div">
