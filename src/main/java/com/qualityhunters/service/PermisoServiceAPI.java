@@ -36,5 +36,9 @@ public class PermisoServiceAPI {
     public void delete(Permiso permiso){
         permisoRepository.delete(permiso);
     }
+
+    public Boolean buscarPermiso(String nombre){
+        return permisoRepository.findPermiso(nombre).size()>0;
+    }
 }
 

@@ -37,4 +37,10 @@ public class PermisoController {
         return ResponseEntity.ok(permisoAPI.save(permiso)); 
     }
 
+    @GetMapping("/comprobarPermiso/{nombrePermiso}")
+    public ResponseEntity<Model> getPermiso(@PathVariable String nombrePermiso,Model model){
+        model.addAttribute("respuesta",permisoAPI.buscarPermiso(nombrePermiso));
+        return ResponseEntity.ok(model);
+    }
+
 }
