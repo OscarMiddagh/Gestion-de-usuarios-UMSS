@@ -15,7 +15,6 @@ import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solici
 import Registro from './componentes/Registro/Registro';
 import CrearPermiso from './componentes/Crear-Permiso/CrearPermiso';
 import ModificarRol from './componentes/Modificar-Rol/ModificarRol';
-
 function App() {
   return (
     <Router>
@@ -38,6 +37,13 @@ function App() {
         <div className="btn-group">
           <Link to="/ModificarRol" className="btn btn-dark">
             Modificar permisos de Rol
+          </Link>
+          <hr />
+        </div>
+
+        <div className="btn-group">
+          <Link to="/Registro" className="btn btn-dark">
+            Registro de Usuario
           </Link>
           <hr />
         </div>
