@@ -27,9 +27,9 @@ class CrearPermiso extends React.Component{
     render(){
         return (
           <div className="contenido" id="div"> <br/>
-              <h3 align="center">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
+              <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
               
-              <form align="center">
+              <form align="center" id="form">
               <div id="div">
               <label for="permisos" id="label">Nuevo Permiso :</label>
               <input id="permisoText" className="text1" placeholder=" Nombre de permiso"  rows="3" name="permiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={this.state.form.permiso} required />
