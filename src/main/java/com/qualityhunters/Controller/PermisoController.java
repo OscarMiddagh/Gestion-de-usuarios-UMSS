@@ -42,5 +42,10 @@ public class PermisoController {
         model.addAttribute("respuesta",permisoAPI.buscarPermiso(nombrePermiso));
         return ResponseEntity.ok(model);
     }
+    @GetMapping("/permisos")
+    public ResponseEntity<List<Permiso> > getPermisos(){
+        return ResponseEntity.ok(permisoAPI.findAll());
+    }
+
 
 }
