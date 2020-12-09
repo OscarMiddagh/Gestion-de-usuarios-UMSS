@@ -47,5 +47,9 @@ public class PermisoController {
         return ResponseEntity.ok(permisoAPI.findAll());
     }
 
+    @GetMapping("/permisos/{nombreRol}")
+    public ResponseEntity<List<Permiso> > getPermisosByRol(@PathVariable String nombreRol){
+        return ResponseEntity.ok(permisoAPI.buscarPorRol(nombreRol));
+    }
 
 }

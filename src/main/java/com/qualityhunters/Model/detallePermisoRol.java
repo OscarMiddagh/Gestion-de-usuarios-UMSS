@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class detallePermisoRol {
+public class DetallePermisoRol {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idDetalle;
@@ -17,7 +17,7 @@ public class detallePermisoRol {
     @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private Permiso permiso;
     
-    protected detallePermisoRol(){}
+    protected DetallePermisoRol(){}
     
     public void setRol(Rol rol){
         this.rol=rol;

@@ -40,5 +40,8 @@ public class PermisoServiceAPI {
     public Boolean buscarPermiso(String nombre){
         return permisoRepository.findPermiso(nombre).size()>0;
     }
+    public List<Permiso> buscarPorRol(String nombreRol){
+        return permisoRepository.findByRol(nombreRol);
+    }
 }
 
