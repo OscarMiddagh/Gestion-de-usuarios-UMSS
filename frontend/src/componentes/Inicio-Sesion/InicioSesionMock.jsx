@@ -130,6 +130,7 @@ class LogIn extends React.Component {
           </div>
           
           <form onSubmit={this.manejadorSubmit}>
+          <h3 align="center" id="titulo">BIENVENIDO</h3>
             <br />
             <br />
             <br />
