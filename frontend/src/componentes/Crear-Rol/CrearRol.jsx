@@ -15,7 +15,7 @@ class CrearRol extends React.Component{
               <form align="center">
               <div id="div">
               <label for="rol" id="label">Nuevo Rol :</label>
-              <input id="rolText" className="text1" placeholder=" Nombre de rol"  rows="3" name="rol" minLength={5} maxLength={40} />
+              <input id="rolText" className="text1" placeholder="Nombre de rol"  rows="3" name="rol" minLength={5} maxLength={20} />
               </div>
               <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Agregar"/>
               </form>     
