@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import React from 'react'
-
+import "./ModificarRol.css"
 
 //const url = "https://gestiondeusuariosumss.herokuapp.com/roles";
 class ModificarRol extends React.Component{
@@ -26,12 +26,12 @@ componentDidMount(){
     render(){
         return (
           <div className="contenido" id="div"> <br/>
-              <h3 align="center">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
+              <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
               
-             <form align="center">
+             <form align="center" id="form">
               <div id="div">
                  <label for="name-rol" id="label">Rol de Usuario :</label>
-                   <select name="roles" className="form-control" >
+                   <select name="roles" className="form-control" id="combobox">
                      {this.state.roles.map(elemento =>(
                        <option value={elemento.idRol}> {elemento.nombreRol} </option>
                        )

@@ -10,6 +10,9 @@ import com.qualityhunters.Model.Usuario;
 import com.qualityhunters.service.UsuarioServiceAPI;
 import com.qualityhunters.Model.Permiso;
 import com.qualityhunters.service.PermisoServiceAPI;
+import com.qualityhunters.Model.DetPerRol;
+import com.qualityhunters.service.DetPerRolServiceAPI;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-public class PermisoController {
+public class DetPerRolController {
         
     @Autowired
     private RolServiceAPI rolAPI;
@@ -31,22 +34,19 @@ public class PermisoController {
     private UsuarioServiceAPI usuarioAPI;
     @Autowired
     private PermisoServiceAPI permisoAPI;
+    @Autowired
+    private DetPerRolServiceAPI detPerRolAPI;
+    
 
-    @PostMapping("/guardarPermiso")
-    public ResponseEntity<Permiso> guardarPermiso(@RequestBody Permiso permiso){
-        return ResponseEntity.ok(permisoAPI.save(permiso)); 
+    @GetMapping("/permisos/{nombreRol}")
+    public ResponseEntity<List<Permiso> > getPermisosByRol(@PathVariable String nombreRol){
+        return ResponseEntity.ok(detPerRolAPI.buscarPorRol(nombreRol));
     }
-
-    @GetMapping("/comprobarPermiso/{nombrePermiso}")
-    public ResponseEntity<Model> getPermiso(@PathVariable String nombrePermiso,Model model){
-        model.addAttribute("respuesta",permisoAPI.buscarPermiso(nombrePermiso));
-        return ResponseEntity.ok(model);
+    @PostMapping("/asignar/{nombreRol}")
+    public ResponseEntity<DetPerRol> asignarPerRol(@RequestBody Permiso permiso,@PathVariable String nombreRol){
+        return ResponseEntity.ok(detPerRolAPI.asignarPermisoRol(permiso, nombreRol));
     }
-    @GetMapping("/permisos")
-    public ResponseEntity<List<Permiso> > getPermisos(){
-        return ResponseEntity.ok(permisoAPI.findAll());
-    }
-
+    
     /*
     @PostMapping("/asignarPermiso/{nombreRol}")
     public ResponseEntity<List<Permiso> > asignarPermiso(@RequestBody List<Permiso> listPermiso,@PathVariable String nombreRol){
