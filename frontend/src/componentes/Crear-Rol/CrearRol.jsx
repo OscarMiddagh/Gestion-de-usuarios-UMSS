@@ -26,7 +26,7 @@ const CrearRol = () => {
       <form align="center">
         <div id="div">
           <label for="rol" id="label">Nuevo Rol :</label>
-          <input id="rolText" className="text1" placeholder="Nombre de rol" rows="3" name="rol" value={nombrerol} onChange={limitaralfabeticos} minLength={5} maxLength={20} />
+          <input id="rolText" className="text1" placeholder="Nombre de rol" rows="3" name="nombrerol" value={nombrerol} onChange={limitaralfabeticos} minLength={5} maxLength={20} />
         </div>
         <input type="submit" className="btn btn-primary" /*onClick={this.enviar}*/ value="Agregar Rol" />
       </form>
