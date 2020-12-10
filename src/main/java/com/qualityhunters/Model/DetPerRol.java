@@ -18,7 +18,10 @@ public class DetPerRol {
     private Permiso permiso;
     
     protected DetPerRol(){}
-    
+    public DetPerRol(Rol rol,Permiso permiso){
+        this.rol=rol;
+        this.permiso=permiso;
+    }
     public void setRol(Rol rol){
         this.rol=rol;
     }

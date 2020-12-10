@@ -37,4 +37,9 @@ public class DetPerRolServiceAPI {
     public List<Permiso> buscarPorRol(String nombreRol){
         return detPerRolRepository.findByRol(nombreRol);
     }
+    public void asignarPermisoRol(List<Permiso> listPermiso,String nombreRol){
+        for(int i=0;i<listPermiso.size();i++){
+            //DetPerRol detPerRol = new DetPerRol();
+        }
+    }
 }
