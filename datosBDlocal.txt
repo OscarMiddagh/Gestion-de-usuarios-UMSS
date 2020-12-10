@@ -12,7 +12,7 @@ INSERT INTO `permiso`(`id`, `descripcion`, `nombre_permiso`) VALUES
 (3000005,'con este permiso puedes publicar en un apartado que se implementara a futuro','Publicar'),
 (3000006,'con este permiso puedes comprar articulos de la tienda','Comprar');
 
-INSERT INTO `detalle_permiso_rol`(`id_detalle`, `permiso_id`, `rol_id`) VALUES 
+INSERT INTO `det_per_rol`(`id_detalle`, `permiso_id`, `rol_id`) VALUES 
 (6000001,3000001,2000001),
 (6000002,3000002,2000001),
 (6000003,3000003,2000001),
