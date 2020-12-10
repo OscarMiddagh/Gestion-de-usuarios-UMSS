@@ -43,8 +43,8 @@ public class DetPerRolController {
         return ResponseEntity.ok(detPerRolAPI.buscarPorRol(nombreRol));
     }
     @PostMapping("/asignar/{nombreRol}")
-    public ResponseEntity<List<Permiso> > asignarPerRol(@PathVariable List<Permiso> listPermiso,@PathVariable String nombreRol){
-        return ResponseEntity.ok(listPermiso);
+    public ResponseEntity<DetPerRol> asignarPerRol(@RequestBody Permiso permiso,@PathVariable String nombreRol){
+        return ResponseEntity.ok(detPerRolAPI.asignarPermisoRol(permiso, nombreRol));
     }
     
     /*

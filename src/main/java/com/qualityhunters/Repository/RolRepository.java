@@ -13,8 +13,4 @@ import com.qualityhunters.Model.Rol;
 public interface RolRepository extends JpaRepository < Rol, Long > {
     @Query("select r from Rol r where r.id <> :id")
     List<Rol> findAllExcept(@Param("id") Long id);
-
-    @Query("select r from Rol r where r.nombreRol = :nombre")
-    List<Rol> findByName(@Param("nombre") String nombreRol);
-
 }

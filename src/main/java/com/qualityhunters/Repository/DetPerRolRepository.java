@@ -16,4 +16,8 @@ import com.qualityhunters.Model.DetPerRol;
 public interface DetPerRolRepository extends JpaRepository <DetPerRol , Long > {
     @Query("select p from Permiso p,Rol r,DetPerRol d where r.nombreRol = :nombre and d.rol.id=r.id and d.permiso.id=p.id")
     List<Permiso> findByRol(@Param("nombre") String nombreRol);
+
+
+    @Query("select r from Rol r where r.nombreRol = :nombre")
+    List<Rol> findRolByName(@Param("nombre") String nombreRol);
 }

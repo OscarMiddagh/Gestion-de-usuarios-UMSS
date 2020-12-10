@@ -20,7 +20,8 @@ import com.qualityhunters.Repository.DetPerRolRepository;
 @Service
 public class DetPerRolServiceAPI {
     private DetPerRolRepository detPerRolRepository;
-    private Logger logger = LoggerFactory.getLogger(RolServiceAPI.class);
+    private RolRepository rolRepository;
+    private Logger logger = LoggerFactory.getLogger(DetPerRolServiceAPI.class);
     
     public DetPerRolServiceAPI(DetPerRolRepository detPerRolRepository){
         this.detPerRolRepository = detPerRolRepository;
@@ -37,9 +38,7 @@ public class DetPerRolServiceAPI {
     public List<Permiso> buscarPorRol(String nombreRol){
         return detPerRolRepository.findByRol(nombreRol);
     }
-    public void asignarPermisoRol(List<Permiso> listPermiso,String nombreRol){
-        for(int i=0;i<listPermiso.size();i++){
-            //DetPerRol detPerRol = new DetPerRol();
-        }
+    public DetPerRol asignarPermisoRol(Permiso permiso,String nombreRol){
+        return save(new DetPerRol(detPerRolRepository.findRolByName(nombreRol).get(0),permiso));
     }
 }
