@@ -48,4 +48,10 @@ public class DetPerRolServiceAPI {
         }
         return res;
     }
+    public void eliminarByRol(String nombreRol){
+        List<DetPerRol> listDet = detPerRolRepository.findDetByRol(nombreRol);
+        for(int i=0;i<listDet.size();i++){
+            delete(listDet.get(i));
+        }
+    }
 }

@@ -89,3 +89,23 @@ ejemplo:
         "descripcion": String
     }
 ]
+
+////////////////////////////////////
+REASIGNAR PERMISOS A UN ROL
+URL: /reasignarPermisos/{nombreRol}
+asigna un listado de permisos a el rol {nombreRol}, y elimina aquellas asignaciones que el rol tenia pero que no
+estan en el listado
+debes enviar una lista de permisos en el body
+ejemplo:
+[
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    },
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    }
+] 

@@ -54,7 +54,7 @@ public class DetPerRolController {
 
     @PostMapping("/reasignarPermisos/{nombreRol}")
     public ResponseEntity<ArrayList<DetPerRol> > reasignarPerRolS(@RequestBody List<Permiso> listPer,@PathVariable String nombreRol){
-        
+        detPerRolAPI.eliminarByRol(nombreRol);
         return ResponseEntity.ok(detPerRolAPI.asignarPermisoRolS(listPer, nombreRol));
     }
     
