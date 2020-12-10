@@ -70,3 +70,22 @@ debes enviarle un body con lo siguiente:
     },
     "contraseña": string
 }
+
+//////////////////////////////////
+ASIGNAR PERMISOS A UN ROL
+URL: /asignarPermisos/{nombreRol}
+asigna un listado de permisos a el rol {nombreRol}
+debes enviar una lista de permisos en el body
+ejemplo:
+[
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    },
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    }
+]
