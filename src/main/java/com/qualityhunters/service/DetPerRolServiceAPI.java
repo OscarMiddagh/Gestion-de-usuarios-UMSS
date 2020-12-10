@@ -41,4 +41,11 @@ public class DetPerRolServiceAPI {
     public DetPerRol asignarPermisoRol(Permiso permiso,String nombreRol){
         return save(new DetPerRol(detPerRolRepository.findRolByName(nombreRol).get(0),permiso));
     }
+    public ArrayList<DetPerRol> asignarPermisoRolS(List<Permiso> listPer,String nombreRol){
+        ArrayList<DetPerRol> res = new ArrayList<DetPerRol>();
+        for(int i=0;i<listPer.size();i++){
+            res.add(save(new DetPerRol(detPerRolRepository.findRolByName(nombreRol).get(0),listPer.get(i))));
+        }
+        return res;
+    }
 }

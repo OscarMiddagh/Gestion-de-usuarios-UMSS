@@ -3,6 +3,7 @@ package com.qualityhunters.Controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ArrayList;
 
 import com.qualityhunters.Model.Rol;
 import com.qualityhunters.service.RolServiceAPI;
@@ -46,7 +47,10 @@ public class DetPerRolController {
     public ResponseEntity<DetPerRol> asignarPerRol(@RequestBody Permiso permiso,@PathVariable String nombreRol){
         return ResponseEntity.ok(detPerRolAPI.asignarPermisoRol(permiso, nombreRol));
     }
-    
+    @PostMapping("/asignarPermisos/{nombreRol}")
+    public ResponseEntity<ArrayList<DetPerRol> > asignarPerRolS(@RequestBody List<Permiso> listPer,@PathVariable String nombreRol){
+        return ResponseEntity.ok(detPerRolAPI.asignarPermisoRolS(listPer, nombreRol));
+    }
     /*
     @PostMapping("/asignarPermiso/{nombreRol}")
     public ResponseEntity<List<Permiso> > asignarPermiso(@RequestBody List<Permiso> listPermiso,@PathVariable String nombreRol){
