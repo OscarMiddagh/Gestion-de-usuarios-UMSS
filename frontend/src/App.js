@@ -15,7 +15,8 @@ import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solici
 import Registro from './componentes/Registro/Registro';
 import CrearPermiso from './componentes/Crear-Permiso/CrearPermiso';
 import ModificarRol from './componentes/Modificar-Rol/ModificarRol';
-
+import CrearRol from './componentes/Crear-Rol/CrearRol';
+import NotificacionRespuesta from './componentes/Notificacion-Respuesta/NotificacionRespuesta';
 function App() {
   return (
     <Router>
@@ -42,7 +43,28 @@ function App() {
           <hr />
         </div>
 
-        
+        <div className="btn-group">
+          <Link to="/Registro" className="btn btn-dark">
+            Registro de Usuario
+          </Link>
+          <hr />
+        </div>
+
+        <div className="btn-group">
+          <Link to="/CrearRol" className="btn btn-dark">
+            CrearRol
+          </Link>
+          <hr />
+        </div>
+
+        <div className="btn-group">
+          <Link to="/NotificacionRespuesta" className="btn btn-dark">
+            Notificaciones
+          </Link>
+          <hr />
+        </div>
+
+
         <Switch>
         <Route path="/RespuestaSolicitud">
             <RespuestaSolicitud />
@@ -64,6 +86,12 @@ function App() {
           </Route>
           <Route path="/ModificarRol">
             <ModificarRol />
+          </Route>
+          <Route path="/CrearRol">
+            <CrearRol />
+          </Route>
+          <Route path="/NotificacionRespuesta">
+            <NotificacionRespuesta />
           </Route>
         </Switch>
         </div>

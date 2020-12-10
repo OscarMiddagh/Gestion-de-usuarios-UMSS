@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.qualityhunters.Model.Permiso;
 import com.qualityhunters.Repository.PermisoRepository;
-
 @Service
 public class PermisoServiceAPI {
     private PermisoRepository permisoRepository;
@@ -36,5 +35,13 @@ public class PermisoServiceAPI {
     public void delete(Permiso permiso){
         permisoRepository.delete(permiso);
     }
+
+    public Boolean buscarPermiso(String nombre){
+        return permisoRepository.findPermiso(nombre).size()>0;
+    }
+    /*
+    public void borrarAsignacionRol(String nombreRol){
+        List<DetallePermisoRol> lisD = permisoRepository.asignacionesRol(nombreRol);
+    }*/
 }
 

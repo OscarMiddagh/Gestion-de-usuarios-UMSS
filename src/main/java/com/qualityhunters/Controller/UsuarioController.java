@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.qualityhunters.Model.Usuario;
+import com.qualityhunters.service.UsuarioServiceAPI;
 import com.qualityhunters.Repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,8 @@ public class UsuarioController {
     // @GetMapping() 
     @Autowired
     private UsuarioRepository usuarioRepo;
-
+    @Autowired
+    private UsuarioServiceAPI usuarioAPI;
     // @GetMapping("/logIn")
     // public String logIn(Model model){     
     //     model.addAttribute("usuario", new Usuario());
@@ -47,6 +50,11 @@ public class UsuarioController {
             return respuesta;
         }
         return respuesta;
+    }
+
+    @PostMapping("/guardarUsuario")
+    public ResponseEntity<Usuario> guardarUsers(@RequestBody Usuario usuario){
+        return ResponseEntity.ok(usuarioAPI.save(usuario));
     }
     /*@PostMapping("/changeRol/{idUsuario}")
     public ResponseEntity<Usuario> changeRol(@RequestBody Rol rol,@PathVariable long idUsuario){
