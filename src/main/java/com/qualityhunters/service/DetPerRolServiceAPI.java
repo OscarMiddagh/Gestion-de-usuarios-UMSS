@@ -41,4 +41,34 @@ public class DetPerRolServiceAPI {
     public DetPerRol asignarPermisoRol(Permiso permiso,String nombreRol){
         return save(new DetPerRol(detPerRolRepository.findRolByName(nombreRol).get(0),permiso));
     }
+    public ArrayList<DetPerRol> asignarPermisoRolS(List<Permiso> listPer,String nombreRol){
+        ArrayList<DetPerRol> res = new ArrayList<DetPerRol>();
+        for(int i=0;i<listPer.size();i++){
+            res.add(save(new DetPerRol(detPerRolRepository.findRolByName(nombreRol).get(0),listPer.get(i))));
+        }
+        return res;
+    }
+    public void eliminarByRol(String nombreRol){
+        List<DetPerRol> listDet = detPerRolRepository.findDetByRol(nombreRol);
+        for(int i=0;i<listDet.size();i++){
+            delete(listDet.get(i));
+        }
+    }
+    public ArrayList<Map<String,Object> > buscarMarcados(String nombreRol){
+        ArrayList<Map<String,Object> > res = new ArrayList<Map<String,Object> >();
+        List<Permiso> marcado = buscarPorRol(nombreRol);
+        List<Permiso> permisos = detPerRolRepository.findAllPermiso();
+        Map<String,Object> mapa;
+        for(int i=0;i<permisos.size();i++){
+            Boolean aux = false;
+            mapa = new HashMap<>();
+            for(int j=0;j<marcado.size();j++){
+                if(permisos.get(i).getNombrePermiso()==marcado.get(j).getNombrePermiso()) aux=true;
+            }
+            mapa.put("permiso",permisos.get(i));
+            mapa.put("marcado",aux);
+            res.add(mapa);
+        }
+        return res;
+    }
 }
