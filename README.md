@@ -108,4 +108,29 @@ ejemplo:
         "nombrePermiso": String,
         "descripcion": String
     }
+]
+
+/////////////////////////////////////////
+OBTENER PERMISOS MARCADOS DE UN ROL
+URL: /permisosMarcados/{nombreRol}
+Devuelve una lista con dos datos, el permiso y marcado, en permiso se encuentra la informacion de permiso, marcado es true
+si el permiso se encuentra asociado al {nombreRol}
+Ejemplo:
+[
+    {
+        "marcado": boolean,
+        "permiso": {
+            "id": long,
+            "nombrePermiso": String,
+            "descripcion": String
+        }
+    },
+    {
+        "marcado": boolean,
+        "permiso": {
+            "id": long,
+            "nombrePermiso": String,
+            "descripcion": String
+        }
+    }
 ] 

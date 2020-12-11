@@ -57,11 +57,8 @@ public class DetPerRolController {
         detPerRolAPI.eliminarByRol(nombreRol);
         return ResponseEntity.ok(detPerRolAPI.asignarPermisoRolS(listPer, nombreRol));
     }
-    
-    /*
-    @PostMapping("/asignarPermiso/{nombreRol}")
-    public ResponseEntity<List<Permiso> > asignarPermiso(@RequestBody List<Permiso> listPermiso,@PathVariable String nombreRol){
-        permisoAPI.borrarAsignacionRol(nombreRol);
-        return ResponseEntity.ok(listPermiso);
-    }*/
+    @GetMapping("/permisosMarcados/{nombreRol}")
+    public ResponseEntity<ArrayList<Map<String,Object> > > getPermisoMarcado(@PathVariable String nombreRol){
+        return ResponseEntity.ok(detPerRolAPI.buscarMarcados(nombreRol));
+    }
 }

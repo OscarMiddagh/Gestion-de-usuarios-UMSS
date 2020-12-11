@@ -54,4 +54,21 @@ public class DetPerRolServiceAPI {
             delete(listDet.get(i));
         }
     }
+    public ArrayList<Map<String,Object> > buscarMarcados(String nombreRol){
+        ArrayList<Map<String,Object> > res = new ArrayList<Map<String,Object> >();
+        List<Permiso> marcado = buscarPorRol(nombreRol);
+        List<Permiso> permisos = detPerRolRepository.findAllPermiso();
+        Map<String,Object> mapa;
+        for(int i=0;i<permisos.size();i++){
+            Boolean aux = false;
+            mapa = new HashMap<>();
+            for(int j=0;j<marcado.size();j++){
+                if(permisos.get(i).getNombrePermiso()==marcado.get(j).getNombrePermiso()) aux=true;
+            }
+            mapa.put("permiso",permisos.get(i));
+            mapa.put("marcado",aux);
+            res.add(mapa);
+        }
+        return res;
+    }
 }
