@@ -80,26 +80,14 @@ class App extends React.Component {
     })
     .catch(console.log);
     this.ocultarModalResponder();
-<<<<<<< HEAD
    // window.location.href = window.location.href;
-=======
-    this.componentDidMount();
-    document.getElementById("mensajeEnviado").innerHTML ="Solicitud respondida";
-    document.getElementById("mensajeEnviado").hidden =false;
->>>>>>> 6c3a5687dd0e8d7586fb1b08ca6bdd1630a4322f
   }
   rechazar = async (idUsuario) => {
     await axios.post(url + "/sol_rechazada/"+idUsuario)
       .then(console.log)
       .catch(console.log);
       this.ocultarModalResponder();
-<<<<<<< HEAD
      // window.location.href = window.location.href;
-=======
-      this.componentDidMount();
-      document.getElementById("mensajeEnviado").innerHTML ="Solicitud respondida";
-      document.getElementById("mensajeEnviado").hidden =false;
->>>>>>> 6c3a5687dd0e8d7586fb1b08ca6bdd1630a4322f
   }
   render() {
     
