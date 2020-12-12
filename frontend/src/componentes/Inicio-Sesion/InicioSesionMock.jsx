@@ -3,9 +3,9 @@ import React from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Inicio-Sesion/InicioSesionMock.css";
-import {Router} from 'react-router-dom';
-import SolicitudCambioRol from "../Solicitud-Cambio-Rol/Solicitud-Cambio-Rol";
-let hashHistory = Router.hashHistory;
+//import {Router} from 'react-router-dom';
+//import SolicitudCambioRol from "../Solicitud-Cambio-Rol/Solicitud-Cambio-Rol";
+//let hashHistory = Router.hashHistory;
 
 const url = "https://gestiondeusuariosumss.herokuapp.com";
 // const url = "http://localhost:8080"

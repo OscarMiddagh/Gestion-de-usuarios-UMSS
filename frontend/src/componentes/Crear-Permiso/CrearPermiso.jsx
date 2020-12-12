@@ -1,18 +1,18 @@
 //Campo para la historia Crear Permiso
 import React from 'react'
 import "./CrearPermiso.css"
-import axios from "axios";
-import {
-  Input,
-  Button,
-  Container,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  ModalFooter,
-} from "reactstrap";
-const url = "https://gestiondeusuariosumss.herokuapp.com/";
+//import axios from "axios";
+//import {
+  //Input,
+  //Button,
+  //Container,
+  //Modal,
+  //ModalHeader,
+  //ModalBody,
+  //FormGroup,
+  //ModalFooter,
+//} from "reactstrap";
+//const url = "https://gestiondeusuariosumss.herokuapp.com/";
 class CrearPermiso extends React.Component{
   
     state = {

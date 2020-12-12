@@ -9,8 +9,9 @@ class ModificarRol extends React.Component{
 
   state={
     roles:[]
-  }
-   
+
+  };
+
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{

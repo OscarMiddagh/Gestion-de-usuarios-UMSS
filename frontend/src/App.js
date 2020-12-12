@@ -4,15 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink
+  Link
 } from "react-router-dom";
 import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
 // import InicioSesion from './componentes/Inicio-Sesion/Inicio-Sesion';
 import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Solicitud';
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
-import Registro from './componentes/Registro/Registro';
+import Registro from './componentes/Registro/RegistroUsuario';
 import CrearPermiso from './componentes/Crear-Permiso/CrearPermiso';
 import ModificarRol from './componentes/Modificar-Rol/ModificarRol';
 import CrearRol from './componentes/Crear-Rol/CrearRol';
@@ -44,7 +43,7 @@ function App() {
         </div>
 
         <div className="btn-group">
-          <Link to="/Registro" className="btn btn-dark">
+          <Link to="/RegistroUsuario" className="btn btn-dark">
             Registro de Usuario
           </Link>
           <hr />
@@ -78,7 +77,7 @@ function App() {
           <Route path="/TableroSolicitudes">
             <TableroSolicitudes />
           </Route>
-          <Route path="/Registro">
+          <Route path="/RegistroUsuario">
             <Registro />
           </Route>
           <Route path="/CrearPermiso">

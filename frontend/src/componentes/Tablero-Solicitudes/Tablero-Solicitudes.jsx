@@ -66,14 +66,14 @@ class App extends React.Component {
     .then(console.log)
     .catch(console.log);
     this.ocultarModalResponder();
-    window.location.href = window.location.href;
+   // window.location.href = window.location.href;
   }
   rechazar = async (idUsuario) => {
     await axios.post(url + "/sol_rechazada/"+idUsuario)
       .then(console.log)
       .catch(console.log);
       this.ocultarModalResponder();
-      window.location.href = window.location.href;
+     // window.location.href = window.location.href;
   }
   render() {
     

@@ -1,16 +1,16 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
 import axios from "axios";
-import {
-  Input,
-  Button,
-  Container,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  ModalFooter,
-} from "reactstrap";
+//import {
+  //Input,
+  //Button,
+  //Container,
+  //Modal,
+  //ModalHeader,
+  //ModalBody,
+  //FormGroup,
+  //ModalFooter,
+////} from "reactstrap";
 
 const url = "https://gestiondeusuariosumss.herokuapp.com/";
 
