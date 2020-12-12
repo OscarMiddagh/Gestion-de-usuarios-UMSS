@@ -70,3 +70,67 @@ debes enviarle un body con lo siguiente:
     },
     "contraseña": string
 }
+
+//////////////////////////////////
+ASIGNAR PERMISOS A UN ROL
+URL: /asignarPermisos/{nombreRol}
+asigna un listado de permisos a el rol {nombreRol}
+debes enviar una lista de permisos en el body
+ejemplo:
+[
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    },
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    }
+]
+
+////////////////////////////////////
+REASIGNAR PERMISOS A UN ROL
+URL: /reasignarPermisos/{nombreRol}
+asigna un listado de permisos a el rol {nombreRol}, y elimina aquellas asignaciones que el rol tenia pero que no
+estan en el listado
+debes enviar una lista de permisos en el body
+ejemplo:
+[
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    },
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    }
+]
+
+/////////////////////////////////////////
+OBTENER PERMISOS MARCADOS DE UN ROL
+URL: /permisosMarcados/{nombreRol}
+Devuelve una lista con dos datos, el permiso y marcado, en permiso se encuentra la informacion de permiso, marcado es true
+si el permiso se encuentra asociado al {nombreRol}
+Ejemplo:
+[
+    {
+        "marcado": boolean,
+        "permiso": {
+            "id": long,
+            "nombrePermiso": String,
+            "descripcion": String
+        }
+    },
+    {
+        "marcado": boolean,
+        "permiso": {
+            "id": long,
+            "nombrePermiso": String,
+            "descripcion": String
+        }
+    }
+] 
