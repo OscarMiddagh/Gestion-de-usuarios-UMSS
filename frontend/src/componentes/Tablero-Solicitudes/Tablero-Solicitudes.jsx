@@ -36,7 +36,7 @@ class App extends React.Component {
       }
     };
     notificacion ={
-      mensaje:"hola putito",
+      mensaje:"hola",
       user:{
         id:9000006
       },

@@ -118,7 +118,7 @@ class LogIn extends React.Component {
     //colocar lo que hara el boton aprobar
   }
   redireccionarResgistrarse=()=>{    
-    window.location.href ="/Registro";
+    window.location.href ="/RegistroUsuario";
   }
   render() {
 
