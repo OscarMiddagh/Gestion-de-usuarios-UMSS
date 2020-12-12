@@ -1,5 +1,6 @@
 package com.qualityhunters.Controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class NotificacionController {
     }
     @PostMapping("/enviar_notificacion")
     public ResponseEntity<Notificacion> enviarNotificacion(@RequestBody Notificacion notificacion){
-        notificacionServiceAPI.save(notificacion);
+        notificacion.setFecha(new Date());
         return ResponseEntity.ok(notificacionServiceAPI.save(notificacion));
     }
 }
