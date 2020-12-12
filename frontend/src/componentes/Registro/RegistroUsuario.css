@@ -1,0 +1,31 @@
+#inflog1,#inflog2,#inflog3{
+    padding: 4px 2px; 
+    border: 1px solid #aaa;
+    background: #fff;
+    width: 50%;
+    resize: none;
+    vertical-align:top;
+}
+#infper1,#infper2,#infper3,#infper4,#infper5,#infper6,#infper7,#infper8,#infper9{
+    padding: 4px 2px; 
+    border: 1px solid #aaa;
+    background: #fff;
+    width: 35%;
+    resize: none;
+    vertical-align:top;
+}
+#Rol{
+    padding: 4px 2px; 
+    border: 1px solid #aaa;
+    background: #fff;
+    width: 15%;
+    resize: none;
+    vertical-align:top;
+}
+
+div:focus , input:focus, input[type]:focus{
+    border-color: rgba(17, 0, 255, 0.315);
+    box-shadow: 0 1px 1px rgba(54, 23, 229, 0.075)inset, 0 0 8px rgba(0, 38, 255, 0.6);
+    outline: 0 none;
+
+}

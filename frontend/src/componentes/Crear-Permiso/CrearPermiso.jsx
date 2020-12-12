@@ -80,12 +80,12 @@ class CrearPermiso extends React.Component{
               <form align="center" id="form" onSubmit={this.manejadorSubmit}>
               <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
               <div id="div">
-              <label for="permisos" id="label">Nuevo Permiso :</label>
+              <label htmlFor="permisos" id="label">Nuevo Permiso :</label>
               <input id="permisoText" v-model="nombrePermiso" placeholder=" Nombre de permiso"  rows="3" name="nombrePermiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={this.state.form.nombrePermiso} required />
               <small id="errorPermiso" className="form-text text-danger" style={{visibility:"hidden"}}></small>
               </div>
               <div id="div">
-              <label for="descrip" id="label">Descripcion :</label>
+              <label htmlFor="descrip" id="label">Descripcion :</label>
               <textarea id="descripcionText" v-model="descripcion" placeholder="Añada una descripcion respecto al nuevo permiso." rows="4" minLength={20} maxLength={250} onChange={this.setDescripcion} required /> <br/>
               </div>
               <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Agregar"/>
