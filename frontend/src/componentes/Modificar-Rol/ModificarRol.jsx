@@ -26,9 +26,9 @@ componentDidMount(){
     render(){
         return (
           <div className="contenido" id="div"> <br/>
-              <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
-              
+            
              <form align="center" id="form">
+             <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
               <div id="div">
                  <label for="name-rol" id="label">Rol de Usuario :</label>
                    <select name="roles" className="form-control" id="combobox">

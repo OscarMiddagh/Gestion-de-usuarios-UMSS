@@ -35,9 +35,17 @@ class App extends React.Component {
         comentario:"",
       }
     };
-
+    notificacion ={
+      mensaje:"hola putito",
+      user:{
+        id:9000006
+      },
+      fecha:"2020-12-10",
+      respuesta:"APROBADO"
+    }
   mostrarModalResponder=(registro)=>{          //cambia el estado de false a true
     this.setState({modalResponder: true, form: registro });
+    document.getElementById("mensajeEnviado").hidden =true;
   }
 
   ocultarModalResponder=()=>{
@@ -63,24 +71,34 @@ class App extends React.Component {
 
   aprobar= async (idUsuario)=>{
    await axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
-    .then(console.log)
+    .then(async res=>{
+      await axios.post("http://localhost:8080/enviar_notificacion",this.notificacion)
+        .then(res=>{
+          console.log("Notificacion enviada");
+        })
+        .catch();
+    })
     .catch(console.log);
     this.ocultarModalResponder();
-    window.location.href = window.location.href;
+    this.componentDidMount();
+    document.getElementById("mensajeEnviado").innerHTML ="Solicitud respondida";
+    document.getElementById("mensajeEnviado").hidden =false;
   }
   rechazar = async (idUsuario) => {
     await axios.post(url + "/sol_rechazada/"+idUsuario)
       .then(console.log)
       .catch(console.log);
       this.ocultarModalResponder();
-      window.location.href = window.location.href;
+      this.componentDidMount();
+      document.getElementById("mensajeEnviado").innerHTML ="Solicitud respondida";
+      document.getElementById("mensajeEnviado").hidden =false;
   }
   render() {
     
     return (
       <>
         <Container>
-       
+        <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
           <div className="container">
             <h1 style={{textAlign:"center"}}>Solicitudes de Cambio de Rol</h1>           
             <div className="justify-content-center align-items-center">

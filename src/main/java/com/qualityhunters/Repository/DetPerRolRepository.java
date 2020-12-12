@@ -20,4 +20,10 @@ public interface DetPerRolRepository extends JpaRepository <DetPerRol , Long > {
 
     @Query("select r from Rol r where r.nombreRol = :nombre")
     List<Rol> findRolByName(@Param("nombre") String nombreRol);
+
+    @Query("select d from DetPerRol d where d.rol.nombreRol = :nombre")
+    List<DetPerRol> findDetByRol(@Param("nombre") String nombreRol);
+
+    @Query("select p from Permiso p")
+    List<Permiso> findAllPermiso();
 }

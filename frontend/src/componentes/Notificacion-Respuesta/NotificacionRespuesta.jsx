@@ -36,7 +36,7 @@ class NotificacionRespuestas extends React.Component{
     <Container>
        
           <div className="container">
-          <h1 style={{textAlign:"center"}}>Notificaciones</h1>           
+          <h3 align="center" id="titulo">NOTIFICACIONES</h3>           
           <div className="justify-content-center align-items-center">
           <Table>
               <table className="table">
