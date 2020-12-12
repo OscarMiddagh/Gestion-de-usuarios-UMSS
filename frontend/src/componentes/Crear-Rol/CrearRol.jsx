@@ -26,9 +26,9 @@ const CrearRol = () => {
 
   return (
     <div className="contenido" id="div"> <br />
-      <h3 align="center">CREAR ROL</h3>
 
-      <form align="center">
+      <form align="center" id="form">
+      <h3 align="center" id="titulo">CREAR ROL</h3>
         <div id="div">
           <label for="rol" id="label">Nuevo Rol :</label>
           <input id="nombrerol" className="text1" placeholder="Nombre de rol" rows="3" name="nombrerol" value={nombrerol} onChange={limitaralfabeticos} minLength={5} maxLength={20} required/>
