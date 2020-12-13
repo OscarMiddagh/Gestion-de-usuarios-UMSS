@@ -104,10 +104,10 @@ class App extends React.Component {
         <Container>
         <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
           <div className="container">
-            <h1 style={{textAlign:"center"}}>Solicitudes de Cambio de Rol</h1>           
+            <h3 align="center" id="titulo">SOLICITUDES PARA CAMBIAR DE ROL</h3><br/>          
             <div className="justify-content-center align-items-center">
           <Table>
-            <table className="table">
+            <table className="table" id="form">
               <tbody className="table-dark">
               {this.state.data.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
@@ -146,7 +146,7 @@ class App extends React.Component {
             <FormGroup>
               <label>
                Id:
-              </label>
+              </label><br/>
               <input
                 className="form-control"
                 readOnly
@@ -195,7 +195,7 @@ class App extends React.Component {
             <FormGroup>
               <label>
                 Fecha: 
-              </label>
+              </label><br/>
               <input
                 className="form-control"
                 name="fecha"
@@ -225,6 +225,7 @@ class App extends React.Component {
                 className="form-control"
                 name="comentario"
                 type="text"
+                placeholder="Ingrese su comentario"
                onChange={this.handleChange}
                 
               />
@@ -233,7 +234,7 @@ class App extends React.Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="secondary" onClick={this.ocultarModalResponder}>cerrar</Button>
+            <Button color="secondary" onClick={this.ocultarModalResponder}>Cerrar</Button>
             <Button
               color="primary"
               onClick={() => this.aprobar(this.state.form.idUsuario)}> Aprobar

@@ -146,14 +146,13 @@ class RegistroUsuario extends React.Component{
         return(
             
 
-            <form onSubmit={(this.registrarse,this.validarpassword)} id="form">
-                <div>
-
-            <h3 align="center">Crear una cuenta</h3>
-            <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
-            <h3 align="left">Informacion del Login</h3>
+          <form onSubmit={(this.registrarse,this.validarpassword)} id="form">
+            <div>
+            <h3 align="center" id="titulo">CREAR UNA CUENTA</h3>
+            
        
-           <div id="Login" align="left">
+           <div id="Login" id="primeraParte">
+           <h3 align="left">Informacion del Login</h3>
           <label htmlFor="email">Correo</label><br/>
           <input type="email" className="div" name="correo" id="inflog1" aria-describedby="emailHelp" placeholder="Ingrese su correo" value={correo} onChange={this.limitarcorreo} required /> <br/>
           <label htmlFor="Contraseña" >Contraseña</label> <br/>
@@ -163,11 +162,12 @@ class RegistroUsuario extends React.Component{
           <small id="errorCoincidir" className="form-text text-danger" style={{visibility:"hidden"}}></small>
         </div>
 
-        <h3 align="right">Informacion Personal</h3>
+        
 
 
 
-            <div id="Datos" align="right">
+            <div id="Datos" id="segundaParte">
+            <h3 >Informacion Personal</h3>
             <label htmlFor="name">Nombre(s)</label><br/>
             <input type="text" className="div" name="nombres" id="infper1" placeholder="Ingrese su nombre" value={nombres} onChange={this.limitaralfabeticos}/><br/>
             <label htmlFor="firstsurname">Apellido Paterno</label><br/>
@@ -202,9 +202,9 @@ class RegistroUsuario extends React.Component{
                       >REGISTRARSE
             </button>
             </div>
-            </div>
-            </form>
-        
+            </div><br/>
+            </form> 
+       
 
 
 
