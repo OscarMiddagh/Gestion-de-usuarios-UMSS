@@ -134,3 +134,22 @@ Ejemplo:
         }
     }
 ] 
+
+///////////////////////////////////////////
+GUARDAR UN ROL
+URL: /guardarRol/{nombreRol}
+guarda un rol y le asigna los permisos que le mandes
+Debes enviar una lista de permisos que deben ir asignados a rol nombreRol
+ej:
+[
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    },
+    {
+        "id": long,
+        "nombrePermiso": String,
+        "descripcion": String
+    }
+]
