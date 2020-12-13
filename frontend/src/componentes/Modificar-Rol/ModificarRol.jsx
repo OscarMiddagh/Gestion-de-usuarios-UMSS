@@ -10,7 +10,25 @@ class ModificarRol extends React.Component{
   state={
     roles:[]
   }
-   
+ 
+peticionGet=()=>{
+  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles").then (response=>{
+    this.setState({data:response.data});
+  })
+  .catch((error)=>{
+    console.log(error);
+});
+}  
+
+peticionPost=async()=>{
+  await axios.post ("https://gestiondeusuariosumss.herokuapp.com/roles", this.state.form).then (response=>{
+    this.peticionGet();
+  })
+  .catch((error)=>{
+    console.log(error);
+});
+}
+  
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{
@@ -43,7 +61,7 @@ componentDidMount(){
                  <label for="permisos" id="label"></label>
                  <label htmlFor="" className="fadeIn fourth"> aqui va la lista de permisos por rol...<input type="checkbox"/></label>
               </div>
-               <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Cambiar"/>
+               <input type="submit" className="btn btn-primary" onClick={this.peticionPost()} value="Cambiar"/> 
             </form>
               
               
@@ -53,3 +71,5 @@ componentDidMount(){
       }
 }
 export default ModificarRol;
+
+//.enviar
