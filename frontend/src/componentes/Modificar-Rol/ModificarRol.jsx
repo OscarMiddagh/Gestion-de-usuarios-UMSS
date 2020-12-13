@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import React from 'react'
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import "./ModificarRol.css"
 
 //const url = "https://gestiondeusuariosumss.herokuapp.com/roles";
@@ -9,8 +10,9 @@ class ModificarRol extends React.Component{
 
   state={
     roles:[]
-  }
-   
+
+  };
+
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{
@@ -25,6 +27,8 @@ componentDidMount(){
     
     render(){
         return (
+          <div>
+            <BarraNav/>
           <div className="contenido" id="div"> <br/>
             
              <form align="center" id="form">
@@ -48,7 +52,7 @@ componentDidMount(){
               
               
         </div>
-    
+    </div>
          )
       }
 }

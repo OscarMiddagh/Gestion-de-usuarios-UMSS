@@ -1,54 +1,84 @@
 //Campo para la historia Crear Permiso
 import React from 'react'
 import "./CrearPermiso.css"
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import axios from "axios";
-import {
-  Input,
-  Button,
-  Container,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  ModalFooter,
-} from "reactstrap";
+//import {
+  //Input,
+  //Button,
+  //Container,
+  //Modal,
+  //ModalHeader,
+  //ModalBody,
+  //FormGroup,
+  //ModalFooter,
+//} from "reactstrap";
 const url = "https://gestiondeusuariosumss.herokuapp.com/";
 class CrearPermiso extends React.Component{
   
     state = {
-        form: {
+        
             id: "",
             nombrePermiso: "",
             descripcion: "" 
 
-          }
+          
       };
 
     limitarPermiso = async (e) => {
         document.getElementById("errorPermiso").style.visibility = "hidden";
         if (e.target.value.match("^[Ññíóáéú@.a-zA-Z]*$") != null) {
-          //...
-          await this.setState({
-            form: {
-              ...this.state.form,
+          this.setState({
               [e.target.name]: e.target.value,
-            }
-          });   
-        }
-        else {
+            })
+          } else {
           document.getElementById("errorPermiso").innerHTML = "Solo se permiten caracteres alfabeticos";
           document.getElementById("errorPermiso").style.visibility = "visible";
         }
       }
-      vaciarCampos=()=>{
-        document.getElementById("permisoText").value ="";
-        this.form.nombrePermiso = "";
-        document.getElementById("descripcionText").value ="";
-        this.form.descripcion = "";
+  //vaciarCampos=()=>{
+    //    document.getElementById("permisoText").value ="";
+      //  this.state.nombrePermiso = "";
+        //document.getElementById("descripcionText").value ="";
+        //this.state.descripcion = "";
+     // }
+      
+      limitaralfanumericos = (e) => {
+        if (e.target.value.match("[0123456789]") != null) {
+            this.setState({
+            [e.target.name]: e.target.value
+          })
+        }
+        else {
+          alert("Intente escribir números, sin espacios");
+        }
       }
-      manejadorSubmit(e) {
-        e.preventDefault();
+
+      limitaralfabeticos = (e) => {
+        if (e.target.value.match("^[ Ñña-zA-Z]*$") != null) {
+            this.setState({
+            [e.target.name]: e.target.value
+          })
+        }
+        else {
+          alert("Intente escribir letras, sin espacios");
+        }
       }
+
+      
+
+      crearPermiso = async (e) =>{
+      await axios.post(url + "/guardarPermiso",this.state)
+      .then(response=>{
+      console.log(response);
+      })
+      .catch(error=>{
+      console.log(error)
+     })
+    }
+      
+
+
      /* 
       enviar=async()=>{
         if(this.form.nombrePermiso !== "" &&this.form.nombrePermiso.length>=5 &&this.form.nombrePermiso.length<=40){
@@ -74,24 +104,36 @@ class CrearPermiso extends React.Component{
     
       }*/
     render(){
+      const {id,nombrePermiso,descripcion}=this.state
         return (
+          <div>
+          <BarraNav/>
           <div className="contenido" id="div"> <br/>
               
-              <form align="center" id="form" onSubmit={this.manejadorSubmit}>
+              <form align="center" id="form" onSubmit={this.crearPermiso}>
               <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
               <div id="div">
-              <label for="permisos" id="label">Nuevo Permiso :</label>
-              <input id="permisoText" v-model="nombrePermiso" placeholder=" Nombre de permiso"  rows="3" name="nombrePermiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={this.state.form.nombrePermiso} required />
+              <label htmlFor="identificador" id="label1">Id del Permiso :</label>
+              <input id="idText" v-model="id" placeholder=" Id"  rows="3" name="id" minLength={1} maxLength={10}  value={id} onChange={this.limitaralfanumericos} required />
+              <small id="errorId" className="form-text text-danger" style={{visibility:"hidden"}}></small>
+              </div>
+              <div id="div">
+              <label htmlFor="permisos" id="label2">Nuevo Permiso :</label>
+              <input id="permisoText" v-model="nombrePermiso" placeholder=" Nombre de permiso"  rows="3" name="nombrePermiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={nombrePermiso} required />
               <small id="errorPermiso" className="form-text text-danger" style={{visibility:"hidden"}}></small>
               </div>
               <div id="div">
-              <label for="descrip" id="label">Descripcion :</label>
-              <textarea id="descripcionText" v-model="descripcion" placeholder="Añada una descripcion respecto al nuevo permiso." rows="4" minLength={20} maxLength={250} onChange={this.setDescripcion} required /> <br/>
+              <label htmlFor="descrip" id="label3">Descripcion :</label>
+              <textarea id="descripcionText" v-model="descripcion" name="descripcion" placeholder="Añada una descripcion respecto al nuevo permiso." rows="4" minLength={20} maxLength={250} value={descripcion} onChange={this.limitaralfabeticos} required /> <br/>
               </div>
-              <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Agregar"/>
+              <div>
+              <button type="submit" className="btn btn-primary" align="center" >CREAR PERMISO
+            </button>
+            </div>
               </form>
               
               
+        </div>
         </div>
     
          )

@@ -2,6 +2,7 @@
 import React from "react";
 
 import axios from "axios"; 
+import BarraNav from "../NavBar-Usuario/NavBarUsuario";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -34,7 +35,7 @@ class NotificacionRespuestas extends React.Component{
     return (
       
     <Container>
-       
+       <BarraNav/>
           <div className="container">
           <h3 align="center" id="titulo">NOTIFICACIONES</h3>           
           <div className="justify-content-center align-items-center">
