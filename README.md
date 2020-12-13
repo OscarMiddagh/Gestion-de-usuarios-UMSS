@@ -68,7 +68,10 @@ debes enviarle un body con lo siguiente:
         "id": long,
         "nombreRol": string
     },
-    "contraseña": string
+    "contraseña": string,
+    "apellidosM": string,
+    "telefonoFijo": string,
+    "telefonoMovil": string
 }
 
 //////////////////////////////////
