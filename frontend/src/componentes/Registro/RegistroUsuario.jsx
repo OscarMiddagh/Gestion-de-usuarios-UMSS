@@ -151,7 +151,7 @@ class RegistroUsuario extends React.Component{
             <h3 align="center" id="titulo">CREAR UNA CUENTA</h3>
             
        
-           <div id="Login" id="primeraParte">
+           <div  id="primeraParte">
            <h3 align="left">Informacion del Login</h3>
           <label htmlFor="email">Correo</label><br/>
           <input type="email" className="div" name="correo" id="inflog1" aria-describedby="emailHelp" placeholder="Ingrese su correo" value={correo} onChange={this.limitarcorreo} required /> <br/>
@@ -166,7 +166,7 @@ class RegistroUsuario extends React.Component{
 
 
 
-            <div id="Datos" id="segundaParte">
+            <div  id="segundaParte">
             <h3 >Informacion Personal</h3>
             <label htmlFor="name">Nombre(s)</label><br/>
             <input type="text" className="div" name="nombres" id="infper1" placeholder="Ingrese su nombre" value={nombres} onChange={this.limitaralfabeticos}/><br/>
