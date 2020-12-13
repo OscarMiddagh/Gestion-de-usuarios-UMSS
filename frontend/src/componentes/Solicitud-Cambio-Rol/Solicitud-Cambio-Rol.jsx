@@ -1,6 +1,8 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
 import axios from "axios";
+import BarraNav from "../NavBar-Usuario/NavBarUsuario";
+import "./Solicitud-Cambio-Rol.css"
 //import {
   //Input,
   //Button,
@@ -82,16 +84,18 @@ class SolicitudCambioRol extends React.Component {
   }
   render(){
     return (
-      <div className="contenido">
-          <h3 id="nombreUsuario">Usuario: {this.usuario.nombreUsuario}</h3>
-          <h3 id="nombreRol">Rol:{this.usuario.rolActual}</h3>
-          <h3 align="center">SOLICITUD DE CAMBIO DE ROL</h3>
+      <div>
+        <BarraNav/>
+      <div className="contenido"> <br/>
+          <h5 id="nombreUsuario">Usuario: {this.usuario.nombreUsuario}</h5>
+          <h5 id="nombreRol">Rol:{this.usuario.rolActual}</h5>
           <br/>
           <br/>
           <div id="mensajeError" className="alert alert-danger" role="alert" hidden={true}/>
           <div id="mensajeExito" className="alert alert-success" role="alert" hidden={true}/>
-          <h6 align="center">Motivo de solicitud:</h6>
-          <form align="center" onSubmit={this.manejadorSubmit}>
+          <form align="center" onSubmit={this.manejadorSubmit} id="formSolicitud"><br/>
+            <h3 align="center" id="titulo">SOLICITUD DE CAMBIO DE ROL</h3><br/>
+            <h5 align="center">Motivo de solicitud:</h5>
             <textarea id="motivoText" className="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required />
             <small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}} />
             <label htmlFor="rol" className="centro2">Roles disponibles:</label> <br/>
@@ -106,7 +110,7 @@ class SolicitudCambioRol extends React.Component {
             <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Enviar"/>
           </form>
     </div>
-
+    </div>
      )
   }
 }

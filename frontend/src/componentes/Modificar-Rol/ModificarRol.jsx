@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import React from 'react'
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import "./ModificarRol.css"
 
 //const url = "https://gestiondeusuariosumss.herokuapp.com/roles";
@@ -9,9 +10,32 @@ class ModificarRol extends React.Component{
 
   state={
     roles:[]
+<<<<<<< HEAD
+  }
+ 
+peticionGet=()=>{
+  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles").then (response=>{
+    this.setState({data:response.data});
+  })
+  .catch((error)=>{
+    console.log(error);
+});
+}  
+
+peticionPost=async()=>{
+  await axios.post ("https://gestiondeusuariosumss.herokuapp.com/roles", this.state.form).then (response=>{
+    this.peticionGet();
+  })
+  .catch((error)=>{
+    console.log(error);
+});
+}
+  
+=======
 
   };
 
+>>>>>>> ae25dcb141c26e6ac4b6d94e0ca67df866b30de1
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{
@@ -26,6 +50,8 @@ componentDidMount(){
     
     render(){
         return (
+          <div>
+            <BarraNav/>
           <div className="contenido" id="div"> <br/>
             
              <form align="center" id="form">
@@ -44,13 +70,15 @@ componentDidMount(){
                  <label for="permisos" id="label"></label>
                  <label htmlFor="" className="fadeIn fourth"> aqui va la lista de permisos por rol...<input type="checkbox"/></label>
               </div>
-               <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Cambiar"/>
+               <input type="submit" className="btn btn-primary" onClick={this.peticionPost()} value="Cambiar"/> 
             </form>
               
               
         </div>
-    
+    </div>
          )
       }
 }
 export default ModificarRol;
+
+//.enviar
