@@ -10,7 +10,7 @@
 #descripcionText:invalid:focus{
     border: 3px solid rgba(255, 0, 0, 0.473);
 }
-#permisoText{
+#permisoText,#idText{
     padding: 4px 2px; 
     border: 1px solid #aaa;
     background: #fff;
@@ -21,7 +21,7 @@
 #permisoText:invalid:focus{
     border: 3px solid rgba(255, 0, 0, 0.473);
 }
-#label{
+#label1,#label2,#label3{
     display: inline-block;
     width: 12em;
 }

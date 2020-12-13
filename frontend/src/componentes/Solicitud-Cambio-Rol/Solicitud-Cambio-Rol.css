@@ -1,20 +1,22 @@
-.hello{
-  background: #43C6AC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+#formSolicitud{
+  left: 350px;
+    width: 50%;
+    height: auto;
+    position: relative;
+	-webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+	margin: 10px;
+  padding: 0;
+  background: rgb(221, 248, 239);
+  font-family: arial, helvetica, sans-serif;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 }
-.centro{
-  margin: auto;
-  display: block;
-}
-.centro2{
-  display: block;
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
-}
-.centro3{
-  margin: auto;
-  display: block;
+#motivoText{
+  padding: 4px 2px; 
+    border: 1px solid #aaa;
+    background: #fff;
+    width: 30%;
+    resize: none;
+    vertical-align:top;
 }

@@ -4,15 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink
+  Link
 } from "react-router-dom";
 import InicioSesion from './componentes/Inicio-Sesion/InicioSesionMock';
 // import InicioSesion from './componentes/Inicio-Sesion/Inicio-Sesion';
 import RespuestaSolicitud from './componentes/Respuesta-Solicitud/Respuesta-Solicitud';
 import SolicitudCambioRol from './componentes/Solicitud-Cambio-Rol/Solicitud-Cambio-Rol';
 import TableroSolicitudes from './componentes/Tablero-Solicitudes/Tablero-Solicitudes';
-import Registro from './componentes/Registro/Registro';
+import Registro from './componentes/Registro/RegistroUsuario';
 import CrearPermiso from './componentes/Crear-Permiso/CrearPermiso';
 import ModificarRol from './componentes/Modificar-Rol/ModificarRol';
 import CrearRol from './componentes/Crear-Rol/CrearRol';
@@ -20,65 +19,27 @@ import NotificacionRespuesta from './componentes/Notificacion-Respuesta/Notifica
 function App() {
   return (
     <Router>
-        <div className="container mt-5">
-        <div className="btn-group">
-          <Link to="/InicioSesion" className="btn btn-dark">
-            Inicio de Sesion
-          </Link>
-          
-          
-          <hr />
-        </div>
-        <div className="btn-group">
-          <Link to="/CrearPermiso" className="btn btn-dark">
-            CrearPermiso
+      <div className="btn-group">
+        <Link to="/Gestion-de-usuarios-UMSS" className="btn btn-dark">
+          Iniciar Sesion
           </Link>
           <hr />
-        </div>
+          </div>
 
-        <div className="btn-group">
-          <Link to="/ModificarRol" className="btn btn-dark">
-            Modificar permisos de Rol
-          </Link>
-          <hr />
-        </div>
-
-        <div className="btn-group">
-          <Link to="/Registro" className="btn btn-dark">
-            Registro de Usuario
-          </Link>
-          <hr />
-        </div>
-
-        <div className="btn-group">
-          <Link to="/CrearRol" className="btn btn-dark">
-            CrearRol
-          </Link>
-          <hr />
-        </div>
-
-        <div className="btn-group">
-          <Link to="/NotificacionRespuesta" className="btn btn-dark">
-            Notificaciones
-          </Link>
-          <hr />
-        </div>
-
-
-        <Switch>
+       <Switch>
         <Route path="/RespuestaSolicitud">
             <RespuestaSolicitud />
           </Route>   
           <Route exact path="/:usuarioId/SolicitudCambioRol"> 
             <SolicitudCambioRol />
           </Route>
-          <Route path="/InicioSesion" exact>
+          <Route path="/Gestion-de-usuarios-UMSS" exact>
             <InicioSesion />
           </Route>
           <Route path="/TableroSolicitudes">
             <TableroSolicitudes />
           </Route>
-          <Route path="/Registro">
+          <Route path="/RegistroUsuario">
             <Registro />
           </Route>
           <Route path="/CrearPermiso">
@@ -87,14 +48,13 @@ function App() {
           <Route path="/ModificarRol">
             <ModificarRol />
           </Route>
-          <Route path="/CrearRol">
-            <CrearRol />
-          </Route>
+         <Route path="/CrearRol">
+           <CrearRol />
+         </Route>
           <Route path="/NotificacionRespuesta">
             <NotificacionRespuesta />
           </Route>
         </Switch>
-        </div>
     </Router>
   );
 }

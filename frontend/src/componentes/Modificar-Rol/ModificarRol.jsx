@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import React from 'react'
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import "./ModificarRol.css"
 
 //const url = "https://gestiondeusuariosumss.herokuapp.com/roles";
@@ -9,6 +10,7 @@ class ModificarRol extends React.Component{
 
   state={
     roles:[]
+<<<<<<< HEAD
   }
  
 peticionGet=()=>{
@@ -29,6 +31,11 @@ peticionPost=async()=>{
 });
 }
   
+=======
+
+  };
+
+>>>>>>> ae25dcb141c26e6ac4b6d94e0ca67df866b30de1
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{
@@ -43,10 +50,12 @@ componentDidMount(){
     
     render(){
         return (
+          <div>
+            <BarraNav/>
           <div className="contenido" id="div"> <br/>
-              <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
-              
+            
              <form align="center" id="form">
+             <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
               <div id="div">
                  <label for="name-rol" id="label">Rol de Usuario :</label>
                    <select name="roles" className="form-control" id="combobox">
@@ -66,7 +75,7 @@ componentDidMount(){
               
               
         </div>
-    
+    </div>
          )
       }
 }
