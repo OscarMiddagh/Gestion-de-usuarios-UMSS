@@ -14,6 +14,7 @@ public class Usuario {
   private Long id;
   private String nombres;
   private String apellidos;
+  private String apellidosM;
   private String correo;
   private String documentoDeIdentidad;
   private String direccion;
@@ -22,7 +23,8 @@ public class Usuario {
   @ManyToOne(optional = false, fetch = FetchType.EAGER)
   private Rol rol;
   private String contraseña;
-
+  private String telefonoFijo;
+  private String telefonoMovil;
 
   public Usuario() {}
   
@@ -59,6 +61,9 @@ public class Usuario {
   public String getApellidos(){
       return apellidos;
   }
+  public String getApellidosM(){
+    return apellidosM;
+  }
   public String getDocumentoDeIdentidad(){
       return documentoDeIdentidad;
   }
@@ -70,6 +75,12 @@ public class Usuario {
   }
   public Rol getRol(){
       return rol;
+  }
+  public String getTelefonofijo(){
+    return telefonoFijo;
+  }
+  public String getTelefonomovil(){
+    return telefonoFijo;
   }
   public void setCorreo(String correo) {
     this.correo = correo;
@@ -97,5 +108,14 @@ public class Usuario {
   }
   public void setRol(Rol rol){
       this.rol = rol;
+  }
+  public void setApellidosM(String apellidos){
+    this.apellidosM = apellidos;
+  }
+  public void setTelefonoFijo(String telefono){
+    telefonoFijo = telefono;
+  }  
+  public void setTelefonoMovil(String telefono){
+    telefonoMovil = telefono;
   }
 }
