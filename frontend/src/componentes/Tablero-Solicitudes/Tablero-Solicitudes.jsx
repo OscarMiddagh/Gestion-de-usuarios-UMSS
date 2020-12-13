@@ -3,7 +3,9 @@
 import React from "react";
 //import "./App.css";
 
+//import CrearRol from './componentes/Crear-Rol/CrearRol';
 import axios from "axios"; 
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -93,6 +95,12 @@ class App extends React.Component {
     
     return (
       <>
+      <BarraNav/>
+
+      
+      
+      
+      
         <Container>
         <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
           <div className="container">
