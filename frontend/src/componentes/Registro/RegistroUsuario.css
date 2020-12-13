@@ -29,3 +29,31 @@ div:focus , input:focus, input[type]:focus{
     outline: 0 none;
 
 }
+#primeraParte{
+    left: 160px;
+    width: 70%;
+    height: auto;
+    position: relative;
+	-webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+	margin: 10px;
+  padding: 0;
+  background: rgb(237, 255, 232);
+  font-family: arial, helvetica, sans-serif;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+#segundaParte{
+    left: 160px;
+    width: 70%;
+    height: auto;
+    position: relative;
+	-webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+	margin: 10px;
+  padding: 0;
+  background: rgb(237, 255, 232);
+  font-family: arial, helvetica, sans-serif;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
