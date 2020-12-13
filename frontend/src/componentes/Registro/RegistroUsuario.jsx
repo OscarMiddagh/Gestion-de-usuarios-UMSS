@@ -73,7 +73,26 @@ class RegistroUsuario extends React.Component{
           alert("Intente escribir números, sin espacios");
         }
       }
-
+      mensajevalidacion=(e)=>{
+        document.getElementById("errorCoincidir").style.visibility = "hidden";
+        var p1 = document.getElementById("inflog2").value;
+        var p2 = document.getElementById("inflog3").value;
+        if (p1 !== p2) {
+          document.getElementById("errorCoincidir").innerHTML = "La contraseña no coincide";
+          document.getElementById("errorCoincidir").style.visibility = "visible";
+        } else { 
+          
+        }
+      }
+      validarpassword=(e)=>{
+        var p1 = document.getElementById("inflog2").value;
+        var p2 = document.getElementById("inflog3").value;
+        if (p1 != p2) {
+          alert("Las contraseñas deben de coincidir");
+          e.preventDefault();
+        } else { 
+        }
+      }
       //repetirContraseña=(e)=>{
         //  if(e.target.value.match(this.contraseña=this.confirmarContraseña)){
           //  this.setState({
@@ -124,10 +143,11 @@ class RegistroUsuario extends React.Component{
         return(
             
 
-            <form onSubmit={this.registrarse}>
+            <form onSubmit={this.registrarse,this.validarpassword} id="form">
                 <div>
 
             <h3 align="center">Crear una cuenta</h3>
+            <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
             <h3 align="left">Informacion del Login</h3>
        
            <div id="Login" align="left">
@@ -136,7 +156,8 @@ class RegistroUsuario extends React.Component{
           <label htmlFor="Contraseña" >Contraseña</label> <br/>
           <input type="password" className="div" name="contraseña" id="inflog2" placeholder="Contraseña" value={contraseña} onChange={this.limitarpasswd} required minLength="8" /><br/>
           <label htmlFor="Contraseña" >Confirmar Contraseña</label><br/>
-          <input type="password"  className="div" name="confirmarContraseña" id="inflog3" placeholder="Repetir Contraseña" />
+          <input type="password"  className="div" name="confirmarContraseña" id="inflog3"  onChange={this.mensajevalidacion} placeholder="Repetir Contraseña" />
+          <small id="errorCoincidir" className="form-text text-danger" style={{visibility:"hidden"}}></small>
         </div>
 
         <h3 align="right">Informacion Personal</h3>

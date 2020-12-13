@@ -1,6 +1,7 @@
 //Campo para la historia Crear Permiso
 import React from 'react'
 import "./CrearPermiso.css"
+import BarraNav from "../NavBar-Admin/NavBarAdmin";
 //import axios from "axios";
 //import {
   //Input,
@@ -75,6 +76,8 @@ class CrearPermiso extends React.Component{
       }*/
     render(){
         return (
+          <div>
+          <BarraNav/>
           <div className="contenido" id="div"> <br/>
               
               <form align="center" id="form" onSubmit={this.manejadorSubmit}>
@@ -92,6 +95,7 @@ class CrearPermiso extends React.Component{
               </form>
               
               
+        </div>
         </div>
     
          )

@@ -1,6 +1,7 @@
 //campo para la historia de Solicitud de Cambio de Rol
 import React from 'react'
 import axios from "axios";
+import BarraNav from "../NavBar-Usuario/NavBarUsuario";
 //import {
   //Input,
   //Button,
@@ -82,6 +83,8 @@ class SolicitudCambioRol extends React.Component {
   }
   render(){
     return (
+      <div>
+        <BarraNav/>
       <div className="contenido">
           <h3 id="nombreUsuario">Usuario: {this.usuario.nombreUsuario}</h3>
           <h3 id="nombreRol">Rol:{this.usuario.rolActual}</h3>
@@ -106,7 +109,7 @@ class SolicitudCambioRol extends React.Component {
             <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Enviar"/>
           </form>
     </div>
-
+    </div>
      )
   }
 }
