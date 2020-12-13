@@ -16,6 +16,7 @@ class RegistroUsuario extends React.Component{
     
     nombres: '',
     apellidos: '',
+    apellidosM:'',
     correo: '',
     documentoDeIdentidad: '',
     direccion: '',
@@ -26,6 +27,8 @@ class RegistroUsuario extends React.Component{
         nombreRol: ''
     },
     contraseña: '',
+    telefonoFijo: '',
+    telefonoMovil:''
     
 }
     
@@ -139,7 +142,7 @@ class RegistroUsuario extends React.Component{
       
 
     render (){
-        const {correo, contraseña, nombres, apellidos, direccion, documentoDeIdentidad,pais,ciudad} =this.state
+        const {correo, contraseña, nombres, apellidos, direccion, documentoDeIdentidad,pais,ciudad,apellidosM, telefonoFijo,telefonoMovil} =this.state
         return(
             
 
@@ -170,7 +173,7 @@ class RegistroUsuario extends React.Component{
             <label htmlFor="firstsurname">Apellido Paterno</label><br/>
             <input type="text" className="div" name="apellidos" id="infper2" placeholder="Ingrese su apellido paterno" value={apellidos} onChange={this.limitaralfabeticos}/><br/>
             <label htmlFor="secondsurname">Apellido Materno</label><br/>
-            <input type="text" className="div" name="apellidomaterno" id="infper3" placeholder="Ingrese su apellido materno"/><br/>
+            <input type="text" className="div" name="apellidomaterno" id="infper3" placeholder="Ingrese su apellido materno" value={apellidosM} onChange={this.limitaralfabeticos}/><br/>
             <label htmlFor="Carnet">Ci</label><br/>
             <input type="text" className="div" name="documentoDeIdentidad" id="infper4" placeholder="Ingrese su cédula de identidad"  value={documentoDeIdentidad} onChange={this.limitaralfanumericos} /><br/>
             <label htmlFor="Country">Pais</label><br/>
@@ -180,9 +183,9 @@ class RegistroUsuario extends React.Component{
             <label htmlFor="Direccion">Direccion</label><br/>
             <input type="text" className="div" name="direccion" id="infper7" placeholder="Ingrese su dirección" value={direccion} onChange={this.limitaralfabeticos}/><br/>
             <label htmlFor="Telefono">Telefono Fijo</label><br/>
-            <input type="text" className="div" name="telefono" id="infper8" placeholder="Ingrese su numero de teléfono"/><br/>
+            <input type="text" className="div" name="telefono" id="infper8" placeholder="Ingrese su numero de teléfono" value={telefonoFijo} onChange={this.limitaralfanumericos}/><br/>
             <label htmlFor="Celular">Telefono Movil</label><br/>
-            <input type="text" className="div" name="celular" id="infper9" placeholder="Ingrese su numero de celular"/><br/>
+            <input type="text" className="div" name="celular" id="infper9" placeholder="Ingrese su numero de celular" value={telefonoMovil} onChange={this.limitaralfanumericos}/><br/>
             <label htmlFor="Rol">Rol</label><br/>
             <select name="roles" className="form-control" id="combobox" >
             {this.state.roles.map(elemento =>(
