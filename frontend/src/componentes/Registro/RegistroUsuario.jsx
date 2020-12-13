@@ -87,7 +87,7 @@ class RegistroUsuario extends React.Component{
       validarpassword=(e)=>{
         var p1 = document.getElementById("inflog2").value;
         var p2 = document.getElementById("inflog3").value;
-        if (p1 != p2) {
+        if (p1 !== p2) {
           alert("Las contraseñas deben de coincidir");
           e.preventDefault();
         } else { 
@@ -143,7 +143,7 @@ class RegistroUsuario extends React.Component{
         return(
             
 
-            <form onSubmit={this.registrarse,this.validarpassword} id="form">
+            <form onSubmit={(this.registrarse,this.validarpassword)} id="form">
                 <div>
 
             <h3 align="center">Crear una cuenta</h3>

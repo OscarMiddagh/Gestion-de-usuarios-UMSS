@@ -51,7 +51,7 @@ nombreRol: '',
    }
 
    crearRol= async (e)=>{
-    await axios.post(url + "/guardarRol/",this.state)
+    await axios.post(url + "/guardarRol",this.state)
     .then(response=>{
       console.log(response);
     })
