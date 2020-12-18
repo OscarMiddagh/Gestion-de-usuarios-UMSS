@@ -10,7 +10,7 @@ class ModificarRol extends React.Component{
 
   state={
     roles:[]
-<<<<<<< HEAD
+
   }
  
 peticionGet=()=>{
@@ -30,12 +30,7 @@ peticionPost=async()=>{
     console.log(error);
 });
 }
-  
-=======
 
-  };
-
->>>>>>> ae25dcb141c26e6ac4b6d94e0ca67df866b30de1
 componentDidMount(){
  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
  .then(response=>{
