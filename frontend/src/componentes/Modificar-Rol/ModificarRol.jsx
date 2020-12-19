@@ -4,17 +4,35 @@ import axios from 'axios';
 import React from 'react'
 import BarraNav from "../NavBar-Admin/NavBarAdmin";
 import "./ModificarRol.css"
+import {
+  Table,
+  
+  Container,
+} from "reactstrap";
+
+const url= "https://gestiondeusuariosumss.herokuapp.com"
 
 //const url = "https://gestiondeusuariosumss.herokuapp.com/roles";
 class ModificarRol extends React.Component{
 
   state={
-    roles:[]
+    roles:[],
+    permisos:[]
+  }
 
+
+  obtenerPermisos(){
+    axios.get(url + "/permisos")
+    .then(response=>{
+        console.log(response);
+       this.setState({permisos: response.data})
+       
+   })
   }
  
 peticionGet=()=>{
-  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles").then (response=>{
+  axios.get("https://gestiondeusuariosumss.herokuapp.com/roles")
+  .then (response=>{
     this.setState({data:response.data});
   })
   .catch((error)=>{
@@ -23,7 +41,8 @@ peticionGet=()=>{
 }  
 
 peticionPost=async()=>{
-  await axios.post ("https://gestiondeusuariosumss.herokuapp.com/roles", this.state.form).then (response=>{
+  await axios.post ("https://gestiondeusuariosumss.herokuapp.com/roles", this.state.form)
+    .then (response=>{
     this.peticionGet();
   })
   .catch((error)=>{
@@ -42,6 +61,11 @@ componentDidMount(){
  });
 }
 
+alertaModificar() {
+  alert("¡Rol Modificado!")
+  
+}
+
     
     render(){
         return (
@@ -52,7 +76,7 @@ componentDidMount(){
              <form align="center" id="form">
              <h3 align="center" id="titulo">MODIFICAR PERMISOS PARA ROL DE USUARIO</h3>
               <div id="div">
-                 <label for="name-rol" id="label">Rol de Usuario :</label>
+                 <label for="name-rol" id="label"><b>Rol de Usuario :</b></label>
                    <select name="roles" className="form-control" id="combobox">
                      {this.state.roles.map(elemento =>(
                        <option value={elemento.idRol}> {elemento.nombreRol} </option>
@@ -61,11 +85,40 @@ componentDidMount(){
                     </select>
               </div>
               <div id="div">
-                 <label for="permisos" id="label">Permisos de Rol :</label> <br></br>
-                 <label for="permisos" id="label"></label>
-                 <label htmlFor="" className="fadeIn fourth"> aqui va la lista de permisos por rol...<input type="checkbox"/></label>
+                 <label for="permisos" id="label"><b>Permisos de Rol :</b></label> <br></br>
+                 <Container style={{textAlign:"center"}} >
+        <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
+          <div className="container">
+            <hr></hr>          
+            <div  className="justify-content-center align-items-center">
+          <Table  >
+            
+              <table   className="formContent">
+              <tbody aling="center" className="table-dark">
+              {this.state.permisos.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
+                <tr>                 
+                  <td>{dato.nombrePermiso}</td>
+                  <td>
+                    <input type="checkbox" className="btn btn-primary" align="center"/>
+                  
+                  </td>
+                </tr>
+                
+              ))}
+              </tbody>
+              </table>
+              
+          </Table>
+            </div>
+            <div >
+            <input type="button"  className="fadeIn fourth" onClick={(this.peticionPost,this.alertaModificar)}value=" CAMBIAR " />
+           
+            </div> 
+          </div>
+
+        </Container>
               </div>
-               <input type="submit" className="btn btn-primary" onClick={this.peticionPost()} value="Cambiar"/> 
+              
             </form>
               
               

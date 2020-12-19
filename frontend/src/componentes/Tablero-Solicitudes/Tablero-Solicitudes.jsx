@@ -119,9 +119,11 @@ class App extends React.Component {
       
         <Container>
         <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
-          <div className="container">
-            <h3 align="center" id="titulo">SOLICITUDES PARA CAMBIAR DE ROL</h3><br/>          
-            <div className="justify-content-center align-items-center">
+          <div className="container"> <br></br>
+          
+                     
+            <div className="justify-content-center align-items-center" id="form">
+            <h3 align="center" id="titulo">SOLICITUDES PARA CAMBIAR DE ROL</h3><br/> 
           <Table>
             <table className="table" id="form">
               <tbody className="table-dark">
@@ -142,17 +144,18 @@ class App extends React.Component {
               </tbody>
               </table>
           </Table>
+          <br></br>
             </div>
           </div>
 
         </Container>
 
-        <Modal isOpen={this.state.modalResponder}>
+        <Modal id="formContent" className="wrapper fadeInDown" isOpen={this.state.modalResponder} > 
         
         
-          <ModalHeader>
+          <ModalHeader >
           
-           <div><h3>Responder</h3>
+           <div ><h3 text-align="center" font-family="Times"><b>Responder a solicitud de:</b></h3>
            
            </div>
          
@@ -213,7 +216,7 @@ class App extends React.Component {
                 Fecha: 
               </label><br/>
               <input
-                className="form-control"
+                className="form-control" 
                 name="fecha"
                 type="text"
                 readOnly

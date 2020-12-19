@@ -86,28 +86,33 @@ class SolicitudCambioRol extends React.Component {
     return (
       <div>
         <BarraNav/>
+        <br></br>
       <div className="contenido"> <br/>
-          <h5 id="nombreUsuario">Usuario: {this.usuario.nombreUsuario}</h5>
-          <h5 id="nombreRol">Rol:{this.usuario.rolActual}</h5>
+      <table   className="formContent">
+      <tbody aling="center"  id="form"><br></br>
+          <h5 id="nombreUsuario"><b>Usuario:</b>{this.usuario.nombreUsuario}</h5>
+          <h5 id="nombreRol"><b>Rol actual:</b>{this.usuario.rolActual}</h5>
+          </tbody>
+          </table>
           <br/>
           <br/>
           <div id="mensajeError" className="alert alert-danger" role="alert" hidden={true}/>
           <div id="mensajeExito" className="alert alert-success" role="alert" hidden={true}/>
           <form align="center" onSubmit={this.manejadorSubmit} id="formSolicitud"><br/>
             <h3 align="center" id="titulo">SOLICITUD DE CAMBIO DE ROL</h3><br/>
-            <h5 align="center">Motivo de solicitud:</h5>
-            <textarea id="motivoText" className="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required />
-            <small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}} />
-            <label htmlFor="rol" className="centro2">Roles disponibles:</label> <br/>
-            <select id="roles" name="rol" onChange={this.setRolDestino} required>
-              <option disabled selected value="">Elija un nuevo rol:</option>
+            <h6 align="center"><b>Motivo de solicitud:</b></h6>
+            <textarea type="text"id="motivoText" className="centro" placeholder="Ingrese su mensaje" rows="6" minLength={20} maxLength={250} onChange={this.setMotivo} required />
+            <small id="errorEmail" className="form-text text-danger" style={{visibility:"hidden"}} /><br></br>
+            <label htmlFor="rol" className="centro2"><b>Roles disponibles:</b></label> <br/>
+            <select id="combobox" name="rol" onChange={this.setRolDestino} required>
+              <option disabled selected value="">Elija un nuevo rol</option>
               {this.state.data.map((rol) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                   
                   <option id={rol.id} value={rol.id}>{rol.nombreRol}</option>                
               ))}
             </select>
             <br/>
-            <input type="submit" className="btn btn-primary" onClick={this.enviar} value="Enviar"/>
+            <input type="button" className="fadeIn fourth" onClick={this.enviar} value="Enviar"/>
           </form>
     </div>
     </div>

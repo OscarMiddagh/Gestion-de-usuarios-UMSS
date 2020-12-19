@@ -77,7 +77,9 @@ class CrearPermiso extends React.Component{
      })
     }
       
-
+    alertaPermiso() {
+      alert("¡Permiso creado!")
+    }
 
      /* 
       enviar=async()=>{
@@ -113,22 +115,22 @@ class CrearPermiso extends React.Component{
               <form align="center" id="form" onSubmit={this.crearPermiso}>
               <h3 align="center" id="titulo">CREAR PERMISOS PARA ROL DE USUARIOS</h3>
               <div id="div">
-              <label htmlFor="identificador" id="label1">Id del Permiso :</label>
-              <input id="idText" v-model="id" placeholder=" Id"  rows="3" name="id" minLength={1} maxLength={10}  value={id} onChange={this.limitaralfanumericos} required />
+              <label htmlFor="identificador" id="label1"><b>Id del Permiso :</b></label><br></br>
+              <input type="text" id="idText" v-model="id" placeholder=" Id"  rows="3" name="id" minLength={1} maxLength={10}  value={id} onChange={this.limitaralfanumericos} required />
               <small id="errorId" className="form-text text-danger" style={{visibility:"hidden"}}></small>
               </div>
               <div id="div">
-              <label htmlFor="permisos" id="label2">Nuevo Permiso :</label>
-              <input id="permisoText" v-model="nombrePermiso" placeholder=" Nombre de permiso"  rows="3" name="nombrePermiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={nombrePermiso} required />
+              <label htmlFor="permisos" id="label2"><b>Nuevo Permiso :</b></label>
+              <input type="text" id="permisoText" v-model="nombrePermiso" placeholder=" Nombre de permiso"  rows="3" name="nombrePermiso" minLength={5} maxLength={40} onChange={this.limitarPermiso} value={nombrePermiso} required />
               <small id="errorPermiso" className="form-text text-danger" style={{visibility:"hidden"}}></small>
               </div>
               <div id="div">
-              <label htmlFor="descrip" id="label3">Descripcion :</label>
-              <textarea id="descripcionText" v-model="descripcion" name="descripcion" placeholder="Añada una descripcion respecto al nuevo permiso." rows="4" minLength={20} maxLength={250} value={descripcion} onChange={this.limitaralfabeticos} required /> <br/>
+                <br></br>
+              <h6 htmlFor="descrip" id="label3"><b>Descripcion :</b></h6>
+              <textarea type="text"id="descripcionText" v-model="descripcion" name="descripcion" placeholder="Añada una descripcion respecto al nuevo permiso." rows="4" minLength={20} maxLength={250} value={descripcion} onChange={this.limitaralfabeticos} required /> <br/>
               </div>
               <div>
-              <button type="submit" className="btn btn-primary" align="center" >CREAR PERMISO
-            </button>
+              <input type="button"  className="fadeIn fourth" onClick={(this.crearPermiso,this.alertaPermiso)}value=" CREAR PERMISO " />
             </div>
               </form>
               

@@ -60,7 +60,7 @@ class RegistroUsuario extends React.Component{
       }
 
       limitaralfabeticos = (e) => {
-        if (e.target.value.match("^[ Ñña-zA-Z]*$") != null) {
+        if (e.target.value.match("^[ Ñña-zA-Z ]*$") != null) {
             this.setState({
             [e.target.name]: e.target.value
           })
@@ -141,8 +141,8 @@ class RegistroUsuario extends React.Component{
             console.log(error);
         });
        }
-       eo(){
-        alert("see envio su registro");
+       alertaRegistrar(){
+        alert("¡Usuario registrad@!");
       }
       
 
@@ -157,61 +157,79 @@ class RegistroUsuario extends React.Component{
           
 
           <form onSubmit={(this.registrarse,this.validarpassword)} id="form"  >
-            <div>
-            <h3 align="center" id="titulo">CREAR UNA CUENTA</h3>
+            <div> <br></br>
+            <h3 align="center" id="titulo">CREAR UNA CUENTA</h3> <br></br> <hr></hr>
             
        
-           <div  id="primeraParte">
-           <h3 align="left">Informacion del Login</h3>
-          <label htmlFor="email">Correo</label><br/>
-          <input type="email" className="div" name="correo" id="inflog1" aria-describedby="emailHelp" placeholder="Ingrese su correo" value={correo} onChange={this.limitarcorreo} required  required maxLength="100" /> <br/>
-          <label htmlFor="Contraseña" >Contraseña</label> <br/>
-          <input type="password" className="div" name="contraseña" id="inflog2" placeholder="Contraseña" value={contraseña} onChange={this.limitarpasswd} required minLength="8" required required maxLength="100" /><br/>
-          <label htmlFor="Contraseña" >Confirmar Contraseña</label><br/>
-          <input type="password"  className="div" name="confirmarContraseña" id="inflog3"  onChange={this.mensajevalidacion} placeholder="Repetir Contraseña" />
+           <div  id="form">
+           <br></br>
+           <h5 align="center"><b>INFORMACION DE LOGIN</b></h5><hr></hr><br></br>
+           
+          <h6 > <b>Correo Electronico :</b></h6><br/>
+          <input type="text" className="div" name="correo" id="inflog1" aria-describedby="emailHelp" placeholder="Ingrese su correo" value={correo} onChange={this.limitarcorreo}   required maxLength="100" /> <br/>
+          
+          <h6 htmlFor="Contraseña" ><b>Contraseña :</b></h6> <br/>
+          <input type="text" className="div" name="contraseña" id="inflog2" placeholder="Contraseña" value={contraseña} onChange={this.limitarpasswd} required minLength="8"  required maxLength="100" /><br/>
+          
+          <h6 htmlFor="Contraseña" ><b>Confirmar Contraseña :</b></h6><br/>
+          
+          <input type="text"  className="div" name="confirmarContraseña" id="inflog3"  onChange={this.mensajevalidacion} placeholder="Repetir Contraseña" />
+          <br></br>
           <small id="errorCoincidir" className="form-text text-danger" style={{visibility:"hidden"}}></small>
-        </div>
+          
+        </div> <br></br>
 
         
 
 
 
-            <div  id="segundaParte">
-            <h3 >Informacion Personal</h3>
-            <label htmlFor="name">Nombre(s)</label><br/>
+            <div  id="form">
+            <br></br>
+            <h5 align="center"><b>INFORMACION PERSONAL</b></h5><hr></hr>
+            <br></br>
+            <label htmlFor="name"><b>Nombre(s) :</b></label>
             <input type="text" className="div" name="nombres" id="infper1" placeholder="Ingrese su nombre" value={nombres} onChange={this.limitaralfabeticos} required required maxLength="100" /><br/>
-            <label htmlFor="firstsurname">Apellido Paterno</label><br/>
+            <br></br>
+            <label htmlFor="firstsurname"><b>Apellido Paterno :</b></label><br/>
             <input type="text" className="div" name="apellidos" id="infper2" placeholder="Ingrese su apellido paterno" value={apellidos} onChange={this.limitaralfabeticos} required required maxLength="100"/><br/>
-            <label htmlFor="secondurname">Apellido Materno</label><br/>
+            <br></br>
+            <label htmlFor="secondurname"><b>Apellido Materno :</b></label><br/>
             <input type="text" className="div" name="apellidosM" id="infper3" placeholder="Ingrese su apellido materno" value={apellidosM} onChange={this.limitaralfabeticos} required required maxLength="100" /><br/>
-            <label htmlFor="Carnet">Ci</label><br/>
+            <br></br>
+            <label htmlFor="Carnet"><b>Ci :</b></label><br/>
             <input type="text" className="div" name="documentoDeIdentidad" id="infper4" placeholder="Ingrese su cédula de identidad"  value={documentoDeIdentidad} onChange={this.limitaralfanumericos} required required maxLength="20" /><br/>
-            <label htmlFor="Country">Pais</label><br/>
+            <br></br>
+            <label htmlFor="Country"><b>Pais :</b></label><br/>
             <input type="text" className="div" name="pais" id="infper5" placeholder="Ingrese su País" value={pais} onChange={this.limitaralfabeticos} required required maxLength="100"/><br/>
-            <label htmlFor="City">Ciudad</label><br/>
+            <br></br>
+            <label htmlFor="City"><b>Ciudad :</b></label><br/>
             <input type="text" className="div" name="ciudad" id="infper6" placeholder="Ingrese su Ciudad" value={ciudad} onChange={this.limitaralfabeticos} required required maxLength="100"/><br/>
-            <label htmlFor="Direccion">Direccion</label><br/>
+            <label htmlFor="Direccion"><b>Direccion :</b></label><br/>
             <input type="text" className="div" name="direccion" id="infper7" placeholder="Ingrese su dirección" value={direccion} onChange={this.limitaralfabeticos}required required maxLength="100"/><br/>
-            <label htmlFor="tele">Telefono Fijo</label><br/>
+            <br></br>
+            <label htmlFor="tele"><b>Telefono Fijo : </b></label><br/>
             <input type="text" className="div" name="telefonoFijo" id="infper8" placeholder="Ingrese su numero de teléfono" value={telefonoFijo} onChange={this.limitaralfanumericos} required required maxLength="20"/><br/>
-            <label htmlFor="celular">Telefono Movil</label><br/>
+            <br></br>
+            <label htmlFor="celular"><b>Telefono Movil :</b></label><br/>
             <input type="text" className="div" name="telefonoMovil" id="infper9" placeholder="Ingrese su numero de celular" value={telefonoMovil} onChange={this.limitaralfanumericos}required required maxLength="20"/><br/>
-            <label htmlFor="Rol">Rol</label><br/>
+            <br></br>
+            <label htmlFor="Rol"><b>Rol de Usuario:</b> </label><br/>
             <select name="roles" className="form-control" id="combobox" >
             {this.state.roles.map(elemento =>(
                        <option value={elemento.idRol}> {elemento.nombreRol} </option>
                        )
                        )}
             </select>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
           </div>
+          <br></br>
+          <input type="button" className="fadeIn fourth" onClick={(this.registrarse,this.validarpassword,this.alertaRegistrar)} value="REGISTRARSE"/>
         
 
-            <div align="center">
-            <button type="submit" className="btn btn-primary" align="center" onClick={this.eo}
-                      //onClick={() => this.registrarse(this.state.form.documentoDeIdentidad)}
-                      >REGISTRARSE
-            </button>
-            </div>
+            
             </div><br/>
             </form> 
        

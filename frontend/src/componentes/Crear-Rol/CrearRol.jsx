@@ -44,6 +44,7 @@ nombreRol: '',
     .then(response=>{
         console.log(response);
        this.setState({permisos: response.data})
+       
    })
     .catch((error)=>{
         console.log(error);
@@ -54,12 +55,17 @@ nombreRol: '',
     await axios.post(url + "/guardarRol",this.state)
     .then(response=>{
       console.log(response);
+      
     })
   .catch(error=>{
       console.log(error)
   })
   }
 
+  alertaRol() {
+    alert("¡Rol creado!")
+    
+  }
   //handlerSubmit=(e) =>{
     // e.preventDefault()
     //console.log(this.state)
@@ -79,23 +85,25 @@ nombreRol: '',
   render(){
     const {nombreRol}=this.state
   return (
-    <div className="crear_rol" id="div"> <br />
+    <div style={{textAlign:"center"}} className="crear_rol" id="div"> <br />
 
       <form align="center" id="form" onSubmit={this.crearRol}>
-      <h3 align="center" id="titulo">CREAR ROL</h3>
+      <h3 align="center" id="titulo">CREAR ROL DE USUARIO</h3>
         <div id="div">
-          <label htmlFor="rol" id="label">Nuevo Rol :</label>
-          <input id="rolText" className="nombre" placeholder="Nombre de rol" rows="3" name="nombreRol" value={nombreRol} onChange={this.limitaralfabeticos} minLength={5} maxLength={20} />
+          <label htmlFor="rol" id="label"><h6><b>Nuevo Rol :</b></h6></label><br></br>
+          <input type="text"id="rolText" className="nombre" placeholder="Nombre de rol" rows="3" name="nombreRol" value={nombreRol} onChange={this.limitaralfabeticos} minLength={5} maxLength={20} />
         </div>
 
-            <Container>
+            <Container style={{textAlign:"center"}} >
         <div id="mensajeEnviado" className="alert alert-primary" role="alert" hidden={true}/>
           <div className="container">
-            <h1 style={{textAlign:"center"}}>Permisos disponibles</h1>           
-            <div className="justify-content-center align-items-center">
-          <Table>
+            <h5 style={{textAlign:"center"}}> <b>Permisos disponibles</b></h5> 
+            <hr></hr>          
+            <div  className="justify-content-center align-items-center">
+          <Table  >
             
-              <tbody className="table-dark">
+              <table   className="formContent">
+              <tbody aling="center" className="table-dark">
               {this.state.permisos.map((dato) => (   //por cada dato que se muestre lo siguiente, se debe colocar el nombre de la base de datos 
                 <tr>                 
                   <td>{dato.nombrePermiso}</td>
@@ -107,18 +115,18 @@ nombreRol: '',
                 
               ))}
               </tbody>
-             
+              </table>
+              
           </Table>
             </div>
-            <div>
-        <button type="submit" className="btn btn-primary" align="center"
-                      //onClick={() => this.registrarse(this.state.form.documentoDeIdentidad)}
-                      >CREAR ROL
-            </button>
+            <div >
+            <input type="button"  className="fadeIn fourth" onClick={(this.crearRol,this.alertaRol)}value=" CREAR ROL " />
+            <br></br>
             </div> 
           </div>
 
         </Container>
+        <br></br>
         </form>
     </div>
   )

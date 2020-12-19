@@ -7,7 +7,7 @@ const NavBaradmin = ()=> {
         return (
             <div>
                 <div className="btn-group">
-                    <Link to="/TableroSolicitudes" className="btn btn-dark">
+                    <Link to="/TableroSolicitudes" className="btn btn-dark one">
                         Tablero de Solicitudes
           </Link>
                     <hr />
