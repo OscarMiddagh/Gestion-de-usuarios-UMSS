@@ -1,0 +1,12 @@
+.btn.btn-dark.one{
+    transition: all 0.5s;
+ cursor: pointer;
+ -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+ font-family: Arial;
+  font-size: 27px;
+  padding: 19px;
+  text-decoration: none;
+ 
+}
