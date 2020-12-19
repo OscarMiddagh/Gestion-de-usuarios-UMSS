@@ -70,11 +70,20 @@ class App extends React.Component {
       }
     })
   }
-
+  setNotificacion(resp,idUsuario){
+    this.notificacion ={
+      mensaje: document.getElementById("comentario").value,
+      user:{
+        id:idUsuario
+      },
+      respuesta:resp
+    }
+  }
   aprobar= async (idUsuario)=>{
    await axios.post(url + "/sol_aceptada/"+idUsuario,this.state.form.rolDestino)
     .then(async res=>{
-      await axios.post("http://localhost:8080/enviar_notificacion",this.notificacion)
+      this.setNotificacion("Aprobado",idUsuario);
+      await axios.post(url+"/enviar_notificacion",this.notificacion)
         .then(res=>{
           console.log("Notificacion enviada");
         })
@@ -86,7 +95,14 @@ class App extends React.Component {
   }
   rechazar = async (idUsuario) => {
     await axios.post(url + "/sol_rechazada/"+idUsuario)
-      .then(console.log)
+      .then(async res=>{
+        this.setNotificacion("Rechazado",idUsuario);
+          await axios.post(url+"/enviar_notificacion",this.notificacion)
+            .then(res=>{
+              console.log("Notificacion enviada");
+            })
+            .catch();
+      })
       .catch(console.log);
       this.ocultarModalResponder();
      // window.location.href = window.location.href;
@@ -220,11 +236,13 @@ class App extends React.Component {
                 Comentario: 
               </label>
               <input
+                id="comentario"
                 minLength={20}
                 maxLength={250}
                 className="form-control"
                 name="comentario"
                 type="text"
+                required
                 placeholder="Ingrese su comentario"
                onChange={this.handleChange}
                 
